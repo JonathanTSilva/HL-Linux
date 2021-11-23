@@ -1,5 +1,5 @@
 <!-- Simple logo -->
-<a href="#meu-guia-de-linux"><img width="400px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQltDAB3nHMz676US-K8ho9S-M1WGUqgE5eMhvwlE3r6rbI6BeeVYZB9aqdr4xRw3hk8Y&usqp=CAU" align="right" /></a>
+<a href="#meu-guia-de-linux"><img width="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png" align="right" /></a>
 
 # Meu guia de Linux
 

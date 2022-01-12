@@ -9,7 +9,7 @@
 
 ### 1.1. Básico
 
-#### 1.1.1. Instalação de programas
+#### 1.1.1. Manuseio de pacotes
 
 Abaixo estão alguns passos utilizados para a instalação de softwares no linux:
 
@@ -70,3 +70,24 @@ Essa opção vai remover os binários instalados dele (mas não os arquivos de c
 ```console
 sudo apt-get purge <nome do pacote>
 ```
+
+#### 1.1.2. Manuseio de arquivos
+
+**II. Descompactar arquivos por um software**
+
+O software que utilizo para descompactar arquivos no linux é o 7zip. Para baixá-lo, basta comandar:
+
+```console
+sudo apt-get install p7zip-full
+```
+
+Verifique se o pacote está instalado corretamente ou não usando o comando `7z`. 
+
+**II. Descompactar arquivos por comandos raíz**
+
+Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo de arquivos teremos um comando resumidos pela lista abaixo:
+
+* .zip: unzip nome_do_arquivo;
+* .tar.gz ou .tgz: tar xvzf nome_do_arquivo;
+* .gz: gunzip nome_do_arquivo;
+* .tbz ou .tar.bz2: tar xjf nome_do_arquivo.

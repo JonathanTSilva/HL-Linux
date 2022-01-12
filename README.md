@@ -5,15 +5,15 @@
 
 🛠 Passo a passo que adoto na minha utilização do Linux.
 
-## Ubuntu e Debian
+## 1. Ubuntu e Debian
 
-### Básico
+### 1.1. Básico
 
-#### Instalação de programas
+#### 1.1.1. Instalação de programas
 
 Abaixo estão alguns passos utilizados para a instalação de softwares no linux:
 
-**1. Atualizar pacotes já instalados**
+**I. Atualizar pacotes já instalados**
 
 ```console
 sudo apt-get update
@@ -21,7 +21,7 @@ sudo apt-get update
 
 Esse comando vai atualizar a base de dados dos pacotes para que você tenha acesso às versões mais atualizadas dos softwares.
 
-**2. Instalar por um repositório terceiro**
+**II. Instalar por um repositório terceiro**
 
 Se quiser instalar um programa de um repositório específico de terceiros, adicione-o usando o seguinte comando: 
 
@@ -29,7 +29,7 @@ Se quiser instalar um programa de um repositório específico de terceiros, adic
 sudo add-apt-repository <nome do repositório>
 ```
 
-**3. Caso não saiba o nome do pacote**
+**III. Caso não saiba o nome do pacote**
 
 Caso não saiba o nome do pacote que deseja instalar, é possível procurá-lo pelo comando:
 
@@ -39,7 +39,7 @@ apt-cache search <termo de busca>
 
 Uma lista irá aparecer com todos os pacotes que correspondem com o termo em questão. Se muitos itens forem exibidos de uma só vez, digite novamente o comando e dê um espaço para navegar pela lista. Para consultar mais detalhes sobre o pacote, execute o comando `apt-cache showpkg <nome do pacote>`, que irá exibir a versão do software, dependências e outras informações.
 
-**4. Instalando o pacote**
+**IV. Instalando o pacote**
 
 ```console
 sudo apt-get install <nome do pacote>
@@ -51,7 +51,7 @@ Para atualizar um pacote já instalado sem precisar reinstalá-lo, use o comando
 sudo apt-get install <nome do pacote> --only-upgrade
 ```
 
-**5. Listando os pacotes instalados**
+**V. Listando os pacotes instalados**
 
 ```console
 sudo dpkg –list
@@ -59,7 +59,7 @@ sudo dpkg –list
 
 O comando acima irá listar todos os pacotes instalados na máquina. Se a lista for longa demais, use a barra de espaço para navegar entre os resultados.
 
-**6. Deletando algum pacote**
+**VI. Deletando algum pacote**
 
 ```console
 sudo apt-get remove <nome do pacote>

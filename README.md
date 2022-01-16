@@ -40,19 +40,19 @@ f. Alte
 
 #### 1.2.1. Comandos
 
-|Comando|Descrição|
-|:---|:---|
-|`whoami`|Retorna qual o usuário que está logado no sistema|
-|`pwd`|*Print Working Directory* - Retorna onde estamos no sistema|
-|`mkdir <nome da pasta>`|*Make Directory* - Criar uma nova pasta dentro do diretório atual|
-|`cd <diretorio>`|*Change Directory*- Alterar para o diretório especificado|
-|`rm <nome do arquivo/pasta>`|Remove a pasta ou arquivo especificado|
-|`chown <usuario> <arquivo>`|*Change Owner* - Muda o dono do arquivo|
-|`ls -la`|Lista utilizando um formato de lista longo (-l) e não ignorando as entradas que comecem com . (-a)|
-|`touch <nome do arquivo>`|Forma mais simples de criar um arquivo vazio|
-|`man <comando>`|*Manual* - Mostra um manual do comando: o que faz exatamente e quais as opções disponíveis|
-|`echo`|Escuta um arquivo ou váriavel do sistema. Ex: `echo $HOME`|
-|`clear`|Limpa a tela do terminal|
+| Comando                      | Descrição                                                                                          |
+| :--------------------------- | :------------------------------------------------------------------------------------------------- |
+| `whoami`                     | Retorna qual o usuário que está logado no sistema                                                  |
+| `pwd`                        | *Print Working Directory* - Retorna onde estamos no sistema                                        |
+| `mkdir <nome da pasta>`      | *Make Directory* - Criar uma nova pasta dentro do diretório atual                                  |
+| `cd <diretorio>`             | *Change Directory*- Alterar para o diretório especificado                                          |
+| `rm <nome do arquivo/pasta>` | Remove a pasta ou arquivo especificado                                                             |
+| `chown <usuario> <arquivo>`  | *Change Owner* - Muda o dono do arquivo                                                            |
+| `ls -la`                     | Lista utilizando um formato de lista longo (-l) e não ignorando as entradas que comecem com . (-a) |
+| `touch <nome do arquivo>`    | Forma mais simples de criar um arquivo vazio                                                       |
+| `man <comando>`              | *Manual* - Mostra um manual do comando: o que faz exatamente e quais as opções disponíveis         |
+| `echo`                       | Escuta um arquivo ou váriavel do sistema. Ex: `echo $HOME`                                         |
+| `clear`                      | Limpa a tela do terminal                                                                           |
 
 **Curiosidades**
 
@@ -66,9 +66,9 @@ cd
 
 #### 1.2.2. Atalhos
 
-|Atalho|Descrição|
-|:---|:---|
-|<kbd>Ctrl</kbd>||
+| Atalho          | Descrição |
+| :-------------- | :-------- |
+| <kbd>Ctrl</kbd> |           |
 
 #### 1.2.3. Conceitos
 
@@ -218,6 +218,35 @@ Em um outro exemplo abaixo, um disco de 1 TeraByte é dividido em 2 discos. O pr
 * /dev/sdb1 2048 250068991 250066944 119,2G Linux sistema de arquivos
 
 O programa mais comumente usado no Linux para particionar discos é o fdisk. O problema com este aplicativo é que ele destrói os dados armazenados ao particionar o disco.
+
+**Sistemas de arquivos**
+
+Um sistema de arquivos é um conjunto de estruturas lógicas que permite o sistema operacional controlar o acesso a um dispositivo de armazenamento como disco rígido, pen drive, cd-room, etc. Diferentes sistemas operacionais podem usar diferentes sistemas de arquivos. Segue abaixo um resumo em tópicos sobre sistemas de arquivos:
+
+* A partição Linux nativo é conhecida por diretório raiz do Linux e é representada por **/**;
+* Atualmente, o **NTFS** (New Technology File System) é o sistema de arquivos padrão do Windows, enquanto o **ext4** é o do Linux/;
+* Para verificar quais os sistemas de arquivos que o seu Linux suporta, basta verificar o conteúdo do arquivo **/proc/filesystems**;
+* O suporte para diferentes sistemas de arquivos pode ser obtido através de módulos de kernel carregáveis no diretório **/lib/modules/XXX/kernel/fs**, onde XXX é a versão atual do Linux;
+* A escolha do sistema de arquivos depende do sistema operacional utilizado. Abaixo, alguns exemplos de sistemas de arquivos suportados por determinados sistemas operacionais:
+
+| Sistema Operacional | Sistema de arquivos suportados |
+| :------------------ | :----------------------------- |
+| Linux               | EXT3, EXT4, XFS, JFS           |
+| MacOS               | HFS                            |
+| Windows             | FAT, HPFS, NTFS                |
+| FreeBSD, OpenBSD    | UFS                            |
+| Sun Solaris         | UFS                            |
+| IBM AIX             | JFS                            |
+
+* Para ver o tipo do sistema de arquivo usado no seu Linux, basta usar o comando df.
+
+```console
+df -Tm
+```
+
+**Estrutura do Linux**
+
+
 
 <!-- Markdown's Links -->
 <!-- SITES -->

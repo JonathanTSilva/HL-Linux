@@ -184,4 +184,44 @@ Assim, iniciar o tweaks para fazer as devidas modificações.
 
 ## 1.3. Intermediário
 
-### 1.3.1. Sistemas de arquivos
+### 1.3.1. [Sistemas de arquivos][1]
+
+**Partições**
+
+Podemos dividir um disco rígido em várias partes ou partições, onde cada partição é independente das outras, ou seja, cada partição pode ter o seu próprio sistema de arquivo e um diferente sistema operacional. Isto significa que uma partição do disco não interfere nas outras partições.
+
+Atualmente existem dois padrões que determinam como os dados são armazenados no disco.
+
+* MBR (Master Boot Record) – padrão antigo que só permite 4 partições (chamadas de primárias) no mesmo disco. Por isso, costuma-se usar a quarta partição como partição estendida para criar várias partições lógicas (em outras áreas do disco).
+
+* GPT (GUID Partition Table) – pode criar 128 ou mais partições (depende do sistema operacional usado). Neste caso, não há necessidade de criar partição estendida (embora seja possível).
+  
+O Linux utiliza a seguinte nomenclatura para identificar discos e partições:
+
+![discos][discos]
+
+Por exemplo, pode-se ter:
+
+* /dev/sda1 – Primeira partição do primeiro disco rígido SATA ou SCSI.
+* /dev/sda2 – Segunda partição do primeiro disco rígido SATA ou SCSI.
+* /dev/sdb1 – Primeira partição do segundo disco rígido SATA ou SCSI.
+* /dev/sdb2 – Segunda  partição do segundo disco rígido SATA ou SCSI.
+* /dev/hda1 – Primeira partição do primeiro disco rígido IDE.
+* /dev/hda2 – Segunda partição do primeiro disco rígido IDE.
+* /dev/hdb1 – Primeira partição do segundo disco rígido IDE.
+* /dev/hdb2 – Segunda partição do segundo disco rígido IDE.
+
+Em um outro exemplo abaixo, um disco de 1 TeraByte é dividido em 2 discos. O primeiro disco tem duas partições: a primeira partição com 512 MB possui o sistema EFI (Extensible Firmware Interface) que é responsável pela inicialização do sistema; a segunda partição com 931 GB possui os arquivos do sistema. O segundo disco de 119,2 GB é usado como área de dados.
+
+* /dev/sda1 2048 1050623 1048576 512M Sistema EFI
+* /dev/sda2 1050624 1953523711 1952473088 931G Linux sistema de arquivos
+* /dev/sdb1 2048 250068991 250066944 119,2G Linux sistema de arquivos
+
+O programa mais comumente usado no Linux para particionar discos é o fdisk. O problema com este aplicativo é que ele destrói os dados armazenados ao particionar o disco.
+
+<!-- Markdown's Links -->
+<!-- SITES -->
+[1]: https://guialinux.uniriotec.br/sistemas-de-arquivos/
+
+<!-- IMAGENS -->
+[discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

@@ -246,7 +246,38 @@ df -Tm
 
 **Estrutura do Linux**
 
+No Linux, um diretório (corresponde ao conceito de pasta do Windows) pode ter outros diretórios ou arquivos. Dizemos que um diretório é filho de outro diretório quando ele está logo abaixo do diretório em questão. O diretório que está um nível acima é chamado de diretório pai.
 
+O diretório raiz do Linux (ou diretório /) é o diretório com maior hierarquia entre todos os diretórios do sistema. Isto significa que todos os diretórios do Linux ficam abaixo deste diretório. A seguir são apresentados exemplos de diretórios que normalmente ficam abaixo do diretório raiz.
+
+* bin – diretório com os comandos disponíveis para os usuários comuns (não privilegiados).
+* boot – diretório com os arquivos estáticos do boot de inicialização.
+* dev – diretório com as definições dos dispositivos de entrada/saída.
+* etc – diretório com os arquivos de configuração do sistema.
+* home – diretório que armazena os diretórios dos usuários do sistema.
+* lib – diretório com as bibliotecas e módulos (carregáveis) do sistema.
+* lost+found – é usado pelo fsck para armazenar arquivos/diretórios/devices corrompidos.
+* media – ponto de montagem temporário para mídias removíveis.
+* mnt – ponto de montagem temporário para sistemas de arquivos.
+* opt – softwares adicionados pelos usuários.
+* proc – diretório com informações sobre os processos do sistema.
+* root – diretório home do root.
+* run – armazena arquivos temporários da inicialização do sistema.
+* sbin – diretório com os aplicativos usados na administração do sistema.
+* snap – diretório com pacotes snaps (podem ser executados em diferentes distribuições Linux).
+* srv – dados para serviços providos pelo sistema.
+* sys – contém informações sobre  devices, drivers e características do kernel.
+* tmp – diretório com arquivos temporários.
+* usr – diretório com aplicativos e arquivos utilizados pelos usuários como, por exemplo, o sistema de janelas X, jogos, bibliotecas compartilhadas, programas de usuários e de administração, etc.
+* var – diretório com arquivos de dados variáveis (spool, logs, etc).
+
+Para ver os diretórios e arquivos que ficam abaixo do diretório /, basta usar o comando ls.
+
+```console
+ls /
+```
+
+Convém também observar que é possível colocar os subdiretórios do diretório raiz em partições separadas. O objetivo é facilitar a manutenção do sistema e aumentar a segurança dos dados. Portanto, a distribuição do diretório raiz em várias partições é uma escolha pessoal do administrador do sistema. Normalmente, é sugerido que os seguintes diretórios possuam uma partição própria: /home, /opt, /tmp, /usr e /usr/local.
 
 <!-- Markdown's Links -->
 <!-- SITES -->

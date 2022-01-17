@@ -17,6 +17,8 @@
       - [1.2.6. Troca de tema](#126-troca-de-tema)
   - [1.3. Intermediário](#13-intermediário)
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
+  - [1.4. Avançado](#14-avançado)
+    - [1.4.1. Shell Script](#141-shell-script)
 
 ## 1. Ubuntu e Debian
 
@@ -202,14 +204,14 @@ O Linux utiliza a seguinte nomenclatura para identificar discos e partições:
 
 Por exemplo, pode-se ter:
 
-* /dev/sda1 – Primeira partição do primeiro disco rígido SATA ou SCSI.
-* /dev/sda2 – Segunda partição do primeiro disco rígido SATA ou SCSI.
-* /dev/sdb1 – Primeira partição do segundo disco rígido SATA ou SCSI.
-* /dev/sdb2 – Segunda  partição do segundo disco rígido SATA ou SCSI.
-* /dev/hda1 – Primeira partição do primeiro disco rígido IDE.
-* /dev/hda2 – Segunda partição do primeiro disco rígido IDE.
-* /dev/hdb1 – Primeira partição do segundo disco rígido IDE.
-* /dev/hdb2 – Segunda partição do segundo disco rígido IDE.
+* **/dev/sda1** – Primeira partição do primeiro disco rígido SATA ou SCSI.
+* **/dev/sda2** – Segunda partição do primeiro disco rígido SATA ou SCSI.
+* **/dev/sdb1** – Primeira partição do segundo disco rígido SATA ou SCSI.
+* **/dev/sdb2** – Segunda  partição do segundo disco rígido SATA ou SCSI.
+* **/dev/hda1** – Primeira partição do primeiro disco rígido IDE.
+* **/dev/hda2** – Segunda partição do primeiro disco rígido IDE.
+* **/dev/hdb1** – Primeira partição do segundo disco rígido IDE.
+* **/dev/hdb2** – Segunda partição do segundo disco rígido IDE.
 
 Em um outro exemplo abaixo, um disco de 1 TeraByte é dividido em 2 discos. O primeiro disco tem duas partições: a primeira partição com 512 MB possui o sistema EFI (Extensible Firmware Interface) que é responsável pela inicialização do sistema; a segunda partição com 931 GB possui os arquivos do sistema. O segundo disco de 119,2 GB é usado como área de dados.
 
@@ -250,26 +252,26 @@ No Linux, um diretório (corresponde ao conceito de pasta do Windows) pode ter o
 
 O diretório raiz do Linux (ou diretório /) é o diretório com maior hierarquia entre todos os diretórios do sistema. Isto significa que todos os diretórios do Linux ficam abaixo deste diretório. A seguir são apresentados exemplos de diretórios que normalmente ficam abaixo do diretório raiz.
 
-* bin – diretório com os comandos disponíveis para os usuários comuns (não privilegiados).
-* boot – diretório com os arquivos estáticos do boot de inicialização.
-* dev – diretório com as definições dos dispositivos de entrada/saída.
-* etc – diretório com os arquivos de configuração do sistema.
-* home – diretório que armazena os diretórios dos usuários do sistema.
-* lib – diretório com as bibliotecas e módulos (carregáveis) do sistema.
-* lost+found – é usado pelo fsck para armazenar arquivos/diretórios/devices corrompidos.
-* media – ponto de montagem temporário para mídias removíveis.
-* mnt – ponto de montagem temporário para sistemas de arquivos.
-* opt – softwares adicionados pelos usuários.
-* proc – diretório com informações sobre os processos do sistema.
-* root – diretório home do root.
-* run – armazena arquivos temporários da inicialização do sistema.
-* sbin – diretório com os aplicativos usados na administração do sistema.
-* snap – diretório com pacotes snaps (podem ser executados em diferentes distribuições Linux).
-* srv – dados para serviços providos pelo sistema.
-* sys – contém informações sobre  devices, drivers e características do kernel.
-* tmp – diretório com arquivos temporários.
-* usr – diretório com aplicativos e arquivos utilizados pelos usuários como, por exemplo, o sistema de janelas X, jogos, bibliotecas compartilhadas, programas de usuários e de administração, etc.
-* var – diretório com arquivos de dados variáveis (spool, logs, etc).
+* **bin** – diretório com os comandos disponíveis para os usuários comuns (não privilegiados).
+* **boot** – diretório com os arquivos estáticos do boot de inicialização.
+* **dev** – diretório com as definições dos dispositivos de entrada/saída.
+* **etc** – diretório com os arquivos de configuração do sistema.
+* **home** – diretório que armazena os diretórios dos usuários do sistema.
+* **lib** – diretório com as bibliotecas e módulos (carregáveis) do sistema.
+* **lost+found** – é usado pelo fsck para armazenar arquivos/diretórios/devices corrompidos.
+* **media** – ponto de montagem temporário para mídias removíveis.
+* **mnt** – ponto de montagem temporário para sistemas de arquivos.
+* **opt** – softwares adicionados pelos usuários.
+* **proc** – diretório com informações sobre os processos do sistema.
+* **root** – diretório home do root.
+* **run** – armazena arquivos temporários da inicialização do sistema.
+* **sbin** – diretório com os aplicativos usados na administração do sistema.
+* **snap** – diretório com pacotes snaps (podem ser executados em diferentes distribuições Linux).
+* **srv** – dados para serviços providos pelo sistema.
+* **sys** – contém informações sobre  devices, drivers e características do kernel.
+* **tmp** – diretório com arquivos temporários.
+* **usr**– diretório com aplicativos e arquivos utilizados pelos usuários como, por exemplo, o sistema de janelas X, jogos, bibliotecas compartilhadas, programas de usuários e de administração, etc.
+* **var** – diretório com arquivos de dados variáveis (spool, logs, etc).
 
 Para ver os diretórios e arquivos que ficam abaixo do diretório /, basta usar o comando ls.
 
@@ -278,6 +280,12 @@ ls /
 ```
 
 Convém também observar que é possível colocar os subdiretórios do diretório raiz em partições separadas. O objetivo é facilitar a manutenção do sistema e aumentar a segurança dos dados. Portanto, a distribuição do diretório raiz em várias partições é uma escolha pessoal do administrador do sistema. Normalmente, é sugerido que os seguintes diretórios possuam uma partição própria: /home, /opt, /tmp, /usr e /usr/local.
+
+## 1.4. Avançado
+
+### 1.4.1. Shell Script
+
+
 
 <!-- Markdown's Links -->
 <!-- SITES -->

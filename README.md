@@ -157,7 +157,13 @@ Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo
 * .gz: gunzip nome_do_arquivo;
 * .tbz ou .tar.bz2: tar xjf nome_do_arquivo.
 
-#### 1.2.6. Troca de tema
+#### 1.2.6. Customização
+
+##### Terminal
+
+Uma das maiores paixões de usuários linux é a possibilidade de 
+
+##### Troca de Tema
 
 Apesar de gostar do tema do Ubuntu/PopOS/ZorinOS, prefiro alterá-lo para um muito utilizado pela comunidade: Flat Remix. Por isso, este será utilizado como exemplo para alteração de tema no Ubuntu. Pode-se atualizar baixando-o pela página oficial do pacote, utilizando o gerenciador apt ou por um repositório do GitHub.
 

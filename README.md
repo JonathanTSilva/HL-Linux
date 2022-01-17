@@ -14,7 +14,9 @@
       - [1.2.3. Conceitos](#123-conceitos)
       - [1.2.4. Manuseio de pacotes](#124-manuseio-de-pacotes)
       - [1.2.5. Manuseio de arquivos](#125-manuseio-de-arquivos)
-      - [1.2.6. Troca de tema](#126-troca-de-tema)
+      - [1.2.6. Customização](#126-customização)
+        - [Terminal](#terminal)
+        - [Troca de Tema](#troca-de-tema)
   - [1.3. Intermediário](#13-intermediário)
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
   - [1.4. Avançado](#14-avançado)
@@ -140,7 +142,7 @@ sudo apt purge <nome do pacote>
 
 #### 1.2.5. Manuseio de arquivos
 
-**II. Descompactar arquivos por um software**
+**I. Descompactar arquivos por um software**
 
 O software que utilizo para descompactar arquivos no linux é o 7zip. Para baixá-lo, basta comandar:
 
@@ -163,7 +165,99 @@ Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo
 
 ##### Terminal
 
-Uma das maiores paixões de usuários linux é a possibilidade de 
+Uma das maiores paixões de usuários linux é a possibilidade de customizar o terminal de acordo com sua preferência.
+
+**ZSH** https://www.youtube.com/watch?v=Y769Tn7DYiQ&ab_channel=Diolinux
+
+```console
+sudo apt install zsh
+```
+
+```console
+chsh -s /bin/zsh
+```
+
+**Oh My ZSH**
+
+Instalação
+
+```console
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Plugins
+
+```console
+plugins=(
+  git
+  bundler
+  dotenv
+  macos
+  rake
+  rbenv
+  ruby
+)
+```
+
+Nota: muitos temas precisam da instalação do Powerline Fonts para que funcione corretamente.
+
+**Powerline fonts**
+
+Uma instalação rápida pode ser feita com:
+
+```console
+sudo apt install fonts-powerline
+```
+
+Se não der certo, rode `.install.sh` para instalar todas Powerline fonts ou veja a documentação https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation para mais detalhes.
+
+```console
+# clone
+git clone https://github.com/powerline/fonts.git --depth=1
+# install
+cd fonts
+./install.sh
+# Refresh the font cache, saves logging out and back in
+sudo fc-cache -fv
+# clean-up a bit
+cd ..
+rm -rf fonts
+```
+
+Para desinstalar, trocar `./install.sh` por `./uninstall.sh`.
+
+**Temas**
+
+agnastor
+Powerlevel10k 
+
+**Plugins**
+
+*zsh-syntax-highlighting* - Adiciona syntax Highligth no nosso ZSH, facilitando você saber se o comando que está sendo digitado no momento está correto. Para instalar, use:
+
+```console
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Agora para definir ele como um dos plugins do seu ZSH, entre em `~/zshrc`, procure uma parte com `plugins=()` e edite:
+
+```console
+plugins=( git dnf zsh-syntax-highlighting )
+```
+
+*zsh-autosuggestions* - Adiciona uma auto-sugestão no ZSH baseada em seu histórico, tornando mais fácil a repetição de comandos já utilizados.
+
+Instale ele na sua máquina:
+
+```console
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+edite seu `~/zshrc` para adicionar o plugin na lista:
+
+```console
+plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions)
+```
 
 ##### Troca de Tema
 

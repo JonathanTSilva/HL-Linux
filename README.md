@@ -15,8 +15,10 @@
       - [1.2.4. Manuseio de pacotes](#124-manuseio-de-pacotes)
       - [1.2.5. Manuseio de arquivos](#125-manuseio-de-arquivos)
       - [1.2.6. Customização](#126-customização)
-        - [Terminal](#terminal)
-        - [Troca de Tema](#troca-de-tema)
+        - [1.2.6.1. Terminal](#1261-terminal)
+          - [ZSHELL - Oh-My-ZSH](#zshell---oh-my-zsh)
+          - [POWERSHELL - Oh-My-Posh](#powershell---oh-my-posh)
+        - [1.2.6.2. Troca de Tema](#1262-troca-de-tema)
   - [1.3. Intermediário](#13-intermediário)
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
   - [1.4. Avançado](#14-avançado)
@@ -29,7 +31,7 @@
 Abaixo estão os primeiros passos adotados em uma pós formatação com o sistema com ubuntu (sem utilizar shell scripts).
 
 a. Alterar a aparência do sistema:
-    - diminuir icones;
+    - diminuir ícones;
     - alterar wallpaper;
     - colocar foto no avatar;
     - instalar tema terceiro;
@@ -163,23 +165,49 @@ Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo
 
 #### 1.2.6. Customização
 
-##### Terminal
+##### 1.2.6.1. Terminal
 
-Uma das maiores paixões de usuários linux é a possibilidade de customizar o terminal de acordo com sua preferência.
+Uma das maiores paixões de usuários linux é a possibilidade de customizar o terminal de acordo com sua preferência, por ser uma das ferramentas mais utilizadas dentro deste ambiente. Este tópico aborda como customizar o terminal utilizando duas tecnologias: **Oh My Zsh** (ZShell) e **Oh My Posh** (PowerShell).
 
-**ZSH** https://www.youtube.com/watch?v=Y769Tn7DYiQ&ab_channel=Diolinux
+###### ZSHELL - Oh-My-ZSH
+
+**Instalando o ZSH e alterando para terminal padrão**
+
+O primeiro passo é instalar o Zshell, que já está disponível no repositório da maioria das distribuições Linux, então fica fácil de instalar, mas caso você queria fazer de forma manual, há também a [página no GitHub][2] dele, lá você encontra informações sobre um projeto chamado “Oh My ZSH!” que vai turbinar o seu ZSH ainda mais, caso você queria extrair ainda mais do potencial da ferramenta.
+
+No Ubuntu o processo de instalação via terminal é assim:
 
 ```console
 sudo apt install zsh
 ```
 
+Feito isso, o ZSH já está instalado em sua máquina. Basta conferir a versão com `zsh --version`
+
+Para alterar o ZSH para terminal padrão do seu ambiente Linux, utilizar o comando:
+
 ```console
 chsh -s /bin/zsh
 ```
 
-**Oh My ZSH**
+Para testar, abra o terminal e adicione o seguinte comando: `echo $0`. Isso deve retornar `zsh`. Outra opção, é editar o arquivo **passwd** que fica dentro deste diretório:
 
-Instalação
+```console
+sudo gedit /etc/passwd
+```
+
+Procure pela linha `/bin/bash` do seu usuário e altere `bash` para `zsh`. Deve ter algo como: `:/home/user:/bin/zsh`. Por fim, salve o documento, feche-o e logue em uma nova sessão no terminal.
+
+**Instalando o Oh My ZSH**
+
+Toda a documentação mais detalhada pode ser lida na [página **Oh My Zsh** do GitHub][2].
+
+Seguindo o tutorial fornecido por eles, podemos instalá-lo utilizando `curl`, `wget` ou outra ferramenta similar.
+
+| Method    | Command                                                                                           |
+|:----------|:--------------------------------------------------------------------------------------------------|
+| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"` |
+| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`   |
+| **fetch** | `sh -c "$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"` |
 
 ```console
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -224,7 +252,8 @@ cd ..
 rm -rf fonts
 ```
 
-Para desinstalar, trocar `./install.sh` por `./uninstall.sh`.
+Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'Meslo LG L DZ for Powerline Regular', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`.
+
 
 **Temas**
 
@@ -259,7 +288,9 @@ edite seu `~/zshrc` para adicionar o plugin na lista:
 plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions)
 ```
 
-##### Troca de Tema
+###### POWERSHELL - Oh-My-Posh
+
+##### 1.2.6.2. Troca de Tema
 
 Apesar de gostar do tema do Ubuntu/PopOS/ZorinOS, prefiro alterá-lo para um muito utilizado pela comunidade: Flat Remix. Por isso, este será utilizado como exemplo para alteração de tema no Ubuntu. Pode-se atualizar baixando-o pela página oficial do pacote, utilizando o gerenciador apt ou por um repositório do GitHub.
 
@@ -390,6 +421,7 @@ Convém também observar que é possível colocar os subdiretórios do diretóri
 <!-- Markdown's Links -->
 <!-- SITES -->
 [1]: https://guialinux.uniriotec.br/sistemas-de-arquivos/
+[2]: https://github.com/ohmyzsh/ohmyzsh
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

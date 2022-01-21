@@ -23,6 +23,7 @@
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
   - [1.4. Avançado](#14-avançado)
     - [1.4.1. Shell Script](#141-shell-script)
+    - [1.4.2. WSL](#142-wsl)
 
 ## 1. Ubuntu e Debian
 
@@ -171,7 +172,7 @@ Uma das maiores paixões de usuários linux é a possibilidade de customizar o t
 
 ###### ZSHELL - Oh-My-ZSH
 
-**Instalando o ZSH e alterando para terminal padrão**
+**Instalando o Zsh e alterando para terminal padrão**
 
 O primeiro passo é instalar o Zshell, que já está disponível no repositório da maioria das distribuições Linux, então fica fácil de instalar, mas caso você queria fazer de forma manual, há também a [página no GitHub][2] dele, lá você encontra informações sobre um projeto chamado “Oh My ZSH!” que vai turbinar o seu ZSH ainda mais, caso você queria extrair ainda mais do potencial da ferramenta.
 
@@ -197,7 +198,7 @@ sudo gedit /etc/passwd
 
 Procure pela linha `/bin/bash` do seu usuário e altere `bash` para `zsh`. Deve ter algo como: `:/home/user:/bin/zsh`. Por fim, salve o documento, feche-o e logue em uma nova sessão no terminal.
 
-**Instalando o Oh My ZSH**
+**Instalando o Oh My Zsh**
 
 Toda a documentação mais detalhada pode ser lida na [página **Oh My Zsh** do GitHub][2].
 
@@ -213,7 +214,63 @@ Seguindo o tutorial fornecido por eles, podemos instalá-lo utilizando `curl`, `
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Plugins
+Com isso, o Oh My Zsh estará instalado na sua máquina e assim que o terminal for aberto novamente, já estará ativado e o arquivo `.zshrc`, alterado.
+
+**Alterando o tema e instalando temas externos**
+
+Qualquer alteração a ser feita no Oh My Zsh, deve ser realizada dentro do arquivo `.zshrc`. Uma delas é a alteração de tema, na qual deve ser realizada alterando o valor do parâmetro a seguir com o nome das extensões fornecidas pelo zsh:
+
+```console
+ZSH_THEME="agnoster"
+```
+
+Se os temas padrão não forem do seu agrado, há a possibilidade de realizar a instalação de temas externo, desenvolvidos pela comunidade, podendo ser conferidos pela página do GitHub: [External-Links][3]. Cada um deles tem na descrição os passos para instalação e configuração. Alguns entre os mais utilizado são: zsh2000, powerlevel10k, powerlevel9k, bullet-train, classyTouch, agnosterzak, solus, blokkzh, imp. 
+
+Para instalá-los, basta fazer o download do tema pelo GitHub, mover para a pasta `~/.oh-my-zsh/themes` e alterar a variável citada acima, dentro de `.zshrc`. Como exemplo, o download e importação do **powerlevel10k**:
+
+```console
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
+echo 'source ~/.oh-my-zsh/themes/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+
+```console
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+:warning: **Nota:** muitos temas precisam da instalação de fontes externas para que funcione corretamente, como [Nerd Fonts][4], [Powerline Fonts][5], entre outras. Assim, abaixo está um guia rápido de instalação da biblioteca de fontes Powerline.
+
+**Powerline fonts**
+
+Uma instalação rápida pode ser feita com:
+
+```console
+sudo apt install fonts-powerline
+```
+
+Se não der certo, rode `.install.sh` para instalar todas Powerline fonts ou veja a documentação https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation para mais detalhes.
+
+```console
+git clone https://github.com/powerline/fonts.git --depth=1 #clone
+cd fonts #install
+./install.sh
+sudo fc-cache -fv #refresh the font cache, saves logging out and back in
+cd ..
+rm -rf fonts #clean-up a bit
+```
+
+Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'DejaVu Sans Mono for Powerline', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`. Outro caminho para esta solução, é alterar diretamente no settings.json so VSCode, pelo parâmetro `"editor.fontFamily"`. Caso queira alterar apenas a fonte para o terminal, colocar o nome da fonte dentro do parâmetro `"terminal.integrated.fontFamily"`.
+
+
+**Instalando e habilitando plugins**
+
+Existem vários plugins que poderá usar imediatamente. Para ver a lista de plugins que por padrão estão no diretório `~/.oh-my-zsh/plugins/` execute:
+
+```console
+cd ~/.oh-my-zsh/plugins/
+ls -a
+```
+
+Para configurar algum plugin já disponibilizado pelo Oh My Zsh, é necessário editar também o arquivo `~/.zshrc` adicionando ou removendo na matriz de variáveis os nomes dos plugins, por exemplo:
 
 ```console
 plugins=(
@@ -227,62 +284,39 @@ plugins=(
 )
 ```
 
-Nota: muitos temas precisam da instalação do Powerline Fonts para que funcione corretamente.
+Abaixo, estão alguns dos plugins mais utilizados e suas respectivas formas de instalação:
 
-**Powerline fonts**
-
-Uma instalação rápida pode ser feita com:
+**zsh-history-substring-search** - Adiciona um histórico de pesquisa, na qual, ao digitar qualquer parte de um código, é dada asa respectivas correspondências.
 
 ```console
-sudo apt install fonts-powerline
+git clone https://github.com/zsh-users/zsh-history-substring-search.git ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 ```
 
-Se não der certo, rode `.install.sh` para instalar todas Powerline fonts ou veja a documentação https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation para mais detalhes.
+Agora para definir ele como um dos plugins do seu ZSH, entre em `~/.zshrc`, procure uma parte com `plugins=()` e edite:
 
 ```console
-# clone
-git clone https://github.com/powerline/fonts.git --depth=1
-# install
-cd fonts
-./install.sh
-# Refresh the font cache, saves logging out and back in
-sudo fc-cache -fv
-# clean-up a bit
-cd ..
-rm -rf fonts
+plugins=( git dnf zsh-history-substring-search )
 ```
 
-Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'Meslo LG L DZ for Powerline Regular', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`.
-
-
-**Temas**
-
-agnastor
-Powerlevel10k 
-
-**Plugins**
-
-*zsh-syntax-highlighting* - Adiciona syntax Highligth no nosso ZSH, facilitando você saber se o comando que está sendo digitado no momento está correto. Para instalar, use:
+**zsh-syntax-highlighting** - Adiciona syntax Highligth no nosso ZSH, facilitando você saber se o comando que está sendo digitado no momento está correto.
 
 ```console
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-Agora para definir ele como um dos plugins do seu ZSH, entre em `~/zshrc`, procure uma parte com `plugins=()` e edite:
+Assim como o plugin anterior (e todos os outros), adicione ao `~/.zshrc`:
 
 ```console
-plugins=( git dnf zsh-syntax-highlighting )
+plugins=( git dnf zsh-history-substring-search zsh-syntax-highlighting )
 ```
 
-*zsh-autosuggestions* - Adiciona uma auto-sugestão no ZSH baseada em seu histórico, tornando mais fácil a repetição de comandos já utilizados.
-
-Instale ele na sua máquina:
+**zsh-autosuggestions** - Adiciona uma auto-sugestão no ZSH baseada em seu histórico, tornando mais fácil a repetição de comandos já utilizados.
 
 ```console
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
 
-edite seu `~/zshrc` para adicionar o plugin na lista:
+Da mesma forma:
 
 ```console
 plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions)
@@ -422,6 +456,9 @@ Convém também observar que é possível colocar os subdiretórios do diretóri
 <!-- SITES -->
 [1]: https://guialinux.uniriotec.br/sistemas-de-arquivos/
 [2]: https://github.com/ohmyzsh/ohmyzsh
+[3]: https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
+[4]: https://www.nerdfonts.com/
+[5]: https://github.com/powerline/fonts
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

@@ -1,3 +1,113 @@
+<!-- PROJECT LOGO -->
+<h1 align="center">
+  <br>
+  <a href="https://github.com/JonathanTSilva/HL-Linux"><img src="./Images/logo-tcc.png" alt="Logo" width="200"></a>
+  <br>
+  Home Lab - Linux
+  <br>
+</h1>
+
+<h4 align="center">
+  
+🛠 Passo a passo que adoto na minha utilização do Linux.
+  
+</h4>
+
+<!-- PROJECT SHIELDS -->
+<p align="center">
+  <a href="https://github.com/JonathanTSilva/HL-Linux/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Contributors">
+  </a>
+  <a href="https://github.com/JonathanTSilva/HL-Linux/network/members">
+    <img src="https://img.shields.io/github/forks/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Members">
+  </a>
+  <a href="https://github.com/JonathanTSilva/HL-Linux/stargazers">
+    <img src="https://img.shields.io/github/stars/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Stargazers">
+  </a>
+  <a href="https://github.com/JonathanTSilva/HL-Linux/issues">
+    <img src="https://img.shields.io/github/issues/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Issues">
+  </a>
+  <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="License">
+  </a>
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details close="close" align="center">
+  <summary><b>Table of Contents</b></summary>
+          <a href="#about-the-project">About The Project</a> |
+          <a href="#getting-started">Getting Started</a> |
+          <a href="#quick-guide">Quick Guide</a> |
+          <a href="#contributing">Contributing</a> |
+          <a href="#license">License</a> |
+          <a href="#contact">Contact</a>
+</details>
+
+## About the Project
+
+## Getting Started
+
+## Presentation
+
+## Contributing
+
+If you want to contribute to this project and make it better, your help is very welcome.
+
+**How to make a clean pull request**
+
+Look for a project's contribution instructions. If there are any, follow them.
+
+- Create a personal fork of the project on Github.
+- Clone the fork on your local machine. Your remote repo on Github is called `origin`.
+- Add the original repository as a remote called `upstream`.
+- If you created your fork a while ago be sure to pull upstream changes into your local repository.
+- Create a new branch to work on! Branch from `develop` if it exists, else from `main`.
+- Implement/fix your feature, comment your code.
+- Follow the code style of the project, including indentation.
+- If the project has tests run them!
+- Write or adapt tests as needed.
+- Add or change the documentation as needed.
+- Squash your commits into a single commit with git's [interactive rebase](https://www.atlassian.com/br/git/tutorials/rewriting-history/git-rebase). Create a new branch if necessary.
+- Push your branch to your fork on Github, the remote `origin`.
+- From your fork open a pull request in the correct branch. Target the project's `develop` branch if there is one, else go for `main`!
+- Once the pull request is approved and merged you can pull the changes from `upstream` to your local repo and delete
+your extra branch(es).
+
+> Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
+
+<!-- MIT License -->
+<a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>
+
+## License
+
+Distributed under the MIT License. See [LICENSE](https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE) for more information.
+
+## Contact
+[Jonathan T. da Silva](https://www.linkedin.com/in/JonathanTSilva/) - jonathantobias2009@hotmail.com <br/>
+Project Link: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Simple logo -->
 <a href="#meu-guia-de-linux"><img width="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png" align="right" /></a>
 

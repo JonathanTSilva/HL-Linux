@@ -34,22 +34,22 @@
 
 <!-- TABLE OF CONTENTS -->
 <details close="close" align="center">
-  <summary><b>Table of Contents</b></summary>
-          <a href="#about-the-project">About The Project</a> |
-          <a href="#getting-started">Getting Started</a> |
-          <a href="#quick-guide">Quick Guide</a> |
-          <a href="#contributing">Contributing</a> |
+  <summary><b>Sumário</b></summary>
+          <a href="#sobre-o-projeto">Sobre o Projeto</a> |
+          <a href="#primeiros-passos">Primeiros Passos</a> |
+          <a href="#guia-rápido">Guia Rápido</a> |
+          <a href="#contribuindo">Contribuindo</a> |
           <a href="#license">License</a> |
           <a href="#contact">Contact</a>
 </details>
 
-## About the Project
+## Sobre o Projeto
 
-## Getting Started
+## Primeiros Passos
 
-## Presentation
+## Guia Rápido
 
-## Contributing
+## Contribuindo
 
 If you want to contribute to this project and make it better, your help is very welcome.
 
@@ -78,13 +78,13 @@ your extra branch(es).
 <!-- MIT License -->
 <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>
 
-## License
+## Licença
 
-Distributed under the MIT License. See [LICENSE](https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE) for more information.
+Distribuída por **MIT License**. Veja [LICENSE](https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE) para mais informações.
 
 ## Contact
 [Jonathan T. da Silva](https://www.linkedin.com/in/JonathanTSilva/) - jonathantobias2009@hotmail.com <br/>
-Project Link: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
+Link do Projeto: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 

@@ -81,13 +81,14 @@ Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre be
 Distribuída por **MIT License**. Veja [LICENSE](https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE) para mais informações.
 
 ## Contato
-:globe_with_meridians: [Jonathan T. da Silva](https://www.linkedin.com/in/JonathanTSilva/)
-
-:email: jonathantobias2009@hotmail.com <br/>
-
+:globe_with_meridians: [Jonathan T. da Silva](https://www.linkedin.com/in/JonathanTSilva/) <br>
+:email: jonathantobias2009@hotmail.com <br>
 :package: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- MARKDOWN LINKS>
+<!-- SITES -->
+
+<!-- IMAGES -->
 
 
 

@@ -51,29 +51,27 @@
 
 ## Contribuindo
 
-If you want to contribute to this project and make it better, your help is very welcome.
+Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda!
 
-**How to make a clean pull request**
+**Como fazer um _pull request_ corretamente:**
 
-Look for a project's contribution instructions. If there are any, follow them.
+- Criar um fork pessoal do projeto no GitHub;
+- Clonar o fork em sua máquina local. Seu repositório remoto do GitHub é conhecido por `origin`;
+- Adicionar o repositório original como um remoto chamado `upstream`;
+- Se você criou o fork há algum tempo, certifique-se de realizar pull das alterações no seu repositório local;
+- Criar um nova branch para trabalhar nela! Branch da `develop`, se existir; caso contrário, crie da `main`;
+- Implementar/corrigir sua feature, não esquecendo de comentar o seu código;
+- Siga o estilo de código do projeto em questão, inclusive a identação;
+- Se o projeto apresentar testes, execute-os;
+- Escreva ou adapte os testes, conforme necessário;
+- Adicionar ou alterar a documentação, conforme necessário;
+- Junte seus commits em um único commit com o [rebase interativo](https://www.atlassian.com/br/git/tutorials/rewriting-history/git-rebase) do Git. Criar uma nova branch, caso seja necessário;
+- Push sua branch para seu fork do GitHub, o remoto `origin`;
+- Do seu fork, abra uma pull request na branch correta. Aponte a branch `develop`do projeto se existir; caso contrário, vá para `main`;
+- Uma vez que o pull request for aprovado e mesclado, é possível extrair as alterações do `upstream` para seu repositório local e exluir suas branchs extras;
+- Pronto! Muito obrigado pela contribuição.
 
-- Create a personal fork of the project on Github.
-- Clone the fork on your local machine. Your remote repo on Github is called `origin`.
-- Add the original repository as a remote called `upstream`.
-- If you created your fork a while ago be sure to pull upstream changes into your local repository.
-- Create a new branch to work on! Branch from `develop` if it exists, else from `main`.
-- Implement/fix your feature, comment your code.
-- Follow the code style of the project, including indentation.
-- If the project has tests run them!
-- Write or adapt tests as needed.
-- Add or change the documentation as needed.
-- Squash your commits into a single commit with git's [interactive rebase](https://www.atlassian.com/br/git/tutorials/rewriting-history/git-rebase). Create a new branch if necessary.
-- Push your branch to your fork on Github, the remote `origin`.
-- From your fork open a pull request in the correct branch. Target the project's `develop` branch if there is one, else go for `main`!
-- Once the pull request is approved and merged you can pull the changes from `upstream` to your local repo and delete
-your extra branch(es).
-
-> Always write your commit messages in the present tense. Your commit message should describe what the commit, when applied, does to the code – not what you did to the code.
+> Sempre escreva suas mensagens de commit no tempo presente. Sua mensagem de commit deve descrever o que o commit, quando aplicado, faz com o código – não o que você fez com o código.
 
 <!-- MIT License -->
 <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>

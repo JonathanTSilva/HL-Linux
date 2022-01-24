@@ -263,7 +263,7 @@ Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação
 
 **Instalando e habilitando plugins**
 
-Existem vários plugins que poderá usar imediatamente. Para ver a lista de plugins que por padrão estão no diretório `~/.oh-my-zsh/plugins/` execute:
+Existem vários plugins que poderão ser utilizados sem nenhuma instalação adicional. Para ver a lista de plugins que por padrão estão no diretório `~/.oh-my-zsh/plugins/` execute:
 
 ```console
 cd ~/.oh-my-zsh/plugins/

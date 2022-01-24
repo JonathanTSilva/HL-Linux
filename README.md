@@ -1,9 +1,9 @@
 <!-- PROJECT LOGO -->
 <h1 align="center">
   <br>
-  <a href="https://github.com/JonathanTSilva/HL-Linux"><img src="./Images/logo-tcc.png" alt="Logo" width="200"></a>
+  <a href="https://github.com/JonathanTSilva/HL-Linux"><img src="./Images/logo-HL-Linux.png" alt="Logo" width="200"></a>
   <br>
-  Home Lab - Linux
+  HomeLab - Linux
   <br>
 </h1>
 

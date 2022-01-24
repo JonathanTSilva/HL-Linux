@@ -85,7 +85,7 @@ Distribuída por **MIT License**. Veja [LICENSE](https://github.com/JonathanTSil
 
 :email: jonathantobias2009@hotmail.com <br/>
 
-:package: Link do Projeto: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
+:package: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 

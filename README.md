@@ -401,7 +401,7 @@ Abaixo, estão alguns dos plugins mais utilizados e suas respectivas formas de i
 **zsh-history-substring-search** - Adiciona um histórico de pesquisa, na qual, ao digitar qualquer parte de um código, é dada asa respectivas correspondências.
 
 ```console
-git clone https://github.com/zsh-users/zsh-history-substring-search.git ~/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-history-substring-search.git $ZSH_CUSTOM/plugins/zsh-history-substring-search
 ```
 
 Agora para definir ele como um dos plugins do seu ZSH, entre em `~/.zshrc`, procure uma parte com `plugins=()` e edite:
@@ -431,7 +431,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 Da mesma forma:
 
 ```console
-plugins=( git dnf zsh-syntax-highlighting zsh-autosuggestions)
+plugins=( git dnf zsh-history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
 ```
 
 ###### POWERSHELL - Oh-My-Posh

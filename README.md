@@ -35,23 +35,24 @@
 <!-- TABLE OF CONTENTS -->
 <details close="close" align="center">
   <summary><b>Sumário</b></summary>
-          <a href="#sobre-o-projeto">Sobre o Projeto</a> |
-          <a href="#primeiros-passos">Primeiros Passos</a> |
-          <a href="#guia-rápido">Guia Rápido</a> |
-          <a href="#contribuindo">Contribuindo</a> |
-          <a href="#licença">Licença</a> |
-          <a href="#contato">Contato</a>
+    <a href="#sobre-o-projeto">Sobre o Projeto</a> |
+    <a href="#indice">Índice</a> |
+    <a href="#contribuindo">Contribuindo</a> |
+    <a href="#licença">Licença</a> |
+    <a href="#contato">Contato</a>
 </details>
 
 ## Sobre o Projeto
 
-## Primeiros Passos
+Este projeto pertence à uma série de repositórios denominada HomeLab. Essa sequência foi criada a fim de agrupar todos os estudos realizados em determinada area, neste caso, o Linux. Documenta toda a experiência de um iniciante neste kernel, contendo _insights_, dicas, resoluções de problemas e muitas outras coisas interessantes que fazem valer a pena o consumo e contribuição ao projeto **HomeLab - Linux**! Aproveite e sinta-se a vontade para comentar, tirar suas dúvidas, criticar e, principalmente, contribuir. :penguin:
 
-## Guia Rápido
+## Índice
+
+- [Customização do terminal do Linux][]
 
 ## Contribuindo
 
-Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda!
+Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda! :tada:
 
 **Como fazer um _pull request_ corretamente:**
 
@@ -61,32 +62,36 @@ Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre be
 - Se você criou o _fork_ há algum tempo, certifique-se de realizar pull das alterações no seu repositório local;
 - Criar um nova _branch_ para trabalhar nela! Ramifique da `develop`, se existir; caso contrário, crie da `main`;
 - Implementar/corrigir sua _feature_, não esquecendo de comentar o seu código;
-- Siga o estilo de código do projeto em questão, inclusive a identação;
+- Siga o estilo de código do projeto em questão, inclusive a indentação;
 - Se o projeto apresentar testes, execute-os;
 - Escreva ou adapte os testes, conforme necessário;
 - Adicionar ou alterar a documentação, conforme necessário;
-- Junte seus _commits_ em um único _commit_ com o [rebase interativo](https://www.atlassian.com/br/git/tutorials/rewriting-history/git-rebase) do Git. Criar uma nova _branch_, caso seja necessário;
+- Junte seus _commits_ em um único _commit_ com o [rebase interativo][1] do Git. Criar uma nova _branch_, caso seja necessário;
 - _Push_ sua _branch_ para seu _fork_ do GitHub, o remoto `origin`;
 - Do seu _fork_, abra uma _pull request_ na _branch_ correta. Aponte a _branch_ `develop` do projeto se existir; caso contrário, vá para `main`;
-- Uma vez que o _pull request_ for aprovado e mesclado, é possível extrair as alterações do `upstream` para seu repositório local e exluir suas _branchs_ extras;
+- Uma vez que o _pull request_ for aprovado e mesclado, é possível extrair as alterações do `upstream` para seu repositório local e excluir suas _branchs_ extras;
 - Pronto! Muito obrigado pela contribuição.
 
 > Sempre escreva suas mensagens de commit no tempo presente. Sua mensagem de commit deve descrever o que o commit, quando aplicado, faz com o código – não o que você fez com o código.
 
-<!-- MIT License -->
+<!-- MIT LICENSE -->
 <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>
 
 ## Licença
 
-Distribuída por **MIT License**. Veja [LICENSE](https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE) para mais informações.
+Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 
 ## Contato
-:globe_with_meridians: [Jonathan T. da Silva](https://www.linkedin.com/in/JonathanTSilva/) <br>
+:globe_with_meridians: [Jonathan T. da Silva][3] <br>
 :email: jonathantobias2009@hotmail.com <br>
-:package: [JonathanTSilva/HL-Linux](https://github.com/JonathanTSilva/HL-Linux)
+:package: [JonathanTSilva/HL-Linux][4]
 
-<!-- MARKDOWN LINKS>
+<!-- MARKDOWN LINKS -->
 <!-- SITES -->
+[1]: https://www.atlassian.com/br/git/tutorials/rewriting-history/git-rebase
+[2]: https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE
+[3]: https://www.linkedin.com/in/JonathanTSilva/
+[4]: https://github.com/JonathanTSilva/HL-Linux
 
 <!-- IMAGES -->
 
@@ -128,8 +133,6 @@ Distribuída por **MIT License**. Veja [LICENSE](https://github.com/JonathanTSil
       - [1.2.5. Manuseio de arquivos](#125-manuseio-de-arquivos)
       - [1.2.6. Customização](#126-customização)
         - [1.2.6.1. Terminal](#1261-terminal)
-          - [ZSHELL - Oh-My-ZSH](#zshell---oh-my-zsh)
-          - [POWERSHELL - Oh-My-Posh](#powershell---oh-my-posh)
         - [1.2.6.2. Troca de Tema](#1262-troca-de-tema)
   - [1.3. Intermediário](#13-intermediário)
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
@@ -280,162 +283,6 @@ Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo
 
 ##### 1.2.6.1. Terminal
 
-Uma das maiores paixões de usuários linux é a possibilidade de customizar o terminal de acordo com sua preferência, por ser uma das ferramentas mais utilizadas dentro deste ambiente. Este tópico aborda como customizar o terminal utilizando duas tecnologias: **Oh My Zsh** (ZShell) e **Oh My Posh** (PowerShell).
-
-###### ZSHELL - Oh-My-ZSH
-
-**Instalando o Zsh e alterando para terminal padrão**
-
-O primeiro passo é instalar o Zshell, que já está disponível no repositório da maioria das distribuições Linux, então fica fácil de instalar, mas caso você queria fazer de forma manual, há também a [página no GitHub][2] dele, lá você encontra informações sobre um projeto chamado “Oh My ZSH!” que vai turbinar o seu ZSH ainda mais, caso você queria extrair ainda mais do potencial da ferramenta.
-
-No Ubuntu o processo de instalação via terminal é assim:
-
-```console
-sudo apt install zsh
-```
-
-Feito isso, o ZSH já está instalado em sua máquina. Basta conferir a versão com `zsh --version`
-
-Para alterar o ZSH para terminal padrão do seu ambiente Linux, utilizar o comando:
-
-```console
-chsh -s /bin/zsh
-```
-
-Para testar, abra o terminal e adicione o seguinte comando: `echo $0`. Isso deve retornar `zsh`. Outra opção, é editar o arquivo **passwd** que fica dentro deste diretório:
-
-```console
-sudo gedit /etc/passwd
-```
-
-Procure pela linha `/bin/bash` do seu usuário e altere `bash` para `zsh`. Deve ter algo como: `:/home/user:/bin/zsh`. Por fim, salve o documento, feche-o e logue em uma nova sessão no terminal.
-
-**Instalando o Oh My Zsh**
-
-Toda a documentação mais detalhada pode ser lida na [página **Oh My Zsh** do GitHub][2].
-
-Seguindo o tutorial fornecido por eles, podemos instalá-lo utilizando `curl`, `wget` ou outra ferramenta similar.
-
-| Method    | Command                                                                                           |
-|:----------|:--------------------------------------------------------------------------------------------------|
-| **curl**  | `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"` |
-| **wget**  | `sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`   |
-| **fetch** | `sh -c "$(fetch -o - https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"` |
-
-```console
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-Com isso, o Oh My Zsh estará instalado na sua máquina e assim que o terminal for aberto novamente, já estará ativado e o arquivo `.zshrc`, alterado.
-
-**Alterando o tema e instalando temas externos**
-
-Qualquer alteração a ser feita no Oh My Zsh, deve ser realizada dentro do arquivo `.zshrc`. Uma delas é a alteração de tema, na qual deve ser realizada alterando o valor do parâmetro a seguir com o nome das extensões fornecidas pelo zsh:
-
-```console
-ZSH_THEME="agnoster"
-```
-
-Se os temas padrão não forem do seu agrado, há a possibilidade de realizar a instalação de temas externo, desenvolvidos pela comunidade, podendo ser conferidos pela página do GitHub: [External-Links][3]. Cada um deles tem na descrição os passos para instalação e configuração. Alguns entre os mais utilizado são: zsh2000, powerlevel10k, powerlevel9k, bullet-train, classyTouch, agnosterzak, solus, blokkzh, imp. 
-
-Para instalá-los, basta fazer o download do tema pelo GitHub, mover para a pasta `~/.oh-my-zsh/themes` e alterar a variável citada acima, dentro de `.zshrc`. Como exemplo, o download e importação do **powerlevel10k**:
-
-```console
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/themes/powerlevel10k
-echo 'source ~/.oh-my-zsh/themes/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-```
-
-```console
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
-
-:warning: **Nota:** muitos temas precisam da instalação de fontes externas para que funcione corretamente, como [Nerd Fonts][4], [Powerline Fonts][5], entre outras. Assim, abaixo está um guia rápido de instalação da biblioteca de fontes Powerline.
-
-**Powerline fonts**
-
-Uma instalação rápida pode ser feita com:
-
-```console
-sudo apt install fonts-powerline
-```
-
-Se não der certo, rode `.install.sh` para instalar todas Powerline fonts ou veja a documentação https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation para mais detalhes.
-
-```console
-git clone https://github.com/powerline/fonts.git --depth=1 #clone
-cd fonts #install
-./install.sh
-sudo fc-cache -fv #refresh the font cache, saves logging out and back in
-cd ..
-rm -rf fonts #clean-up a bit
-```
-
-Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'DejaVu Sans Mono for Powerline', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`. Outro caminho para esta solução, é alterar diretamente no settings.json so VSCode, pelo parâmetro `"editor.fontFamily"`. Caso queira alterar apenas a fonte para o terminal, colocar o nome da fonte dentro do parâmetro `"terminal.integrated.fontFamily"`.
-
-
-**Instalando e habilitando plugins**
-
-Existem vários plugins que poderão ser utilizados sem nenhuma instalação adicional. Para ver a lista de plugins que por padrão estão no diretório `~/.oh-my-zsh/plugins/` execute:
-
-```console
-cd ~/.oh-my-zsh/plugins/
-ls -a
-```
-
-Para configurar algum plugin já disponibilizado pelo Oh My Zsh, é necessário editar também o arquivo `~/.zshrc` adicionando ou removendo na matriz de variáveis os nomes dos plugins, por exemplo:
-
-```console
-plugins=(
-  git
-  bundler
-  dotenv
-  macos
-  rake
-  rbenv
-  ruby
-)
-```
-
-Abaixo, estão alguns dos plugins mais utilizados e suas respectivas formas de instalação:
-
-**zsh-history-substring-search** - Adiciona um histórico de pesquisa, na qual, ao digitar qualquer parte de um código, é dada asa respectivas correspondências.
-
-```console
-git clone https://github.com/zsh-users/zsh-history-substring-search.git $ZSH_CUSTOM/plugins/zsh-history-substring-search
-```
-
-Agora para definir ele como um dos plugins do seu ZSH, entre em `~/.zshrc`, procure uma parte com `plugins=()` e edite:
-
-```console
-plugins=( git dnf zsh-history-substring-search )
-```
-
-**zsh-syntax-highlighting** - Adiciona syntax Highligth no nosso ZSH, facilitando você saber se o comando que está sendo digitado no momento está correto.
-
-```console
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
-Assim como o plugin anterior (e todos os outros), adicione ao `~/.zshrc`:
-
-```console
-plugins=( git dnf zsh-history-substring-search zsh-syntax-highlighting )
-```
-
-**zsh-autosuggestions** - Adiciona uma auto-sugestão no ZSH baseada em seu histórico, tornando mais fácil a repetição de comandos já utilizados.
-
-```console
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-```
-
-Da mesma forma:
-
-```console
-plugins=( git dnf zsh-history-substring-search zsh-syntax-highlighting zsh-autosuggestions)
-```
-
-###### POWERSHELL - Oh-My-Posh
-
 ##### 1.2.6.2. Troca de Tema
 
 Apesar de gostar do tema do Ubuntu/PopOS/ZorinOS, prefiro alterá-lo para um muito utilizado pela comunidade: Flat Remix. Por isso, este será utilizado como exemplo para alteração de tema no Ubuntu. Pode-se atualizar baixando-o pela página oficial do pacote, utilizando o gerenciador apt ou por um repositório do GitHub.
@@ -567,10 +414,6 @@ Convém também observar que é possível colocar os subdiretórios do diretóri
 <!-- Markdown's Links -->
 <!-- SITES -->
 [1]: https://guialinux.uniriotec.br/sistemas-de-arquivos/
-[2]: https://github.com/ohmyzsh/ohmyzsh
-[3]: https://github.com/ohmyzsh/ohmyzsh/wiki/External-themes
-[4]: https://www.nerdfonts.com/
-[5]: https://github.com/powerline/fonts
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

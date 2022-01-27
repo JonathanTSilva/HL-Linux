@@ -48,7 +48,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 
 ## Índice
 
-- [Customização do terminal do Linux][]
+- [Customização do terminal do Linux][5]
 
 ## Contribuindo
 
@@ -92,6 +92,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [2]: https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE
 [3]: https://www.linkedin.com/in/JonathanTSilva/
 [4]: https://github.com/JonathanTSilva/HL-Linux
+[5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/terminalLinux.md
 
 <!-- IMAGES -->
 

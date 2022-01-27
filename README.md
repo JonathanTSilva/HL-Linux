@@ -48,7 +48,19 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 
 ## Índice
 
-- [Customização do terminal do Linux][5]
+- **Meu HomeLab de Linux**
+  - **Básico**
+    - [Comandos][]
+    - [Atalhos][]
+    - [Conceitos][]
+    - [Manuseio de pacotes][]
+    - [Manuseio de arquivos][]
+    - [Customização do terminal do Linux][5]
+  - **Intermediário**
+    - [Sistema de arquivos][]
+  - **Avançado**
+    - [Shell Script][]
+    - [WSL][]
 
 ## Contribuindo
 
@@ -155,8 +167,8 @@ a. Alterar a aparência do sistema:
     - customizar terminal
 b. Desinstalar os programas que não desejo;
 c. Atualizar os pacotes e programas já instalados;
-d. Instalar o Git;
-e. Criar repositório para projetos;
+d. Instalar o Git e o NPM;
+e. Criar repositório para projetos (Projects/ ou /GitHub);
 f. Alte
 
 ### 1.2. Básico

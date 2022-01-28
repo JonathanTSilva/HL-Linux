@@ -180,7 +180,6 @@ plugins=( git dnf zsh-history-substring-search zsh-syntax-highlighting zsh-autos
 
 ## POWERSHELL - Oh-My-Posh
 
-
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: https://github.com/ohmyzsh/ohmyzsh

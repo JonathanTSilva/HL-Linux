@@ -49,6 +49,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 ## Índice
 
 - **Meu HomeLab de Linux**
+  - [Primeiros passos][6]
   - **Básico**
     - [Comandos][]
     - [Atalhos][]
@@ -94,6 +95,7 @@ Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre be
 Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 
 ## Contato
+
 :globe_with_meridians: [Jonathan T. da Silva][3] <br>
 :email: jonathantobias2009@hotmail.com <br>
 :package: [JonathanTSilva/HL-Linux][4]
@@ -105,28 +107,9 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [3]: https://www.linkedin.com/in/JonathanTSilva/
 [4]: https://github.com/JonathanTSilva/HL-Linux
 [5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/terminalLinux.md
+[6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
 
 <!-- IMAGES -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Simple logo -->
 <a href="#meu-guia-de-linux"><img width="100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1200px-Tux.svg.png" align="right" /></a>
@@ -159,17 +142,6 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 
 Abaixo estão os primeiros passos adotados em uma pós formatação com o sistema com ubuntu (sem utilizar shell scripts).
 
-a. Alterar a aparência do sistema:
-    - diminuir ícones;
-    - alterar wallpaper;
-    - colocar foto no avatar;
-    - instalar tema terceiro;
-    - customizar terminal
-b. Desinstalar os programas que não desejo;
-c. Atualizar os pacotes e programas já instalados;
-d. Instalar o Git e o NPM;
-e. Criar repositório para projetos (Projects/ ou /GitHub);
-f. Alte
 
 ### 1.2. Básico
 
@@ -186,7 +158,7 @@ f. Alte
 | `ls -la`                     | Lista utilizando um formato de lista longo (-l) e não ignorando as entradas que comecem com . (-a) |
 | `touch <nome do arquivo>`    | Forma mais simples de criar um arquivo vazio                                                       |
 | `man <comando>`              | *Manual* - Mostra um manual do comando: o que faz exatamente e quais as opções disponíveis         |
-| `echo`                       | Escuta um arquivo ou váriavel do sistema. Ex: `echo $HOME`                                         |
+| `echo`                       | Escuta um arquivo ou variável do sistema. Ex: `echo $HOME`                                         |
 | `clear`                      | Limpa a tela do terminal                                                                           |
 
 **Curiosidades**
@@ -223,7 +195,7 @@ Esse comando vai atualizar a base de dados dos pacotes para que você tenha aces
 
 **II. Instalar por um repositório terceiro**
 
-Se quiser instalar um programa de um repositório específico de terceiros, adicione-o usando o seguinte comando: 
+Se quiser instalar um programa de um repositório específico de terceiros, adicione-o usando o seguinte comando:
 
 ```console
 sudo add-apt-repository <nome do repositório>
@@ -281,16 +253,16 @@ O software que utilizo para descompactar arquivos no linux é o 7zip. Para baix�
 sudo apt install p7zip-full
 ```
 
-Verifique se o pacote está instalado corretamente ou não usando o comando `7z`. 
+Verifique se o pacote está instalado corretamente ou não usando o comando `7z`.
 
-**II. Descompactar arquivos por comandos raíz**
+**II. Descompactar arquivos por comandos raiz**
 
-Há diversas formas de descompactar arquivos. De uma forma raíz, para cada tipo de arquivos teremos um comando resumidos pela lista abaixo:
+Há diversas formas de descompactar arquivos. De uma forma raiz, para cada tipo de arquivos teremos um comando resumidos pela lista abaixo:
 
-* .zip: unzip nome_do_arquivo;
-* .tar.gz ou .tgz: tar xvzf nome_do_arquivo;
-* .gz: gunzip nome_do_arquivo;
-* .tbz ou .tar.bz2: tar xjf nome_do_arquivo.
+- .zip: unzip nome_do_arquivo;
+- .tar.gz ou .tgz: tar xvzf nome_do_arquivo;
+- .gz: gunzip nome_do_arquivo;
+- .tbz ou .tar.bz2: tar xjf nome_do_arquivo.
 
 #### 1.2.6. Customização
 
@@ -318,8 +290,8 @@ Assim, iniciar o tweaks para fazer as devidas modificações.
 
 **🏆 Melhores temas para GNOME**
 
-* Materia
-* Flat Remix
+- Materia
+- Flat Remix
 
 ## 1.3. Intermediário
 
@@ -331,9 +303,9 @@ Podemos dividir um disco rígido em várias partes ou partições, onde cada par
 
 Atualmente existem dois padrões que determinam como os dados são armazenados no disco.
 
-* MBR (Master Boot Record) – padrão antigo que só permite 4 partições (chamadas de primárias) no mesmo disco. Por isso, costuma-se usar a quarta partição como partição estendida para criar várias partições lógicas (em outras áreas do disco).
+- MBR (Master Boot Record) – padrão antigo que só permite 4 partições (chamadas de primárias) no mesmo disco. Por isso, costuma-se usar a quarta partição como partição estendida para criar várias partições lógicas (em outras áreas do disco).
 
-* GPT (GUID Partition Table) – pode criar 128 ou mais partições (depende do sistema operacional usado). Neste caso, não há necessidade de criar partição estendida (embora seja possível).
+- GPT (GUID Partition Table) – pode criar 128 ou mais partições (depende do sistema operacional usado). Neste caso, não há necessidade de criar partição estendida (embora seja possível).
   
 O Linux utiliza a seguinte nomenclatura para identificar discos e partições:
 
@@ -341,20 +313,20 @@ O Linux utiliza a seguinte nomenclatura para identificar discos e partições:
 
 Por exemplo, pode-se ter:
 
-* **/dev/sda1** – Primeira partição do primeiro disco rígido SATA ou SCSI.
-* **/dev/sda2** – Segunda partição do primeiro disco rígido SATA ou SCSI.
-* **/dev/sdb1** – Primeira partição do segundo disco rígido SATA ou SCSI.
-* **/dev/sdb2** – Segunda  partição do segundo disco rígido SATA ou SCSI.
-* **/dev/hda1** – Primeira partição do primeiro disco rígido IDE.
-* **/dev/hda2** – Segunda partição do primeiro disco rígido IDE.
-* **/dev/hdb1** – Primeira partição do segundo disco rígido IDE.
-* **/dev/hdb2** – Segunda partição do segundo disco rígido IDE.
+- **/dev/sda1** – Primeira partição do primeiro disco rígido SATA ou SCSI.
+- **/dev/sda2** – Segunda partição do primeiro disco rígido SATA ou SCSI.
+- **/dev/sdb1** – Primeira partição do segundo disco rígido SATA ou SCSI.
+- **/dev/sdb2** – Segunda  partição do segundo disco rígido SATA ou SCSI.
+- **/dev/hda1** – Primeira partição do primeiro disco rígido IDE.
+- **/dev/hda2** – Segunda partição do primeiro disco rígido IDE.
+- **/dev/hdb1** – Primeira partição do segundo disco rígido IDE.
+- **/dev/hdb2** – Segunda partição do segundo disco rígido IDE.
 
 Em um outro exemplo abaixo, um disco de 1 TeraByte é dividido em 2 discos. O primeiro disco tem duas partições: a primeira partição com 512 MB possui o sistema EFI (Extensible Firmware Interface) que é responsável pela inicialização do sistema; a segunda partição com 931 GB possui os arquivos do sistema. O segundo disco de 119,2 GB é usado como área de dados.
 
-* /dev/sda1 2048 1050623 1048576 512M Sistema EFI
-* /dev/sda2 1050624 1953523711 1952473088 931G Linux sistema de arquivos
-* /dev/sdb1 2048 250068991 250066944 119,2G Linux sistema de arquivos
+- /dev/sda1 2048 1050623 1048576 512M Sistema EFI
+- /dev/sda2 1050624 1953523711 1952473088 931G Linux sistema de arquivos
+- /dev/sdb1 2048 250068991 250066944 119,2G Linux sistema de arquivos
 
 O programa mais comumente usado no Linux para particionar discos é o fdisk. O problema com este aplicativo é que ele destrói os dados armazenados ao particionar o disco.
 
@@ -362,11 +334,11 @@ O programa mais comumente usado no Linux para particionar discos é o fdisk. O p
 
 Um sistema de arquivos é um conjunto de estruturas lógicas que permite o sistema operacional controlar o acesso a um dispositivo de armazenamento como disco rígido, pen drive, cd-room, etc. Diferentes sistemas operacionais podem usar diferentes sistemas de arquivos. Segue abaixo um resumo em tópicos sobre sistemas de arquivos:
 
-* A partição Linux nativo é conhecida por diretório raiz do Linux e é representada por **/**;
-* Atualmente, o **NTFS** (New Technology File System) é o sistema de arquivos padrão do Windows, enquanto o **ext4** é o do Linux/;
-* Para verificar quais os sistemas de arquivos que o seu Linux suporta, basta verificar o conteúdo do arquivo **/proc/filesystems**;
-* O suporte para diferentes sistemas de arquivos pode ser obtido através de módulos de kernel carregáveis no diretório **/lib/modules/XXX/kernel/fs**, onde XXX é a versão atual do Linux;
-* A escolha do sistema de arquivos depende do sistema operacional utilizado. Abaixo, alguns exemplos de sistemas de arquivos suportados por determinados sistemas operacionais:
+- A partição Linux nativo é conhecida por diretório raiz do Linux e é representada por **/**;
+- Atualmente, o **NTFS** (New Technology File System) é o sistema de arquivos padrão do Windows, enquanto o **ext4** é o do Linux/;
+- Para verificar quais os sistemas de arquivos que o seu Linux suporta, basta verificar o conteúdo do arquivo **/proc/filesystems**;
+- O suporte para diferentes sistemas de arquivos pode ser obtido através de módulos de kernel carregáveis no diretório **/lib/modules/XXX/kernel/fs**, onde XXX é a versão atual do Linux;
+- A escolha do sistema de arquivos depende do sistema operacional utilizado. Abaixo, alguns exemplos de sistemas de arquivos suportados por determinados sistemas operacionais:
 
 | Sistema Operacional | Sistema de arquivos suportados |
 | :------------------ | :----------------------------- |
@@ -377,7 +349,7 @@ Um sistema de arquivos é um conjunto de estruturas lógicas que permite o siste
 | Sun Solaris         | UFS                            |
 | IBM AIX             | JFS                            |
 
-* Para ver o tipo do sistema de arquivo usado no seu Linux, basta usar o comando df.
+- Para ver o tipo do sistema de arquivo usado no seu Linux, basta usar o comando df.
 
 ```console
 df -Tm
@@ -389,26 +361,26 @@ No Linux, um diretório (corresponde ao conceito de pasta do Windows) pode ter o
 
 O diretório raiz do Linux (ou diretório /) é o diretório com maior hierarquia entre todos os diretórios do sistema. Isto significa que todos os diretórios do Linux ficam abaixo deste diretório. A seguir são apresentados exemplos de diretórios que normalmente ficam abaixo do diretório raiz.
 
-* **bin** – diretório com os comandos disponíveis para os usuários comuns (não privilegiados).
-* **boot** – diretório com os arquivos estáticos do boot de inicialização.
-* **dev** – diretório com as definições dos dispositivos de entrada/saída.
-* **etc** – diretório com os arquivos de configuração do sistema.
-* **home** – diretório que armazena os diretórios dos usuários do sistema.
-* **lib** – diretório com as bibliotecas e módulos (carregáveis) do sistema.
-* **lost+found** – é usado pelo fsck para armazenar arquivos/diretórios/devices corrompidos.
-* **media** – ponto de montagem temporário para mídias removíveis.
-* **mnt** – ponto de montagem temporário para sistemas de arquivos.
-* **opt** – softwares adicionados pelos usuários.
-* **proc** – diretório com informações sobre os processos do sistema.
-* **root** – diretório home do root.
-* **run** – armazena arquivos temporários da inicialização do sistema.
-* **sbin** – diretório com os aplicativos usados na administração do sistema.
-* **snap** – diretório com pacotes snaps (podem ser executados em diferentes distribuições Linux).
-* **srv** – dados para serviços providos pelo sistema.
-* **sys** – contém informações sobre  devices, drivers e características do kernel.
-* **tmp** – diretório com arquivos temporários.
-* **usr**– diretório com aplicativos e arquivos utilizados pelos usuários como, por exemplo, o sistema de janelas X, jogos, bibliotecas compartilhadas, programas de usuários e de administração, etc.
-* **var** – diretório com arquivos de dados variáveis (spool, logs, etc).
+- **bin** – diretório com os comandos disponíveis para os usuários comuns (não privilegiados);
+- **boot** – diretório com os arquivos estáticos do boot de inicialização;
+- **dev** – diretório com as definições dos dispositivos de entrada/saída (drivers USB, pen-drives, CD/ROM, etc). Entretanto, é mostrado apenas aqueles dispositivos que já estão montados com algum sistema de arquivos citados na versão anterior. Ao menos que esteja operando um programa de mais baixo nível, quase nunca é manuseado o diretório `/dev`, mas sim, os diretórios `/media` ou `/mnt`;
+- **etc** – diretório com os arquivos de configuração do sistema;
+- **home** – diretório que armazena os diretórios dos usuários do sistema;
+- **lib** – diretório com as bibliotecas e módulos (carregáveis) do sistema;
+- **lost+found** – é usado pelo fsck para armazenar arquivos/diretórios/devices corrompidos;
+- **media** – ponto de montagem temporário para mídias removíveis;
+- **mnt** – ponto de montagem temporário para sistemas de arquivos;
+- **opt** – softwares adicionados pelos usuários;
+- **proc** – diretório com informações sobre os processos do sistema;
+- **root** – diretório home do root;
+- **run** – armazena arquivos temporários da inicialização do sistema;
+- **sbin** – diretório com os aplicativos (binários) usados na administração do sistema;
+- **snap** – diretório com pacotes snaps (podem ser executados em diferentes distribuições Linux);
+- **srv** – dados para serviços providos pelo sistema;
+- **sys** – contém informações sobre  devices, drivers e características do kernel;
+- **tmp** – diretório com arquivos temporários, que os sistema não garante que estará lá após o próximo boot;
+- **usr**– diretório com aplicativos e arquivos utilizados pelos usuários como, por exemplo, o sistema de janelas X, jogos, bibliotecas compartilhadas, programas de usuários e de administração, etc. Significa _Unix System Resources_;
+- **var** – diretório com arquivos de dados variáveis (spool - bobina de impressão, mail - para emails, log - a maioria dos logs do sistema, run - contêm os PIDs dos processos, etc).
 
 Para ver os diretórios e arquivos que ficam abaixo do diretório /, basta usar o comando ls.
 
@@ -417,6 +389,12 @@ ls /
 ```
 
 Convém também observar que é possível colocar os subdiretórios do diretório raiz em partições separadas. O objetivo é facilitar a manutenção do sistema e aumentar a segurança dos dados. Portanto, a distribuição do diretório raiz em várias partições é uma escolha pessoal do administrador do sistema. Normalmente, é sugerido que os seguintes diretórios possuam uma partição própria: /home, /opt, /tmp, /usr e /usr/local.
+
+Além destes diretórios padrão supracitados, ao ir para a pasta raiz do sistema (`cd /`), nota-se a existência de dois outros arquivos: **initrd.img** e **vmlinuz**. Na verdade, ambos são links simbólicos para arquivos que estão no `/boot`. O link simbólico no Linux é como um atalho no Windows. O binário **vmlinuz** é o kernel do Linux propriamente dito, ou seja, é o primeiro binário carregado logo em que a máquina iniciar. Já o **initrd.img** é o segundo binário carregado, logo na sequência, subindo um RAM DISK com os restante dos módulos.
+
+O motivo desses arquivos dispostos na raiz do sistema serem links simbólicos é que pode-se ter kernels de múltiplas versões e alterar entre eles só alterando o nome desse (para OLD, por exemplo), para então testar outra a outra sem excluir ou modificar a anterior.
+
+![linuxBootProcess][linuxBoot]
 
 ## 1.4. Avançado
 
@@ -430,3 +408,4 @@ Convém também observar que é possível colocar os subdiretórios do diretóri
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png
+[linuxBoot]: ../Images/linuxBootProcess.jpg

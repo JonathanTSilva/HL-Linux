@@ -187,11 +187,7 @@ Abaixo estão alguns passos utilizados para a instalação de softwares no linux
 
 **I. Atualizar pacotes já instalados**
 
-```console
-sudo apt update
-```
 
-Esse comando vai atualizar a base de dados dos pacotes para que você tenha acesso às versões mais atualizadas dos softwares.
 
 **II. Instalar por um repositório terceiro**
 

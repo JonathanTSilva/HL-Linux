@@ -74,7 +74,7 @@ Qualquer alteração a ser feita no Oh My Zsh, deve ser realizada dentro do arqu
 ZSH_THEME="agnoster"
 ```
 
-Se os temas padrão não forem do seu agrado, há a possibilidade de realizar a instalação de temas externo, desenvolvidos pela comunidade, podendo ser conferidos pela página do GitHub: [External-Links][2]. Cada um deles tem na descrição os passos para instalação e configuração. Alguns entre os mais utilizado são: zsh2000, powerlevel10k, powerlevel9k, bullet-train, classyTouch, agnosterzak, solus, blokkzh, imp. 
+Se os temas padrão não forem do seu agrado, há a possibilidade de realizar a instalação de temas externo, desenvolvidos pela comunidade, podendo ser conferidos pela página do GitHub: [External-Links][2]. Cada um deles tem na descrição os passos para instalação e configuração. Alguns entre os mais utilizado são: zsh2000, powerlevel10k, powerlevel9k, bullet-train, classyTouch, agnosterzak, solus, blokkzh, imp.
 
 Para instalá-los, basta fazer o download do tema pelo GitHub, mover para a pasta `~/.oh-my-zsh/themes` e alterar a variável citada acima, dentro de `.zshrc`. Como exemplo, o download e importação do **powerlevel10k**:
 
@@ -109,7 +109,6 @@ rm -rf fonts #clean-up a bit
 ```
 
 Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'DejaVu Sans Mono for Powerline', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`. Outro caminho para esta solução, é alterar diretamente no settings.json so VSCode, pelo parâmetro `"editor.fontFamily"`. Caso queira alterar apenas a fonte para o terminal, colocar o nome da fonte dentro do parâmetro `"terminal.integrated.fontFamily"`.
-
 
 ### Instalando e habilitando plugins
 

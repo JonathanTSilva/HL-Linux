@@ -1,5 +1,5 @@
 <!-- RIGHT LOGO -->
-<a href="#customização-do-windows-terminal"><img width="300px" src="https://c2.staticflickr.com/2/1478/26633767625_443e0b9550_b.jpg" align="right" /></a>
+<a href="#customização-do-windows-terminal"><img width="200px" src="https://c2.staticflickr.com/2/1478/26633767625_443e0b9550_b.jpg" align="right" /></a>
 
 # Customização do terminal do Linux
 

@@ -295,7 +295,7 @@ Assim, iniciar o tweaks para fazer as devidas modificações.
 
 ## 1.3. Intermediário
 
-### 1.3.1. [Sistemas de arquivos][1]
+### 1.3.1. Sistemas de arquivos
 
 ### 1.3.2. Acesso por SSH
 
@@ -313,4 +313,3 @@ Para acessar um computador utilizando o `ssh`, nós precisamos informar o usuár
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png
-[linuxBoot]: ../Images/linuxBootProcess.jpg

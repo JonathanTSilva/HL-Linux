@@ -58,7 +58,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
     - [Manuseio de arquivos][]
     - [Customização do terminal do Linux][5]
   - **Intermediário**
-    - [Sistema de arquivos][]
+    - [Sistema de arquivos][8]
   - **Avançado**
     - [Shell Script][]
     - [WSL][]
@@ -109,6 +109,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/terminalLinux.md
 [6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
 [7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/conceitos.md
+[8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/sistemaArquivos.md
 
 <!-- IMAGES -->
 

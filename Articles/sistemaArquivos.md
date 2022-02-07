@@ -105,4 +105,4 @@ O motivo desses arquivos dispostos na raiz do sistema serem links simbólicos é
 
 <!-- IMAGENS -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png
-[linuxBoot]: ../Images/linuxBootProcess.jpg
+[linuxBoot]: ../Images/linuxBootProcess.png

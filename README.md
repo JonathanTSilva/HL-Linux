@@ -53,7 +53,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
   - **Básico**
     - [Comandos][]
     - [Atalhos][]
-    - [Conceitos][]
+    - [Conceitos][7]
     - [Manuseio de pacotes][]
     - [Manuseio de arquivos][]
     - [Customização do terminal do Linux][5]
@@ -108,6 +108,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [4]: https://github.com/JonathanTSilva/HL-Linux
 [5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/terminalLinux.md
 [6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
+[7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/conceitos.md
 
 <!-- IMAGES -->
 
@@ -180,6 +181,8 @@ cd
 #### 1.2.3. Conceitos
 
 **Shell** - Quando fala-se shell, refere-se, na maioria dos casos, ao famoso BASH (Bourne Again SHell)
+
+**SSH** - SSH é o protocolo para o acesso remoto. Ele nos permite fazer uma conexão segura entre as nossas máquinas, acessando um secure shell.
 
 #### 1.2.4. Manuseio de pacotes
 
@@ -391,6 +394,10 @@ Além destes diretórios padrão supracitados, ao ir para a pasta raiz do sistem
 O motivo desses arquivos dispostos na raiz do sistema serem links simbólicos é que pode-se ter kernels de múltiplas versões e alterar entre eles só alterando o nome desse (para OLD, por exemplo), para então testar outra a outra sem excluir ou modificar a anterior.
 
 ![linuxBootProcess][linuxBoot]
+
+### 1.3.2. Acesso por SSH
+
+Para acessar um computador utilizando o `ssh`, nós precisamos informar o usuário, `jonathan`, e onde está a máquina que queremos acessar, usando o @ e um endereço, como `192.168.0.10`.
 
 ## 1.4. Avançado
 

@@ -51,7 +51,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 - **Meu HomeLab de Linux**
   - [Primeiros passos][6]
   - **Básico**
-    - [Comandos][]
+    - [Comandos][9]
     - [Atalhos][]
     - [Conceitos][7]
     - [Manuseio de pacotes][]
@@ -110,6 +110,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
 [7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/conceitos.md
 [8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/sistemaArquivos.md
+[9]: https://github.com/JonathanTSilva/OD-Cheatsheets/blob/main/Docs/Articles/Linux%20Terminal%20-%20Cheatsheet.pdf
 
 <!-- IMAGES -->
 

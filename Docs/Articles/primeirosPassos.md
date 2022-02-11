@@ -17,10 +17,12 @@
       - [Utilização do asdf](#utilização-do-asdf)
   - [5. Instalar os serviços](#5-instalar-os-serviços)
   - [6. Configurar cenário GIT](#6-configurar-cenário-git)
-  - [5. Criar repositório para projetos](#5-criar-repositório-para-projetos)
-  - [6. Fazer o clone de todos os repositórios do meu GitHub](#6-fazer-o-clone-de-todos-os-repositórios-do-meu-github)
+    - [Chave SSH](#chave-ssh)
+    - [Configuração do Git](#configuração-do-git)
+    - [Clonar repositórios do GitHub](#clonar-repositórios-do-github)
+  - [7. Preparar cenário para programação](#7-preparar-cenário-para-programação)
 
-Um shell script foi criado par automatizar este passo a passo. Portanto,aqui neste documento será  mostrado apenas os códigos para cada etapa.
+Um shell script foi criado para automatizar este passo a passo. Portanto, aqui neste documento será mostrado apenas os códigos para cada etapa.
 
 ## 1. Alterar a aparência do sistema
 
@@ -156,18 +158,67 @@ Por fim, o último serviço instalado é o postgres. A melhor forma é instalá-
 
 ## 6. Configurar cenário GIT
 
-Visto que o download do git já foi realizado, esta etapa consiste em toda a configuração
+Visto que o download do git já foi realizado, esta etapa consiste em toda a configuração de um ambiente utilizando o git como versionador de código e controlador de versões.
 
-## 5. Criar repositório para projetos
+### Chave SSH
+O primeiro passo consiste na criação da chave SSH utilizada na estação. Verificar a subseção [3.1. Criando chave SSH](https://github.com/JonathanTSilva/HL-Git#31-criando-chave-ssh), da documentação [Meu guia de Git](https://github.com/JonathanTSilva/HL-Git), para maiores detalhes sobre essa criação.
 
-(Projects/ ou /GitHub)
+Para essa criação, utilizaremos o `ssh-keygen`, que é um componente padrão do conjunto de protocolos Secure Shell para estabelecer sessões de shell seguras entre computadores remotos em redes não seguras, através da utilização de várias técnicas de criptográficas; e nestes caso, utilizando ed25519. Para isso, utilizar o comando abaixo:
 
-## 6. Fazer o clone de todos os repositórios do meu GitHub
+```zsh
+ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "email"
+```
 
-, com shallow;
+As duas chaves, pública e privada, serão ciradas e armazenadas na pasta `~/.ssh`. 
+
+Para que não seja preciso ficar colocando a senha da  chave toda hora, é necessário ter um serviço em execução chamado: `ssh-agent`. Para verificar se está rodando, utilizar o comando abaixo:
+
+```zsh
+echo "$(ssh-agent -s)"
+```
+
+Estando em execução, adicionar sua chave no agente com:
+
+```zsh
+ssh-add ~/.ssh/id_ed25519
+```
+
+### Configuração do Git
+
+O segundo passo é configurar o seu git cadastrando o email e o nome do usuário. Logo, executar os seguintes comandos:
+
+```zsh
+git config --global user.name "nome"
+git config --global user.email "email"
+```
+
+> **Nota:** o email cadastrado no seu git local também deve estar cadastrado no seu repositório, para que sejam validadas as contribuições
+
+### Clonar repositórios do GitHub
+
+Fazer o clone de todos os repositórios do meu GitHub
+, com git clone shallow;
+
+## 7. Preparar cenário para programação
+
+Um setup muito comum entre os programadores é a utilização do Vim como editor de texto e o Tmux, um multiplexer de terminal.
+
+```zsh
+sudo apt install vim-gtk3 tmux
+```
+
+O básico de vim é que ele tem dois modos: o de edição e o de comando. Sempre está no modo de comando, mas apertando a tecla <kbd>i</kbd> (*insert*) ou <kbd>a</kbd> (*append*). Edite o seu texto e ao término, aperte <kbd>ESC</kbd> para retornar ao modo de comando. Para maiores informações sobre comandos no Vim, verificar o cheatsheet de Vim, da minha página no GitHub.
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: 
+[2]: 
+[3]: 
+[4]: 
+[5]: 
+[6]: 
+[7]: 
+[8]: 
+[9]: 
 
 <!-- IMAGES -->

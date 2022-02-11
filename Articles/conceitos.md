@@ -1,2 +1,0 @@
-# Dicionário do Linux
-

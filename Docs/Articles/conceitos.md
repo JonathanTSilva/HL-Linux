@@ -25,3 +25,21 @@ Pode ser passados para eles uma palavra ou diversas e sempre será retornado uma
 ### Asymmetric Encryption
 
 Geração de duas chaves (que costumam ser dois números primos relacionados). Uma é chamada de chave privada e a outra de chave pública.
+
+## Sinais do Linux
+
+[O que são os sinais do Linux](https://www.cloudsavvyit.com/11072/linux-signals-hacks-definition-and-more/)
+
+### SIGINT
+
+### SIGTERM
+
+### SIGKILL
+
+### SIGTSTP
+
+## Utilitários de pacotes
+
+### DPGK
+
+### APT

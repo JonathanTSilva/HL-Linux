@@ -21,6 +21,8 @@
     - [Configuração do Git](#configuração-do-git)
     - [Clonar repositórios do GitHub](#clonar-repositórios-do-github)
   - [7. Preparar cenário para programação](#7-preparar-cenário-para-programação)
+    - [Vim e Tmux](#vim-e-tmux)
+    - [Dotfiles](#dotfiles)
 
 Um shell script foi criado para automatizar este passo a passo. Portanto, aqui neste documento será mostrado apenas os códigos para cada etapa.
 
@@ -75,7 +77,7 @@ sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurs
 
 > **Nota:** Poderia ser instalado junto as linguagens de trabalho aqui, como python, perl, ruby. Entretanto, diferentemente das mais antigas, como C, C++ e Java, que são estáveis e alteradas com pouca frequência (sendo assim, boas para instalar via gerenciador de pacotes), essas linguagens novas se alteram com frequência (Go, JavaScript) e estes pacotes de distro Linux normalmente não acompanham de perto essas alterações, porque os objetivos são diferentes. Assim, para resolver este problema, surgiu o gerenciador de versões universal: `asdf`, que junta os gerenciadores desenvolvidos para cada versão (`gvm`, `nvm`, `rbenv`, `pyenv` e outros) em um só gerenciador.
 
-### [asdf](https://github.com/asdf-vm/asdf)
+### [asdf][1]
 
 Gerencie várias versões de tempo de execução com uma única ferramenta CLI. Adicione integrações com o asdf, com suporte para Ruby, Node.js, Elixir, Erlang e mais. O truque do asdf é utilizar variáveis de ambiente no shell, procura no `$PATH`. Como o asdf é um framework, ou seja, não tem suporte a nenhuma linguagem, em cima dele é necessário instalar plugins. Assim sendo, para cada linguagem, instale o plugin referente (confira as instruções de instalação na página de cada uma - ccrystal, elixir, erlang, golang, kotlin, nodejs, ruby, rust, entre outras).
 
@@ -87,9 +89,9 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
 
 #### Instalar o asdf
 
-Para cada ambiente de trabalho há uma instalação diferente. Para verificar qual o método para o seu setup, navegue na [página de instalação do asdf](http://asdf-vm.com/guide/getting-started.html#_3-install-asdf). Neste artigo, disponibilizaremos como exemplo a instalação para ZSH e Git:
+Para cada ambiente de trabalho há uma instalação diferente. Para verificar qual o método para o seu setup, navegue na [página de instalação do asdf][2]. Neste artigo, disponibilizaremos como exemplo a instalação para ZSH e Git:
 
-1. Adicione o seguinte comando em `~/.zshrc`, ou utilize o plug-in como [asdf para oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf), no caso de utilizá-lo como um framework ZSH:
+1. Adicione o seguinte comando em `~/.zshrc`, ou utilize o plug-in como [asdf para oh-my-zsh][3], no caso de utilizá-lo como um framework ZSH:
 
 ```zsh
 . $HOME/.asdf/asdf.sh
@@ -111,18 +113,18 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 ```
 
-> **Nota:** Se você estiver usando um ZSH Framework (como oh-my-), o `asdfplug-in` associado pode precisar ser atualizado para usar as novas conclusões ZSH corretamente via `fpath`. O plug-in asdf Oh-My-ZSH ainda não foi atualizado, veja [ohmyzsh/ohmyzsh#8837](https://github.com/ohmyzsh/ohmyzsh/pull/8837).
+> **Nota:** Se você estiver usando um ZSH Framework (como oh-my-), o `asdfplug-in` associado pode precisar ser atualizado para usar as novas conclusões ZSH corretamente via `fpath`. O plug-in asdf Oh-My-ZSH ainda não foi atualizado, veja [ohmyzsh/ohmyzsh#8837][4].
 
 #### Utilização do asdf
 
-Veja a [documentação de utilização do asdf](https://github.com/asdf-vm/asdf#usage) para maiores informações de como utilizar o gerenciador. Abaixo estão alguns exemplos:
+Veja a [documentação de utilização do asdf][5] para maiores informações de como utilizar o gerenciador. Abaixo estão alguns exemplos:
 
 ```zsh
 asdf plugin-add nodejs git@github.com:asdf-vm/asdf-nodejs.git # Faz o download do plugin nodejs. Para cada linguagem, há um método diferente
 asdf plugin-list # Lista os plugins que estão baixados
 asdf list-all nodejs # Lista todas as versões disponíveis do nodejs
 asdf install nodejs 5.9.1 # Instala na máquina a versão 5.9.1. Instalar != de utilizar
-nodejs -v #    Mostra a versão do nodejs instalada
+nodejs -v # Mostra a versão do nodejs instalada
 asdf global nodejs 5.9.1 # Declara que está utilizando esta versão globalmente
 
 asdf list-all nodejs 
@@ -148,20 +150,21 @@ Também instalo o mongodb como banco, mas uma dica é não utilizar o mongodb co
 
 > **Nota:** na dúvida, sempre escolha o postgresql como padrão; nunca o mongodb, nem o redis. Redis é um bom cache e o mongo é excelente para dados indiferentes, como de *analytics* ou logs.
 
-Assim, para instalar o MongoDB, acesse o site e siga as [instruções de instalação](https://www.mongodb.com/try/download/community) para sua respectiva distribuição.
+Assim, para instalar o MongoDB, acesse o site e siga as [instruções de instalação][6] para sua respectiva distribuição.
 
-Da mesma forma que o anterior, para instalar o Docker, siga as devidas instruções no [site do docker](https://docs.docker.com/engine/install/) para correta instalação. E, assim como o MongoDB, são instaladas chaves públicas para validação dos pacotes (que são assinados digitalmente), explicando a ordem de instalação requerida (primeiro as chaves e depois os pacotes, para caso houver fraude nos pacotes)
+Da mesma forma que o anterior, para instalar o Docker, siga as devidas instruções no [site do docker][7] para correta instalação. E, assim como o MongoDB, são instaladas chaves públicas para validação dos pacotes (que são assinados digitalmente), explicando a ordem de instalação requerida (primeiro as chaves e depois os pacotes, para caso houver fraude nos pacotes)
 
-> **Nota:** sempre preste muita atenção nas chaves que são instaladas, para que não caia em golpes de hacker. Verifique o DNS no site, para ver se é confiável, como: ` curl -fsSL https://download.docker.com/linux/ubuntu/spg | sudo apt-key add -`
+> **Nota:** sempre preste muita atenção nas chaves que são instaladas, para que não caia em golpes de hacker. Verifique o DNS no site, para ver se é confiável, como: `curl -fsSL https://download.docker.com/linux/ubuntu/spg | sudo apt-key add -`
 
-Por fim, o último serviço instalado é o postgres. A melhor forma é instalá-lo em um container com o docker. Verifique a [documentação de instalação do postgres pelo docker](https://hub.docker.com/_/postgres) para completar com êxito.
+Por fim, o último serviço instalado é o postgres. A melhor forma é instalá-lo em um container com o docker. Verifique a [documentação de instalação do postgres pelo docker][8] para completar com êxito.
 
 ## 6. Configurar cenário GIT
 
 Visto que o download do git já foi realizado, esta etapa consiste em toda a configuração de um ambiente utilizando o git como versionador de código e controlador de versões.
 
 ### Chave SSH
-O primeiro passo consiste na criação da chave SSH utilizada na estação. Verificar a subseção [3.1. Criando chave SSH](https://github.com/JonathanTSilva/HL-Git#31-criando-chave-ssh), da documentação [Meu guia de Git](https://github.com/JonathanTSilva/HL-Git), para maiores detalhes sobre essa criação.
+
+O primeiro passo consiste na criação da chave SSH utilizada na estação. Verificar a subseção [3.1. Criando chave SSH][9], da documentação [Meu guia de Git][10], para maiores detalhes sobre essa criação.
 
 Para essa criação, utilizaremos o `ssh-keygen`, que é um componente padrão do conjunto de protocolos Secure Shell para estabelecer sessões de shell seguras entre computadores remotos em redes não seguras, através da utilização de várias técnicas de criptográficas; e nestes caso, utilizando ed25519. Para isso, utilizar o comando abaixo:
 
@@ -169,7 +172,7 @@ Para essa criação, utilizaremos o `ssh-keygen`, que é um componente padrão d
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "email"
 ```
 
-As duas chaves, pública e privada, serão ciradas e armazenadas na pasta `~/.ssh`. 
+As duas chaves, pública e privada, serão ciradas e armazenadas na pasta `~/.ssh`.
 
 Para que não seja preciso ficar colocando a senha da  chave toda hora, é necessário ter um serviço em execução chamado: `ssh-agent`. Para verificar se está rodando, utilizar o comando abaixo:
 
@@ -201,24 +204,55 @@ Fazer o clone de todos os repositórios do meu GitHub
 
 ## 7. Preparar cenário para programação
 
-Um setup muito comum entre os programadores é a utilização do Vim como editor de texto e o Tmux, um multiplexer de terminal.
+Um setup muito comum entre os programadores é a utilização do **Vim** como editor de texto, o **Tmux**, um multiplexer de terminal, tilix, zsh, entre outros dotfiles que variam de acordo com as preferências.
+
+### Vim e Tmux
 
 ```zsh
-sudo apt install vim-gtk3 tmux
+sudo apt install vim-gtk3 
 ```
 
 O básico de vim é que ele tem dois modos: o de edição e o de comando. Sempre está no modo de comando, mas apertando a tecla <kbd>i</kbd> (*insert*) ou <kbd>a</kbd> (*append*). Edite o seu texto e ao término, aperte <kbd>ESC</kbd> para retornar ao modo de comando. Para maiores informações sobre comandos no Vim, verificar o cheatsheet de Vim, da minha página no GitHub.
 
+```zsh
+sudo apt install tmux
+```
+
+Para o Tmux, liste as sessões ativas com:
+
+```zsh
+tmux ls
+```
+
+Por isso a importância de aprender Vim e Tmux pelo menos, e utilizá-los em seu ambiente de programação: da próxima vez que precisar se conectar em um servidor remoto para fazer alguma atividade longa, abra um Tmux e edite no Vim, pois se por acaso der *crash* na sua máquina local, ou algum problema na sua conexão com o servidor, você não vai perder nada do que estava fazendo no servidor; basta reconectar quando puder e dar *attach* na *session* que estava utilizando:
+
+```zsh
+tmux attach-session -t <nº> 
+```
+
+Por outro lado, se quiser fechar tudo que estava aberto naquela sessão, utilizar:
+
+```zsh
+tmux kill-session -t <nº>
+```
+
+### Dotfiles
+
+```zsh
+sudo apt install tilix zsh
+```
+
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
-[1]: 
-[2]: 
-[3]: 
-[4]: 
-[5]: 
-[6]: 
-[7]: 
-[8]: 
-[9]: 
+[1]: https://github.com/asdf-vm/asdf
+[2]: http://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+[3]: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf
+[4]: https://github.com/ohmyzsh/ohmyzsh/pull/8837
+[5]: https://github.com/asdf-vm/asdf#usage
+[6]: https://www.mongodb.com/try/download/community
+[7]: https://docs.docker.com/engine/install/
+[8]: https://hub.docker.com/_/postgres
+[9]: https://github.com/JonathanTSilva/HL-Git#31-criando-chave-ssh
+[10]: https://github.com/JonathanTSilva/HL-Git
 
 <!-- IMAGES -->

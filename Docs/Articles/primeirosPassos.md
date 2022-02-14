@@ -174,10 +174,11 @@ ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "email"
 
 As duas chaves, pública e privada, serão ciradas e armazenadas na pasta `~/.ssh`.
 
-Para que não seja preciso ficar colocando a senha da  chave toda hora, é necessário ter um serviço em execução chamado: `ssh-agent`. Para verificar se está rodando, utilizar o comando abaixo:
+Para que não seja preciso ficar colocando a senha da  chave toda hora, é necessário ter um serviço em execução chamado: `ssh-agent`. Para ativar e verificar se está rodando, utilizar o comando abaixo:
 
 ```zsh
-echo "$(ssh-agent -s)"
+eval "$(ssh-agent -s)"
+echo "$(ssh-agent -s)" # ou `echo $SSH_AGENT_PID`
 ```
 
 Estando em execução, adicionar sua chave no agente com:

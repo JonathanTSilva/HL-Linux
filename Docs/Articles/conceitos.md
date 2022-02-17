@@ -25,9 +25,9 @@ O OpenSSH é uma versão gratuita do SSH. É desenvolvido pelo projeto OpenBSD, 
 
 #### Known Hosts
 
-Quando um cliente SSH se conecta a um servidor, cada um prova sua identidade ao outro. O servidor autentica o cliente e o cliente também autentica o servidor com o uso de criptografia de chave pública.
+Quando um cliente SSH se conecta a um servidor, cada um prova sua identidade ao outro. O servidor autentica o cliente e o cliente também autentica o servidor com o uso de criptografia de chave pública. Cada servidor SSH possui uma chave de identificação, chamada de `host key`, utilizada para identificar-se para os clientes.
 
-Cada servidor SSH possui uma chave de identificação, chamada de `host key`, utilizada para identificar-se para os clientes.
+Na primeira vez que um cliente se conecta a um host remoto, uma cópia da chave de host é armazenada em sua conta local. Assim, toda vez que o cliente se reconectar a esse host remoto, o cliente SSH verificará a identidade dele usando essa chave pública. Essa técnica ajuda a evitar, por exemplo, ataques do tipo [man-in-the-middle][1].
 
 ## Criptografia
 
@@ -72,3 +72,5 @@ Geração de duas chaves (que costumam ser dois números primos relacionados). U
 ### DPGK
 
 ### APT
+
+[1]: https://www.kaspersky.com.br/blog/what-is-a-man-in-the-middle-attack/462/

@@ -23,6 +23,12 @@ Provê uma forte **autenticação** de senhas e de chaves públicas, assim como 
 
 O OpenSSH é uma versão gratuita do SSH. É desenvolvido pelo projeto OpenBSD, e pode ser encontrado em: [OpenSSH.com](https://www.openssh.com/).
 
+#### Known Hosts
+
+Quando um cliente SSH se conecta a um servidor, cada um prova sua identidade ao outro. O servidor autentica o cliente e o cliente também autentica o servidor com o uso de criptografia de chave pública.
+
+Cada servidor SSH possui uma chave de identificação, chamada de `host key`, utilizada para identificar-se para os clientes.
+
 ## Criptografia
 
 No universo da criptografia, existem pelo menos 3 tipos de tecnologias básicas: algoritmos de Digest, de encriptação reversível

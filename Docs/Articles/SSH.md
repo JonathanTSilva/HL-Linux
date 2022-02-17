@@ -77,7 +77,7 @@ Remove-WindowsCapability -Online -Name OpenSSH.Server # Desinstalar o OpenSSH Se
 Get-Service -Name *ssh* # Verificar o status do ssh-agent e serviços sshd
 ```
 
-    - Caso pelo primeiro comando você veja que os serviços estão parados, ativá-los e adicioná-los para a inicialização automática com os seguintes:
+Caso pelo primeiro comando você veja que os serviços estão parados, ativá-los e adicioná-los para a inicialização automática com os seguintes:
 
 ```powershell
 Start-Service sshd
@@ -86,13 +86,13 @@ Start-Service ‘ssh-agent’
 Set-Service -Name ‘ssh-agent’ -StartupType 'Automatic'
 ```
 
-    - Também é preciso permitir a conexão SSH, por padrão estabelecida na porta 22, pelo Firewall do Windows. Isso pode ser feito com o seguinte comando:
+Também é preciso permitir a conexão SSH, por padrão estabelecida na porta 22, pelo Firewall do Windows. Isso pode ser feito com o seguinte comando:
   
 ```powershell
 netsh advfirewall firewall add rule name=”SSHD service” dir=in action=allow protocol=TCP localport=22
 ```
 
-    - Ou, efetivar a mesma permissão utilizando PowerShell:
+Ou, efetivar a mesma permissão utilizando PowerShell:
 
 ```powershell
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22

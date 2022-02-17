@@ -59,6 +59,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
     - [Customização do terminal do Linux][5]
   - **Intermediário**
     - [Sistema de arquivos][8]
+    - [SSH][10]
   - **Avançado**
     - [Shell Script][]
     - [WSL][]
@@ -110,7 +111,8 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
 [7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/conceitos.md
 [8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/sistemaArquivos.md
-[9]: https://github.com/JonathanTSilva/OD-Cheatsheets/blob/main/Docs/Articles/Linux%20Terminal%20-%20Cheatsheet.pdf
+[9]: https://github.com/JonathanTSilva/OD-Cheatsheets/blob/main/Docs/Articles/LinuxTerminal-Cheatsheet.pdf
+[10]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/SSH.md
 
 <!-- IMAGES -->
 
@@ -135,6 +137,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
         - [1.2.6.2. Troca de Tema](#1262-troca-de-tema)
   - [1.3. Intermediário](#13-intermediário)
     - [1.3.1. Sistemas de arquivos](#131-sistemas-de-arquivos)
+    - [1.3.2. Acesso por SSH](#132-acesso-por-ssh)
   - [1.4. Avançado](#14-avançado)
     - [1.4.1. Shell Script](#141-shell-script)
     - [1.4.2. WSL](#142-wsl)
@@ -299,8 +302,6 @@ Assim, iniciar o tweaks para fazer as devidas modificações.
 ### 1.3.1. Sistemas de arquivos
 
 ### 1.3.2. Acesso por SSH
-
-Para acessar um computador utilizando o `ssh`, nós precisamos informar o usuário, `jonathan`, e onde está a máquina que queremos acessar, usando o @ e um endereço, como `192.168.0.10`.
 
 ## 1.4. Avançado
 

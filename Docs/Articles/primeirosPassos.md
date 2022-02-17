@@ -172,7 +172,7 @@ Para essa criação, utilizaremos o `ssh-keygen`, que é um componente padrão d
 ssh-keygen -o -a 100 -t ed25519 -f ~/.ssh/id_ed25519 -C "email"
 ```
 
-As duas chaves, pública e privada, serão ciradas e armazenadas na pasta `~/.ssh`.
+As duas chaves, pública e privada, serão criadas e armazenadas na pasta `~/.ssh`.
 
 Para que não seja preciso ficar colocando a senha da  chave toda hora, é necessário ter um serviço em execução chamado: `ssh-agent`. Para ativar e verificar se está rodando, utilizar o comando abaixo:
 
@@ -214,6 +214,14 @@ sudo apt install vim-gtk3
 ```
 
 O básico de vim é que ele tem dois modos: o de edição e o de comando. Sempre está no modo de comando, mas apertando a tecla <kbd>i</kbd> (*insert*) ou <kbd>a</kbd> (*append*). Edite o seu texto e ao término, aperte <kbd>ESC</kbd> para retornar ao modo de comando. Para maiores informações sobre comandos no Vim, verificar o cheatsheet de Vim, da minha página no GitHub.
+
+Feito isso, é preciso alterar o editor padrão do seu terminal, com o seguinte comando:
+
+```zsh
+sudo update-alternatives --config editor
+```
+
+Para instalar o Tmux:
 
 ```zsh
 sudo apt install tmux

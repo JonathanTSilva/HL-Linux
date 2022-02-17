@@ -8,13 +8,21 @@
 <!-- SUMÁRIO -->
 - [SSH](#ssh)
   - [O que é o SSH?](#o-que-é-o-ssh)
-  - [Instalando e configurando o SSH](#instalando-e-configurando-o-ssh)
+  - [Instalando o SSH](#instalando-o-ssh)
     - [Linux](#linux)
     - [Windows](#windows)
+  - [Configurando o SSH](#configurando-o-ssh)
+    - [Banner](#banner)
+    - [Permitir e negar usuários](#permitir-e-negar-usuários)
+  - [Tunelamento SSH no VirtualBox](#tunelamento-ssh-no-virtualbox)
+  - [Manusear arquivos](#manusear-arquivos)
+    - [Copiar arquivos](#copiar-arquivos)
 
 ## O que é o SSH?
 
-O SSh, também conhecido como Secure Shell ou Secure Socket Shell, é um protocolo de rede que fornece aos usuários, particularmente aos administradores de rede, um caminho seguro para acessar um computador através de uma rede não segura. Além disso, também refere-se ao conjunto de utilitários que implementar o protocolo SSH. Provê uma forte **autenticação** de senhas e de chaves públicas, assim como a **encriptação** na comunicação de dados entre dois computadores conectados em uma rede aberto, até mesmo na internet, e a **integridade**, garantindo que os dados transmitidos cheguem inalterados. Alguns outros pontos importantes do SSH:
+O SSH, também conhecido como Secure Shell ou Secure Socket Shell, é um protocolo de rede que fornece aos usuários, particularmente aos administradores de rede, um caminho seguro para acessar um computador através de uma rede não segura. Além disso, também refere-se ao conjunto de utilitários que implementam o protocolo SSH.
+
+Provê uma forte **autenticação** de senhas e de chaves públicas, assim como a **encriptação** na comunicação de dados entre dois computadores conectados em uma rede aberto, até mesmo na internet, e a **integridade**, garantindo que os dados transmitidos cheguem inalterados. Alguns outros pontos importantes do SSH:
 
 - Está disponível em praticamente todas as plataformas, como Linux, Mac OS X, BSD, WIndows, etc.;
 - Manusear sistemas e aplicações remotamente;
@@ -27,7 +35,7 @@ A figura abaixo apresenta uma arquitetura básica de uma conexão SSH:
 
 ![auth][SSH-auth]
 
-## Instalando e configurando o SSH
+## Instalando o SSH
 
 ### Linux
 
@@ -44,9 +52,6 @@ sudo apt install openssh-server
 ```zsh
 sudo apt install openssh-client
 ```
-
-
-
 
 ### Windows
 
@@ -66,7 +71,7 @@ Get-WindowsCapability -Online | ? Name -like 'OpenSSH.Server*' # Verificar se o 
 Remove-WindowsCapability -Online -Name OpenSSH.Server # Desinstalar o OpenSSH Server.
 ```
 
-  - Configurar o serviço SSH no Windows 10 e 11:
+- Configurar o serviço SSH no Windows 10 e 11:
 
 ```powershell
 Get-Service -Name *ssh* # Verificar o status do ssh-agent e serviços sshd
@@ -93,10 +98,81 @@ netsh advfirewall firewall add rule name=”SSHD service” dir=in action=allow 
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 
+## Configurando o SSH
+
+### Banner
+
+É possível customizar a mensagem de acesso ao servidor com um arquivo de banner. Seguir os seguintes passos para realizar a customização:
+
+- O primeiro passo é ativar o banner no arquivo de configuração do **servidor ssh**. Assim, acesse `/etc/ssh/sshd_config`
+- Habilite o parâmetro `Banner /etc/issue.net`;
+- Reinicie o serviço do ssh com `sudo service ssh restart`;
+- Edite o banner, abrindo `sudo vim /etc/issue.net`;
+- Insira o texto de sua preferência. Caso deseje melhores personalizações, acesse a ferramenta [ASCII Banners][2]. Separei em alguns grupos as letras que mais me agradam (vide lista abaixo). Além disso, neste projeto há uma série de arquivos customizados para banner.
+
+<table>
+  <tr>
+    <td>
+      <details close>
+      <summary>Minimalista</summary>
+        <ul>
+          <li>Calvin S</li>
+          <li>JS Stick Letters</li>
+          <li>Mini</li>
+          <li>Script</li>
+          <li>Shimrod</li>
+          <li>Slant</li>
+          <li>Small Script</li>
+          <li>Small Slant</li>
+          <li>Small</li>
+          <li>Stick Letters</li>
+          <li>Straight/li>
+        </ul>
+      </details>
+      <details close>
+      <summary>Caligrafia</summary>
+        <ul>
+          <li>Calligraphy2</li>
+          <li>Fraktur</li>
+        </ul>
+      </details>
+      <details close>
+      <summary>Customizado</summary>
+        <ul>
+          <li>Goofy</li>
+          <li>Impossible</li>
+          <li>Poison</li>
+        </ul>
+      </details>
+    </td>
+  </tr>
+</table>
+
+### Permitir e negar usuários
+
+- AllowUsers <user1> <user2> <userN>
+- DenyUsers <user1> <user2> <userN>
+
+## Tunelamento SSH no VirtualBox
+
+<https://bobcares.com/blog/virtualbox-ssh-nat/>
+
+
+## Manusear arquivos
+
+### Copiar arquivos
+
+```powershell
+scp -P 2022 jonathan@127.0.0.1:/etc/issue.net "E:\Jonathan\Downloads\"
+```
+
+> `-P <port>` = Specifies the port to connect to on the remote host. Note that this option is written with a capital 'P', because -p is already reserved for preserving the times and modes of the file in RCP;
+> `-p <port>` = Preserves modification times, access times, and modes from the original file.
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: https://theitbros.com/ssh-into-windows/
+[2]: https://manytools.org/hacker-tools/ascii-banner/
 
 <!-- IMAGES -->
 [SSH-auth]: ../../Images/ssh-auth.png

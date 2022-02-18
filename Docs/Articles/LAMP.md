@@ -206,8 +206,8 @@ O pacote te redirecionará para uma parte de configuração, nas quais devem ser
         <td>
             <small>
                 Please provide a password for phpmyadmin to register with the database server. If left blank, a random password will be generated. <br>
-                MySQL application password for phpmyadmin: <br>
-                <input type="password" id="pass" name="pass" size="60"> <br>
+                MySQL application password for phpmyadmin:
+                <input type="color" id="pass" name="pass" size="60" value="#f0f0f0"> <br>
                 ✅ Ok <br>
                 ⬜ Cancel
             </small>

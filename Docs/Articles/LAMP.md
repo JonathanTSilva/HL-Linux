@@ -176,10 +176,12 @@ O pacote te redirecionará para uma parte de configuração, nas quais devem ser
 <table>
     <tr>
         <td>
-            Please choose the web server that should be automatically configured to run phpMyAdmin. <br>
-            Web server to reconfigure automatically: <br>
-            ✅ apache2 <br>
-            ⬜ lighttpd
+            <small>
+                Please choose the web server that should be automatically configured to run phpMyAdmin. <br>
+                Web server to reconfigure automatically: <br>
+                ✅ apache2 <br>
+                ⬜ lighttpd
+            </small>
         </td>
     </tr>
 </table>
@@ -187,12 +189,14 @@ O pacote te redirecionará para uma parte de configuração, nas quais devem ser
 <table>
     <tr>
         <td>
-            The phpmyadmin package must have a database installed and configured before it can be used. This can be optionally handled with dbconfig-common. <br>
-            WIf you are an advanced database administrator and know that you want to perform this configuration manually, or if your database has already been installed and configured, you should refuse this option. Details on what needs to be done should most likely be provided in /usr/share/doc/phpmyadmin. <br>
-            Otherwise, you should probably choose this option. <br>
-            Configure database for phpmyadmin with dbconfig-common? <br>
-            ✅ Yes <br>
-            ⬜ No
+            <small>
+                The phpmyadmin package must have a database installed and configured before it can be used. This can be optionally handled with dbconfig-common. <br>
+                WIf you are an advanced database administrator and know that you want to perform this configuration manually, or if your database has already been installed and configured, you should refuse this option. Details on what needs to be done should most likely be provided in /usr/share/doc/phpmyadmin. <br>
+                Otherwise, you should probably choose this option. <br>
+                Configure database for phpmyadmin with dbconfig-common? <br>
+                ✅ Yes <br>
+                ⬜ No
+            </small>
         </td>
     </tr>
 </table>
@@ -200,11 +204,13 @@ O pacote te redirecionará para uma parte de configuração, nas quais devem ser
 <table>
     <tr>
         <td>
-            Please provide a password for phpmyadmin to register with the database server. If left blank, a random password will be generated. <br>
-            MySQL application password for phpmyadmin: <br>
-            <input type="password" id="pass" name="pass" size="60"> <br>
-            ✅ Ok <br>
-            ⬜ Cancel
+            <small>
+                Please provide a password for phpmyadmin to register with the database server. If left blank, a random password will be generated. <br>
+                MySQL application password for phpmyadmin: <br>
+                <input type="password" id="pass" name="pass" size="60"> <br>
+                ✅ Ok <br>
+                ⬜ Cancel
+            </small>
         </td>
     </tr>
 </table>

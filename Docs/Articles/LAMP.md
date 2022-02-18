@@ -2,7 +2,7 @@
 
 # Como preparar um ambiente LAMP
 
-🐧 Este documento apresenta um guia para a criação de um sistema LAMP.
+🐧 Este documento apresenta um guia para a criação de um sistema LAMP. Foi desenvolvido com a série de vídeos auxílio dos vídeos do canal Projeto Root.
 
 <!-- SUMÁRIO -->
 - [Como preparar um ambiente LAMP](#como-preparar-um-ambiente-lamp)
@@ -17,16 +17,18 @@
         - [2.1.2.2. PostgreSQL](#2122-postgresql)
       - [2.1.3. Verificação dos Serviços](#213-verificação-dos-serviços)
     - [2.2. Configuração](#22-configuração)
-      - [2.2.1. Banco de Dados](#221-banco-de-dados)
-        - [2.2.1.1. MySQL-Server (MariaDB)](#2211-mysql-server-mariadb)
-        - [2.2.1.2. PostgreSQL](#2212-postgresql)
-      - [2.2.2. phpMyAdmin](#222-phpmyadmin)
+      - [2.2.1. MySQL - phpMyAdmin](#221-mysql---phpmyadmin)
+      - [2.2.2. PostgreSQL - pgAdmin](#222-postgresql---pgadmin)
   - [3. Debian](#3-debian)
     - [3.1. Instalação](#31-instalação)
     - [3.2. Configuração](#32-configuração)
+      - [3.2.1. MySQL - phpMyAdmin](#321-mysql---phpmyadmin)
+      - [3.2.2. PostgreSQL - pgAdmin](#322-postgresql---pgadmin)
   - [4. CentOS](#4-centos)
     - [4.1. Instalação](#41-instalação)
     - [4.2. Configuração](#42-configuração)
+      - [4.2.1. MySQL - phpMyAdmin](#421-mysql---phpmyadmin)
+      - [4.2.2. PostgreSQL - pgAdmin](#422-postgresql---pgadmin)
 
 ## 1. Introdução ao LAMP
 
@@ -128,24 +130,25 @@ netstat -pultan
 
 ### 2.2. Configuração
 
-Tendo instalado todos pacotes necessários para um servidor WEB Apache básico, são necessárias algumas configurações para aprimoramento da segurança e facilitar a utilização.
+Tendo instalado todos pacotes necessários para um servidor WEB Apache básico, são necessárias algumas configurações para aprimoramento da segurança e facilitar a utilização. Utilizaremos os seguintes softwares para casa gerenciador de banco de dados: phpMyAdmin e pgAdmin. Abaixo estão as informações necessárias para cada um.
 
-#### 2.2.1. Banco de Dados
+> **Nota:** ao final desta subseção, veremos que é possível instalar softwares para auxiliar na manutenção do servidor. Entretanto, esses softwares são recomendados quando o administrador do server não domina muito o shell, pois são apenas complementares. Todo o processo pode ser realizado via linha de comando. Inclusive, quanto mais software existir dentro de um servidor em produção, maior o nível de vulnerabilidade dentro de um sistema.
+> Para resolver isso, utiliza-se servidores específicos para cada tipo de processo. Exemplo: um servidor para o site, outro para o banco de dados e um terceiro para as aplicações complementares, como o phpMyAdmin e pgAdmin (para ficar fora da linha de produção). Mas vai da preferência de cada adm para sua infranet.
+
+#### 2.2.1. MySQL - phpMyAdmin
 
 A primeira questão de segurança a ser abordada em um servidor WEB é a definição de uma senha para o usuário root do banco de dados instalados, pois ao completar tal instalação, este usuário, por padrão, não apresenta senha.
 
 Para adicionar uma senha à este usuário root, siga os passos referentes ao seu gerenciador de dados:
 
-##### 2.2.1.1. MySQL-Server (MariaDB)
-
-1. Conectar no mysql com o usuário root: `mysql -u root`
+1. Conectar no mysql com o usuário root: `mysql -u root`;
 2. Solicitar a troca de senha para esse usuário:
 
 ```sql
 ALTER USER 'root'@'localhost' IDENTIFIED BY '〈senhaSegura〉';
 ```
 
-3. Sair (`exit`) e entrar novamente no MySQL, para que apareça a notificação de que é necessário uma senha.
+3. Sair (`exit`) e entrar novamente no MySQL, para que apareça a notificação de que é necessário uma senha;
 
 > **Nota:** caso ele entre e não solicite a senha, é necessário utilizar o comando acima com um parâmetro adicional:
 
@@ -159,13 +162,10 @@ ALTER USER 'root'@'localhost' IDENTIFIED with mysql_native_password BY '〈senha
 mysql -u root -p
 ```
 
-##### 2.2.1.2. PostgreSQL
-
-#### 2.2.2. phpMyAdmin
-
-O software phpMyAdmin possui código-livre e permite criar e remover bases de dados; criar, remover e alterar tabelas; inserir, remover e editar campos; executar códigos SQL e manipular campos chaves através de uma interface web no seu navegador.
+Configurado a senha, o sistema está apto para utilizar o **phpMyAdmin**. Este software possui código-livre e permite criar e remover bases de dados; criar, remover e alterar tabelas; inserir, remover e editar campos; executar códigos SQL e manipular campos chaves através de uma interface web no seu navegador.
 
 Tendo realizado a configuração inicial para o Banco de Dados, agora podemos instalar o phpMyAdmin com o seguinte código:
+
 
 ```zsh
 apt -y install phpmyadmin php-mbstring php-zip php-gd php-json php-curl
@@ -206,8 +206,8 @@ O pacote te redirecionará para uma parte de configuração, nas quais devem ser
         <td>
             <small>
                 Please provide a password for phpmyadmin to register with the database server. If left blank, a random password will be generated. <br>
-                MySQL application password for phpmyadmin:
-                <input type="color" id="pass" name="pass" size="60" value="#f0f0f0"> <br>
+                MySQL application password for phpmyadmin:<br>
+                〈FILL WITH PASSWORD〉<br>
                 ✅ Ok <br>
                 ⬜ Cancel
             </small>
@@ -221,11 +221,129 @@ Feito isso, ao acessar no browser o IP do servidor (ou DNS), já estará dispon�
 
 > **Nota:** acesso feito com: `http://IP/phpMyAdmin` ou apenas o `http://IP`, visto que este software também utiliza a porta 80 (padrão) do server. Caso queira, altere a porta para alguma outra.
 
+#### 2.2.2. PostgreSQL - pgAdmin
+
+Assim como no MySQL, é preciso colocar senha no usuário root para o Postgres. Para tal, reproduzir os passos:
+
+1. Logar com o usuário postgres no banco de dados psql: `sudo -u postgres psql`;
+2. Estando dentro do DB, passar o parâmetro para alterar a senha: `\password`;
+3. Digitar a senha do usuário, e confirmá-la;
+4. Sair do postgres: `\q`;
+5. Alterada a senha, é necessário modificar o método de autenticação. Para isso, faz se necessária a edição de um arquivo que carregue essas informações:
+
+```zsh
+vim /etc/postgresql/〈versão〉/main/pg_hba.conf
+```
+
+- Modificar as seguintes informações:
+
+```conf
+# Database administrative login by Unix domain socket
+local       all             postgres                        md5
+
+# TYPE      DATABASE        USER          ADDRESS           METHOD
+
+# "local" is for Unix domain socket connections only
+local       all             all                             md5
+```
+
+- Assim, restartar o serviço do postgres: `service postgresql restart`;
+- Entrar novamente no Postrges e colocar a senha do usuário.
+
+Como verificado no tópico antecessor à esse, foi mostrada a configuração para software que envolve o MySQL. Para o sistema de gerenciamento de banco de dados PostgreSQL, há um software chamado pgAdmin, que assim como o phpMyAdmin, é um software de código-livre e permite criar e remover bases de dados; criar, remover e alterar tabelas; inserir, remover e editar campos; executar códigos do Postgres e manipular campos chaves através de uma interface web no seu navegador.
+
+Há duas versões disponíveis para instalação: a desktop e a WEB. Entretanto, neste documento é apenas mostrado o procedimento de instalação para a versão WEB. Caso queira instalar a outra opção, seguir a [documentação oficial](2) apresentada no site.
+
+São necessárias algumas modificações específicas para cada distribuição para o correto funcionamento do pgAdmin. A primeira delas é modificação dos repositórios, uma vez que, por padrão, não são trazidos esses repositórios na instalação do sistema operacional. Para tal, seguir os passos:
+
+- Instalar a chave pública para esse repositório (caso não tenha sido instalada anteriormente):
+
+```zsh
+# Com CURL - versão mais nova
+sudo curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+
+# Ou com WGET - versão mais antiga
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+
+- Adicionar o repositório:
+
+```zsh
+# Caso feito o passo anterior com o CURL
+sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
+# Se com o WGET
+echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+```
+
+- Feito isso, instale o pgAdmin com:
+
+```zsh
+sudo apt install pgadmin4-web
+```
+
+Na instalação do pacote, você será redirecionado para uma parte de configuração, nas quais devem ser selecionadas as seguintes opções:
+
+<table>
+    <tr>
+        <td>
+            <small>
+                The pgAdmin4 web interface needs an initial user configured. Please enter the email address you want to use as the account name. <br>
+                Initial pgAdmin4 user email: <br>
+                〈FILL WITH EMAIL〉<br>
+                ✅ Ok <br>
+            </small>
+        </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+            <small>
+                The pgAdmin4 web interface needs an initial user configured. Please enter the email address you want to use as the account name. <br>
+                Initial pgAdmin4 password: <br>
+                〈FILL WITH EMAIL〉<br>
+                ✅ Ok <br>
+            </small>
+        </td>
+    </tr>
+</table>
+
+> **Nota:** recomenda-se por boas práticas, a utilização de um email existente e a mesma senha, apesar de não precisar.
+
+> **Nota:** acesso feito com: `http://IP/pgAdmin4`.
+
+Mesmo após instalação, e diferentemente do phpMyAdmin, nesta aplicação é necessário informar qual o host que vai ser conectado (tanto o localhost, quanto para um host remoto). Assim, ao acessar o website, siga as instruções:
+
+1. Entre com o email e senhas cadastrados;
+2. Clique em "**Add New Server**";
+3. Preencha com o nome, comentário e clique em "**Connections**";
+4. Preencha com o IP do servidor Postgres em "**Host name/address**". Se for local, utilizar `localhost` ou `127.0.0.1`;
+5. Preencha com a porta do Postgres (default = 5432);
+6. O Banco de dados de manutenção (default = postgres);
+7. Para o campo "**username**", coloque o usuário `postgres` (configurado no começo deste tópico);
+8. Para o campo "**password**", coloque a mesma cadastrada para o usuário;
+9. Selecione "**Save password?**" para salvar a senha, caso prefira;
+10. Clique em "**Save**" para salvar a configuração.
+
+Ao realizar tal configuração, é possível manusear os bancos de dados disponíveis no servidor cadastrado.
+
+Uma outra opção (mais atualizada), para essa configuração, é configurar o webserver pelo comando:
+
+```zsh
+sudo /usr/pgadmin4/bin/setup-web.sh
+```
+
 ## 3. Debian
 
 ### 3.1. Instalação
 
 ### 3.2. Configuração
+
+#### 3.2.1. MySQL - phpMyAdmin
+
+#### 3.2.2. PostgreSQL - pgAdmin
 
 ## 4. CentOS
 
@@ -238,3 +356,14 @@ yum update && yum clean all
 ### 4.1. Instalação
 
 ### 4.2. Configuração
+
+#### 4.2.1. MySQL - phpMyAdmin
+
+#### 4.2.2. PostgreSQL - pgAdmin
+
+<!-- MARKDOWN LINKS -->
+<!-- SITES -->
+[1]: https://www.youtube.com/watch?v=Lv_bDnjdJ3Q
+[2]: https://www.pgadmin.org/
+
+<!-- IMAGES -->

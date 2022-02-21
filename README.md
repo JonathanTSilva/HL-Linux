@@ -16,19 +16,19 @@
 <!-- PROJECT SHIELDS -->
 <p align="center">
   <a href="https://github.com/JonathanTSilva/HL-Linux/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Contributors">
+    <img src="https://img.shields.io/github/contributors/JonathanTSilva/HL-Linux.svg?style=flat" alt="Contributors">
   </a>
   <a href="https://github.com/JonathanTSilva/HL-Linux/network/members">
-    <img src="https://img.shields.io/github/forks/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Members">
+    <img src="https://img.shields.io/github/forks/JonathanTSilva/HL-Linux.svg?style=flat" alt="Members">
   </a>
   <a href="https://github.com/JonathanTSilva/HL-Linux/stargazers">
-    <img src="https://img.shields.io/github/stars/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Stargazers">
+    <img src="https://img.shields.io/github/stars/JonathanTSilva/HL-Linux.svg?style=flat" alt="Stargazers">
   </a>
   <a href="https://github.com/JonathanTSilva/HL-Linux/issues">
-    <img src="https://img.shields.io/github/issues/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="Issues">
+    <img src="https://img.shields.io/github/issues/JonathanTSilva/HL-Linux.svg?style=flat" alt="Issues">
   </a>
   <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/JonathanTSilva/HL-Linux.svg?style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/github/license/JonathanTSilva/HL-Linux.svg?style=flat" alt="License">
   </a>
 </p>
 

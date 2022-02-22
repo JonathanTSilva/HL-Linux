@@ -18,8 +18,13 @@
     - [2.1. Linux](#21-linux)
     - [2.2. Windows](#22-windows)
   - [3. Configurando o SSH](#3-configurando-o-ssh)
-    - [3.1. Banner](#31-banner)
-    - [3.2. Permitir e negar usuários](#32-permitir-e-negar-usuários)
+  - [3.1. Autenticação por chave criptográfica](#31-autenticação-por-chave-criptográfica)
+    - [3.1.1. Processo de autenticação](#311-processo-de-autenticação)
+    - [3.1.2. Configuração manual](#312-configuração-manual)
+    - [3.1.3. Configuração automática](#313-configuração-automática)
+    - [3.1.4. Agente SSH](#314-agente-ssh)
+    - [3.2. Banner](#32-banner)
+    - [3.3. Permitir e negar usuários](#33-permitir-e-negar-usuários)
   - [4. Tunelamento SSH no VirtualBox](#4-tunelamento-ssh-no-virtualbox)
   - [5. Manusear arquivos](#5-manusear-arquivos)
     - [5.1. Copiar arquivos](#51-copiar-arquivos)
@@ -115,7 +120,84 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
 
 ## 3. Configurando o SSH
 
-### 3.1. Banner
+## 3.1. Autenticação por chave criptográfica
+
+Podemos nos conectar por senha a um servidor SSH. Porém, senhas apresentam problemas, como:
+
+- para que uma senha seja segura, deve ser longa e aleatória (são difíceis de memorizar!);
+- senhas podem ser capturadas se o host de destino for comprometido;
+- os sistemas operacionais geralmente só suportam uma senha por conta de usuário, o que é um problema para contas que são compartilhadas por mais de um usuário (roo, por exemplo).
+
+Para eliminar esses problemas, o SSH suporta autenticação de chave pública, usando chaves criptográfica.
+
+### 3.1.1. Processo de autenticação
+
+1. O cliente solicita uma conexão com o servidor em uma conta de usuário específica;
+2. O servidor responde enviando um desafio ao cliente, para que este prove sua identidade;
+3. O cliente recebe o desafio, gera um autenticador usando sua chave privada, e o envia ao servidor;
+4. O servidor verifica o autenticador recebido e a conta solicitada, usando a chave pública do usuário para determinar a autenticidade da conexão, liberando ou não o acesso.
+
+Para realizar tal processo, precisa-se de:
+
+- Um par de chaves e um passphrase para protegê-las;
+- Instalar a chave pública do usuário no servidor.
+
+### 3.1.2. Configuração manual
+
+Assim, tendo realizados esses pré-requisitos, siga os seguintes passos para efetuar a autenticação por chave criptográfica:
+
+- gerar um par de chaves no cliente (neste caso, usou-se `ssh-keygen`): `ssh-keygen -t dsa/rsa`;
+- transferir a chave pública do cliente de acesso para o servidor: `scp id_dsa.pub jonathan@192.168.50.23:`
+- anexar o conteúdo da chave pública ao arquivo `authorized_keys`: `cat id_dsa.pub >> ~/.ssh/authorized_keys`
+
+A autenticação de chave pública é mais segura que a autenticação por senha porque:
+
+- são necessários dois componentes secretos - o arquivo de chave no disco e a passphrase;
+- nem a passphrase nem a chave privada são enviadas ao host remoto, apenas o autenticados gerado com elas;
+- chaves criptográficas geradas por computador são muito mais difíceis de adivinhar do que chaves criadas por pessoas.
+
+### 3.1.3. Configuração automática
+
+Assim como realizado na seção acima, há um comando que faz todo o processo de configuração de chave pública para servidor: `ssh-copy-id`.
+
+O OpenSSH inclui um programa chamado `ssh-copy-id` que instala uma chave pública automaticamente em um servidor remoto, com apenas um comando, escrevendo no `~/.ssh/authorized_keys`
+
+```zsh
+ssh-copy-id -i <arquivo_chave> <usuário>@<servidor>
+```
+
+### 3.1.4. Agente SSH
+
+Cada vez que conectar ao servidor SSH, precisa-se redigitar a passphrase. Porém, se utilizar o *SSH Agent*, é possível identificar-se apenas uma vez, e o ssh (e o scp) podem se "lembrar" da identidade até efetuar logout do cliente, por exemplo.
+
+Um agente é um programa que mantém chaves privadas na memória e fornece serviços de autenticação a clientes SSH.
+
+O agente usado pelo OpenSSH é o `ssh-agent`. Para configurá-lo, utilizar:
+
+```zsh
+eval "$(ssh-agent -s)"
+> Agent pid 59566
+```
+
+```zsh
+ssh-add <chave>
+ssh-add -l # Verificar se a chave foi carregada
+```
+
+Caso queira excluir uma chave da memória do agente:
+
+```zsh
+ssh-add -d <chave>
+```
+
+Já para excluir todas:
+
+```zsh
+ssh-add -D
+> All identities removed.
+```
+
+### 3.2. Banner
 
 É possível customizar a mensagem de acesso ao servidor com um arquivo de banner. Seguir os seguintes passos para realizar a customização:
 
@@ -163,7 +245,7 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
   </tr>
 </table>
 
-### 3.2. Permitir e negar usuários
+### 3.3. Permitir e negar usuários
 
 - AllowUsers <user1> <user2> <userN>
 - DenyUsers <user1> <user2> <userN>
@@ -182,12 +264,34 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
 
 ### 5.1. Copiar arquivos
 
+A cópia de arquivos via SSH pode ser feita utilizando o programa SCP, um meio seguro de transferência de arquivos entre um servidor local e um remoto ou entre dois servidores remotos. 
+
+> **Note:** o termo SCP pode ao mesmo tempo referir-se ao Protocolo SCP ou ao Programa SCP.
+
+Quando feita do remoto para o servidor, a estrutura básica para essa transferência é:
+
+```zsh
+scp <arquivo> <usuário>@<servidor>:<local>
+```
+
+Já do servidor para o remoto:
+
+```zsh
+scp <usuário>@<servidor>:<arquivo> <local/arquivo> 
+```
+
+Para transferir um diretório completo, utilizar a opção `-r` no comando.
+
+Para servidores que possuem portas diferentes da padrão (22), utilizar a opção `-P`, como no exemplo abaixo:
+
 ```powershell
 scp -P 2022 jonathan@127.0.0.1:/etc/issue.net "E:\Jonathan\Downloads\"
 ```
 
 > `-P <port>` = Specifies the port to connect to on the remote host. Note that this option is written with a capital 'P', because -p is already reserved for preserving the times and modes of the file in RCP;
 > `-p <port>` = Preserves modification times, access times, and modes from the original file.
+
+Há a opção também de comprimir o arquivo ou pasta antes de enviar pelo scp, com a opção `-C`. Caso queira escolher o método de criptografia a ser utilizado: `-c <método>`.
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

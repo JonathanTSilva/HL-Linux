@@ -107,12 +107,12 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [2]: https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE
 [3]: https://www.linkedin.com/in/JonathanTSilva/
 [4]: https://github.com/JonathanTSilva/HL-Linux
-[5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/terminalLinux.md
-[6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/primeirosPassos.md
-[7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/conceitos.md
-[8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/sistemaArquivos.md
+[5]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/terminalLinux.md
+[6]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/primeirosPassos.md
+[7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/conceitos.md
+[8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/sistemaArquivos.md
 [9]: https://github.com/JonathanTSilva/OD-Cheatsheets/blob/main/Docs/Articles/LinuxTerminal-Cheatsheet.pdf
-[10]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Articles/SSH.md
+[10]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/SSH.md
 
 <!-- IMAGES -->
 

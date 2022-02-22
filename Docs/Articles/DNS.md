@@ -3,7 +3,7 @@
 
 # Como adicionar DNS ao meu servidor?
 
-👁‍🗨 Tutoriais para adicionar um domínio (*Domain Name System*) aos IPs do servidor, garantindo melhorias de velocidade, confiabilidade e segurança.
+🌐 Tutoriais para adicionar um domínio (*Domain Name System*) aos IPs do servidor, garantindo melhorias de velocidade, confiabilidade e segurança.
 
 <!-- SUMÁRIO -->
 - [Como adicionar DNS ao meu servidor?](#como-adicionar-dns-ao-meu-servidor)

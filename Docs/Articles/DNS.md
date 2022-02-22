@@ -3,6 +3,12 @@
 
 # Como adicionar DNS ao meu servidor?
 
+<p align="left">
+  <a href="https://github.com/JonathanTSilva/HL-Linux">
+    <img src="https://img.shields.io/static/v1?label=HomeLab&message=Linux&color=orange&logo=linux&logoColor=white&labelColor=grey&style=flat" alt="HL-Linux">
+  </a>
+</p>
+
 🌐 Tutoriais para adicionar um domínio (*Domain Name System*) aos IPs do servidor, garantindo melhorias de velocidade, confiabilidade e segurança.
 
 <!-- SUMÁRIO -->

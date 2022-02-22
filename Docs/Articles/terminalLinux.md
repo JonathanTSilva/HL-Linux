@@ -3,6 +3,12 @@
 
 # Customização do terminal do Linux
 
+<p align="left">
+  <a href="https://github.com/JonathanTSilva/HL-Linux">
+    <img src="https://img.shields.io/static/v1?label=HomeLab&message=Linux&color=orange&logo=linux&logoColor=white&labelColor=grey&style=flat" alt="HL-Linux">
+  </a>
+</p>
+
 :gear: Um guia de como customizar o terminal do Linux.
 
 <!-- SUMÁRIO -->

@@ -3,6 +3,12 @@
 
 # Atividades gerais
 
+<p align="left">
+  <a href="https://github.com/JonathanTSilva/HL-Linux">
+    <img src="https://img.shields.io/static/v1?label=HomeLab&message=Linux&color=orange&logo=linux&logoColor=white&labelColor=grey&style=flat" alt="HL-Linux">
+  </a>
+</p>
+
 ✔️ As principais atividades gerais em um ambiente Linux para facilitar a utilização rotineiro do sistema.
 
 <!-- SUMÁRIO -->

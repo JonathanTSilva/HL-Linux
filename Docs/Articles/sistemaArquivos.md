@@ -3,6 +3,12 @@
 
 # [Sistema de arquivos no Linux][1]
 
+<p align="left">
+  <a href="https://github.com/JonathanTSilva/HL-Linux">
+    <img src="https://img.shields.io/static/v1?label=HomeLab&message=Linux&color=orange&logo=linux&logoColor=white&labelColor=grey&style=flat" alt="HL-Linux">
+  </a>
+</p>
+
 💾 Entendendo, da melhor maneira, o sistema de arquivos do Linux.
 
 <!-- SUMÁRIO -->

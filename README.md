@@ -42,11 +42,11 @@
     <a href="#contato">Contato</a>
 </details>
 
-## Sobre o Projeto
+## 📃 Sobre o Projeto
 
 Este projeto pertence à uma série de repositórios denominada HomeLab. Essa sequência foi criada a fim de agrupar todos os estudos realizados em determinada area, neste caso, o Linux. Documenta toda a experiência de um iniciante neste kernel, contendo _insights_, dicas, resoluções de problemas e muitas outras coisas interessantes que fazem valer a pena o consumo e contribuição ao projeto **HomeLab - Linux**! Aproveite e sinta-se a vontade para comentar, tirar suas dúvidas, criticar e, principalmente, contribuir. :penguin:
 
-## Índice
+## 🔎 Índice
 
 - **Meu HomeLab de Linux**
   - [Primeiros passos][6]
@@ -57,15 +57,15 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
     - [Atividades gerais][]
     - [Customização do terminal do Linux][5]
   - **Intermediário**
-    - [DNS][]
+    - [DNS][12]
     - [Sistema de arquivos][8]
     - [SSH][10]
   - **Avançado**
-    - [LAMP][]
+    - [LAMP][11]
     - [Shell Script][]
     - [WSL][]
 
-## Contribuindo
+## 🤝 Contribuindo
 
 Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda! :tada:
 
@@ -92,11 +92,11 @@ Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre be
 <!-- MIT LICENSE -->
 <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>
 
-## Licença
+## 📝 Licença
 
 Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 
-## Contato
+## 📧 Contato
 
 :globe_with_meridians: [Jonathan T. da Silva][3] <br>
 :email: jonathantobias2009@hotmail.com <br>
@@ -113,7 +113,10 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [7]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/conceitos.md
 [8]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/sistemaArquivos.md
 [9]: https://github.com/JonathanTSilva/OD-Cheatsheets/blob/main/Docs/Articles/LinuxTerminal-Cheatsheet.pdf
-[10]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/SSH.md
+[10]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/ssh.md
+[11]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/lamp.md
+[12]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/dns.md
+[13]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/atividadesGerais.md
 
 <!-- IMAGES -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

@@ -130,16 +130,18 @@ netstat -pultan
 
 ### 2.2. Configuração
 
-Tendo instalado todos pacotes necessários para um servidor WEB Apache básico, são necessárias algumas configurações para aprimoramento da segurança e facilitar a utilização. Utilizaremos os seguintes softwares para casa gerenciador de banco de dados: phpMyAdmin e pgAdmin. Abaixo estão as informações necessárias para cada um.
+Tendo instalado todos pacotes necessários para um servidor WEB Apache básico, são necessárias algumas configurações para aprimoramento da segurança e facilidade na utilização. Utilizaremos os seguintes softwares para cada gerenciador de banco de dados: **phpMyAdmin** e **pgAdmin**. 
 
-> **Nota:** ao final desta subseção, veremos que é possível instalar softwares para auxiliar na manutenção do servidor. Entretanto, esses softwares são recomendados quando o administrador do server não domina muito o shell, pois são apenas complementares. Todo o processo pode ser realizado via linha de comando. Inclusive, quanto mais software existir dentro de um servidor em produção, maior o nível de vulnerabilidade dentro de um sistema.
+Abaixo estão as informações necessárias para cada um.
+
+> **Nota:** esses softwares são recomendados quando o administrador do server não domina muito o shell, pois são apenas complementares. Todo o processo pode ser realizado via linha de comando. Inclusive, quanto mais software existir dentro de um servidor em produção, maior o nível de vulnerabilidade dentro dele.
 > Para resolver isso, utiliza-se servidores específicos para cada tipo de processo. Exemplo: um servidor para o site, outro para o banco de dados e um terceiro para as aplicações complementares, como o phpMyAdmin e pgAdmin (para ficar fora da linha de produção). Mas vai da preferência de cada adm para sua infranet.
 
 #### 2.2.1. MySQL - phpMyAdmin
 
 A primeira questão de segurança a ser abordada em um servidor WEB é a definição de uma senha para o usuário root do banco de dados instalados, pois ao completar tal instalação, este usuário, por padrão, não apresenta senha.
 
-Para adicionar uma senha à este usuário root, siga os passos referentes ao seu gerenciador de dados:
+Para adicionar uma senha à este usuário root, siga os passos:
 
 1. Conectar no mysql com o usuário root: `mysql -u root`;
 2. Solicitar a troca de senha para esse usuário:

@@ -35,11 +35,11 @@
 <!-- TABLE OF CONTENTS -->
 <details close="close" align="center">
   <summary><b>Sumário</b></summary>
-    <a href="#-sobre-o-projeto">📃 Sobre o Projeto</a> |
-    <a href="#-indice">🔎 Índice</a> |
-    <a href="#-contribuindo">🤝 Contribuindo</a> |
-    <a href="#-licença">📝 Licença</a> |
-    <a href="#-contato">📧 Contato</a>
+    <a href="#-sobre-o-projeto">Sobre o Projeto</a> |
+    <a href="#-indice">Índice</a> |
+    <a href="#-contribuindo">Contribuindo</a> |
+    <a href="#-licença">Licença</a> |
+    <a href="#-contato">Contato</a>
 </details>
 
 ## 📃 Sobre o Projeto

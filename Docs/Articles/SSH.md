@@ -7,18 +7,18 @@
 
 <!-- SUMÁRIO -->
 - [SSH](#ssh)
-  - [O que é o SSH?](#o-que-é-o-ssh)
-  - [Instalando o SSH](#instalando-o-ssh)
-    - [Linux](#linux)
-    - [Windows](#windows)
-  - [Configurando o SSH](#configurando-o-ssh)
-    - [Banner](#banner)
-    - [Permitir e negar usuários](#permitir-e-negar-usuários)
-  - [Tunelamento SSH no VirtualBox](#tunelamento-ssh-no-virtualbox)
-  - [Manusear arquivos](#manusear-arquivos)
-    - [Copiar arquivos](#copiar-arquivos)
+  - [1. O que é o SSH?](#1-o-que-é-o-ssh)
+  - [2. Instalando o SSH](#2-instalando-o-ssh)
+    - [2.1. Linux](#21-linux)
+    - [2.2. Windows](#22-windows)
+  - [3. Configurando o SSH](#3-configurando-o-ssh)
+    - [3.1. Banner](#31-banner)
+    - [3.2. Permitir e negar usuários](#32-permitir-e-negar-usuários)
+  - [4. Tunelamento SSH no VirtualBox](#4-tunelamento-ssh-no-virtualbox)
+  - [5. Manusear arquivos](#5-manusear-arquivos)
+    - [5.1. Copiar arquivos](#51-copiar-arquivos)
 
-## O que é o SSH?
+## 1. O que é o SSH?
 
 O SSH, também conhecido como Secure Shell ou Secure Socket Shell, é um protocolo de rede que fornece aos usuários, particularmente aos administradores de rede, um caminho seguro para acessar um computador através de uma rede não segura. Além disso, também refere-se ao conjunto de utilitários que implementam o protocolo SSH.
 
@@ -35,9 +35,9 @@ A figura abaixo apresenta uma arquitetura básica de uma conexão SSH:
 
 ![auth][SSH-auth]
 
-## Instalando o SSH
+## 2. Instalando o SSH
 
-### Linux
+### 2.1. Linux
 
 A instalação do SSH pode ser feita através do OpenSSH, uma versão gratuita do SSH. Visto que sua arquitetura é baseada no modelo Cliente-Servidor, é necessário realizar instalações de dois pacotes diferentes em suas respectivas máquinas:
 
@@ -53,7 +53,7 @@ sudo apt install openssh-server
 sudo apt install openssh-client
 ```
 
-### Windows
+### 2.2. Windows
 
 Já no Windows, a instalação pode ser realizada por duas maneiras, de acordo com [Cyril Kardashevsky][1], a partir da versão 1909 do sistema:
 
@@ -98,9 +98,9 @@ Ou, efetivar a mesma permissão utilizando PowerShell:
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 
-## Configurando o SSH
+## 3. Configurando o SSH
 
-### Banner
+### 3.1. Banner
 
 É possível customizar a mensagem de acesso ao servidor com um arquivo de banner. Seguir os seguintes passos para realizar a customização:
 
@@ -148,19 +148,19 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
   </tr>
 </table>
 
-### Permitir e negar usuários
+### 3.2. Permitir e negar usuários
 
 - AllowUsers <user1> <user2> <userN>
 - DenyUsers <user1> <user2> <userN>
 
-## Tunelamento SSH no VirtualBox
+## 4. Tunelamento SSH no VirtualBox
 
 <https://bobcares.com/blog/virtualbox-ssh-nat/>
 
 
-## Manusear arquivos
+## 5. Manusear arquivos
 
-### Copiar arquivos
+### 5.1. Copiar arquivos
 
 ```powershell
 scp -P 2022 jonathan@127.0.0.1:/etc/issue.net "E:\Jonathan\Downloads\"

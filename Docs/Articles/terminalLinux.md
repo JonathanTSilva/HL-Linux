@@ -1,33 +1,34 @@
-<!-- RIGHT LOGO -->
+<!-- LOGO DIREITO -->
 <a href="#customização-do-windows-terminal"><img width="200px" src="https://c2.staticflickr.com/2/1478/26633767625_443e0b9550_b.jpg" align="right" /></a>
 
 # Customização do terminal do Linux
 
 :gear: Um guia de como customizar o terminal do Linux.
 
-<!-- TABLE OF CONTENTS -->
+<!-- SUMÁRIO -->
 - [Customização do terminal do Linux](#customização-do-terminal-do-linux)
-  - [ZSHELL - Oh-My-ZSH](#zshell---oh-my-zsh)
-    - [Instalar o Zsh e alterar para shell padrão](#instalar-o-zsh-e-alterar-para-shell-padrão)
-    - [Instalar o Oh My Zsh](#instalar-o-oh-my-zsh)
-    - [Alterar o tema e instalar temas externos](#alterar-o-tema-e-instalar-temas-externos)
-    - [Powerline fonts](#powerline-fonts)
-    - [Instalar e habilitar plugins](#instalar-e-habilitar-plugins)
-      - [zsh-history-substring-search](#zsh-history-substring-search)
-      - [zsh-syntax-highlighting](#zsh-syntax-highlighting)
-      - [zsh-autosuggestions](#zsh-autosuggestions)
-      - [ls](#ls)
-  - [POWERSHELL - Oh-My-Posh](#powershell---oh-my-posh)
-    - [Instalar o Oh My Posh](#instalar-o-oh-my-posh)
-    - [Atualizar o Oh My Posh](#atualizar-o-oh-my-posh)
-    - [Definir o Oh My Posh como padrão](#definir-o-oh-my-posh-como-padrão)
-    - [Alterar o tema](#alterar-o-tema)
+  - [1. Oh-My-ZSH (ZSHELL)](#1-oh-my-zsh-zshell)
+    - [1.1. Instalar o Zsh e alterar para shell padrão](#11-instalar-o-zsh-e-alterar-para-shell-padrão)
+    - [1.2. Instalar o Oh My Zsh](#12-instalar-o-oh-my-zsh)
+    - [1.3. Alterar o tema e instalar temas externos](#13-alterar-o-tema-e-instalar-temas-externos)
+    - [1.4. Powerline fonts](#14-powerline-fonts)
+    - [1.5. Instalar e habilitar plugins](#15-instalar-e-habilitar-plugins)
+      - [1.5.1. zsh-history-substring-search](#151-zsh-history-substring-search)
+      - [1.5.2. zsh-syntax-highlighting](#152-zsh-syntax-highlighting)
+      - [1.5.3. zsh-autosuggestions](#153-zsh-autosuggestions)
+      - [1.5.4. ls](#154-ls)
+  - [2. Oh-My-Posh (POWERSHELL)](#2-oh-my-posh-powershell)
+    - [2.1. Instalar o Oh My Posh](#21-instalar-o-oh-my-posh)
+    - [2.2. Atualizar o Oh My Posh](#22-atualizar-o-oh-my-posh)
+    - [2.3. Definir o Oh My Posh como padrão](#23-definir-o-oh-my-posh-como-padrão)
+    - [2.4. Alterar o tema](#24-alterar-o-tema)
+  - [3. Starship](#3-starship)
 
 Uma das maiores paixões de usuários linux é a possibilidade de customizar o terminal de acordo com sua preferência, por ser uma das ferramentas mais utilizadas dentro deste ambiente. Este tópico aborda como customizar o terminal utilizando duas tecnologias: **Oh My Zsh** (ZShell) e **Oh My Posh** (PowerShell).
 
-## ZSHELL - Oh-My-ZSH
+## 1. Oh-My-ZSH (ZSHELL)
 
-### Instalar o Zsh e alterar para shell padrão
+### 1.1. Instalar o Zsh e alterar para shell padrão
 
 O primeiro passo é instalar o Zshell, que já está disponível no repositório da maioria das distribuições Linux, então fica fácil de instalar, mas caso você queria fazer de forma manual, há também a [página no GitHub][1] dele, lá você encontra informações sobre um projeto chamado “Oh My ZSH!” que vai turbinar o seu ZSH ainda mais, caso você queria extrair ainda mais do potencial da ferramenta.
 
@@ -53,7 +54,7 @@ sudo gedit /etc/passwd
 
 Procure pela linha `/bin/bash` do seu usuário e altere `bash` para `zsh`. Deve ter algo como: `:/home/user:/bin/zsh`. Por fim, salve o documento, feche-o e logue em uma nova sessão no terminal.
 
-### Instalar o Oh My Zsh
+### 1.2. Instalar o Oh My Zsh
 
 Toda a documentação mais detalhada pode ser lida na [página **Oh My Zsh** do GitHub][1].
 
@@ -71,7 +72,7 @@ sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools
 
 Com isso, o Oh My Zsh estará instalado na sua máquina e assim que o terminal for aberto novamente, já estará ativado e o arquivo `.zshrc`, alterado.
 
-### Alterar o tema e instalar temas externos
+### 1.3. Alterar o tema e instalar temas externos
 
 Qualquer alteração a ser feita no Oh My Zsh, deve ser realizada dentro do arquivo `.zshrc`. Uma delas é a alteração de tema, na qual deve ser realizada alterando o valor do parâmetro a seguir com o nome das extensões fornecidas pelo zsh:
 
@@ -94,7 +95,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 > **Nota:** muitos temas precisam da instalação de fontes externas para que funcione corretamente, como [Nerd Fonts][3], [Powerline Fonts][4], entre outras. Assim, abaixo está um guia rápido de instalação da biblioteca de fontes Powerline.
 
-### Powerline fonts
+### 1.4. Powerline fonts
 
 Uma instalação rápida pode ser feita com:
 
@@ -115,7 +116,7 @@ rm -rf fonts #clean-up a bit
 
 Para desinstalar, trocar `./install.sh` por `./uninstall.sh`. Após instalação, deve ser alterada a fonte no terminal que estiver utilizando, até mesmo no Visual Studio Code. No caso de um terminal GNOME, vá para `Preferences` > `Seu perfil` > `Text` > `Custom fonts` e selecione a fonte Powerline de sua preferência. Já no Visual Studio Code, basta abrir a palheta de comandos (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) e procurar por **Preferences: Open Settings (UI)**. Ao abrir, pesquisar por **Font**, expandir o **Text Editor** e selecionar **Font**. No campo **Editor: Font Family**, acrescentar o nome da fonte de sua preferência dentro de aspas simples. Ex: `'DejaVu Sans Mono for Powerline', 'CaskaydiaCove NF', Consolas, 'Courier New', monospace`. Outro caminho para esta solução, é alterar diretamente no settings.json so VSCode, pelo parâmetro `"editor.fontFamily"`. Caso queira alterar apenas a fonte para o terminal, colocar o nome da fonte dentro do parâmetro `"terminal.integrated.fontFamily"`.
 
-### Instalar e habilitar plugins
+### 1.5. Instalar e habilitar plugins
 
 Existem vários plugins que poderão ser utilizados sem nenhuma instalação adicional. Para ver a lista de plugins que por padrão estão no diretório `~/.oh-my-zsh/plugins/` execute:
 
@@ -139,7 +140,7 @@ plugins=(
 
 Abaixo, estão alguns dos plugins mais utilizados e suas respectivas formas de instalação:
 
-#### zsh-history-substring-search
+#### 1.5.1. zsh-history-substring-search
 
 Adiciona um histórico de pesquisa, na qual, ao digitar qualquer parte de um código, é dada asa respectivas correspondências.
 
@@ -153,7 +154,7 @@ Agora para definir ele como um dos plugins do seu ZSH, entre em `~/.zshrc`, proc
 plugins=( zsh-history-substring-search )
 ```
 
-#### zsh-syntax-highlighting
+#### 1.5.2. zsh-syntax-highlighting
 
 Adiciona syntax Highligth no nosso ZSH, facilitando você saber se o comando que está sendo digitado no momento está correto.
 
@@ -167,7 +168,7 @@ Assim como o plugin anterior (e todos os outros), adicione ao `~/.zshrc`:
 plugins=( zsh-syntax-highlighting )
 ```
 
-#### zsh-autosuggestions
+#### 1.5.3. zsh-autosuggestions
 
 Adiciona uma auto-sugestão no ZSH baseada em seu histórico, tornando mais fácil a repetição de comandos já utilizados.
 
@@ -181,7 +182,7 @@ Da mesma forma:
 plugins=( zsh-autosuggestions )
 ```
 
-#### ls
+#### 1.5.4. ls
 
 Este plugin melhora a saída de `ls` e adiciona os seguintes *aliases*:
 
@@ -203,11 +204,11 @@ Assim como os outros, ative o plugin em `~/.zshrc`:
 plugins=( ls )
 ```
 
-## POWERSHELL - Oh-My-Posh
+## 2. Oh-My-Posh (POWERSHELL)
 
 O Oh My Posh é uma engine customizada de prompt para qualquer shell que apresenta a habilidade de ajustar a string do prompt como uma variável ou função. Ele suporta todos os shells populares no Linux, macOS e Windows, incluindo **Bash**, **Fish**, **Zsh**, **Powershell** e outros, tornando possível obter um prompt consistente, mesmo que você alterne frequentemente entre diferentes shells.
 
-### Instalar o Oh My Posh
+### 2.1. Instalar o Oh My Posh
 
 Neste artigo, o foco será sua utilização no Zsh. Entretanto, há diversas formas de realizar a instalação do Oh My Posh, podendo ser acompanhadas pela [página principal do projeto][6], ou pela [galeria de pacotes do PowerShell][7].
 
@@ -222,7 +223,7 @@ brew install oh-my-poshv
 
 Isso instala o `oh-my-posh.exe` e os últimos [temas do Oh My Posh][10]. Para conferir, basta copiar este comando do executável no cmd e será possível visualizar sua interface. Porém, só realizar este procedimento não o colocará como a engine padrão do PowerShell.
 
-### Atualizar o Oh My Posh
+### 2.2. Atualizar o Oh My Posh
 
 Para atualizar com o Homebrew, utilizar:
 
@@ -230,7 +231,7 @@ Para atualizar com o Homebrew, utilizar:
 brew update && brew upgrade oh-my-posh && exec zsh
 ```
 
-### Definir o Oh My Posh como padrão
+### 2.3. Definir o Oh My Posh como padrão
 
 Para defini-lo como padrão do sistema, adicione o seguinte comando em `~/.zshrc`:
 
@@ -244,7 +245,7 @@ Uma vez adicionado, recarregue seu perfil para que as mudanças sejam feitas.
 eval "$source ~/.zshrc
 ```
 
-### Alterar o tema
+### 2.4. Alterar o tema
 
 O tema padrão **jandedobbeleer.omp.json** exibe os casos de uso mais comuns em seu prompt. No entanto, se você quer ir mais além para explorar funcionalidades adicionais, siga as etapas adicionais abaixo para te auxiliar neste começo.
 
@@ -275,6 +276,8 @@ Quando ajustado, recarregue o seu perfil para que as mudanças sejam efetivadas.
 > **Cuidado:** Para temas baixados e colocados naquele diretório de *themes* do Oh My Posh, é necessário adicionar o caminho inteiro do diretório, como `~\oh-my-posh\themes\ohmyposhv3-v2.json`, ou a pasta em que ele se encontra.
 
 O tema que utilizo atualmente é o desenvolvido por **shanselman**, chamado **ohmyposhv3-v2.json** e está disponível na [página de gist][12] do desenvolvedor, assim como o arquivo `$PROFILE` personalizado.
+
+## 3. Starship
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

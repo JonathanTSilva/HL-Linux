@@ -1,4 +1,13 @@
+<!-- LOGO DIREITO -->
+<a href="#sistema-de-arquivos-no-linux"><img width="300px" src="../../Images/arquivos.png" align="right" /></a>
+
 # [Sistema de arquivos no Linux][1]
+
+💾 Entendendo, da melhor maneira, o sistema de arquivos do Linux.
+
+<!-- SUMÁRIO -->
+- [Sistema de arquivos no Linux](#sistema-de-arquivos-no-linux)
+  - [Partições](#partições)
 
 ## Partições
 
@@ -12,7 +21,9 @@ Atualmente existem dois padrões que determinam como os dados são armazenados n
   
 O Linux utiliza a seguinte nomenclatura para identificar discos e partições:
 
-![discos][discos]
+<p align="center">
+    <img width="500px" src="https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png" />
+</p>
 
 Por exemplo, pode-se ter:
 
@@ -97,12 +108,11 @@ Além destes diretórios padrão supracitados, ao ir para a pasta raiz do sistem
 
 O motivo desses arquivos dispostos na raiz do sistema serem links simbólicos é que pode-se ter kernels de múltiplas versões e alterar entre eles só alterando o nome desse (para OLD, por exemplo), para então testar outra a outra sem excluir ou modificar a anterior.
 
-![linuxBootProcess][linuxBoot]
+![linuxBoot][linuxBoot]
 
 <!-- Markdown's Links -->
 <!-- SITES -->
 [1]: https://guialinux.uniriotec.br/sistemas-de-arquivos/
 
 <!-- IMAGENS -->
-[discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png
-[linuxBoot]: ../Images/linuxBootProcess.png
+[linuxBoot]: ../../Images/linuxBootProcess.png

@@ -1,28 +1,28 @@
-<!-- RIGHT LOGO -->
+<!-- LOGO DIREITO -->
 <a href="#primeiros-passos-no-linux"><img width="200px" src="https://repository-images.githubusercontent.com/190277931/44da6a00-86c7-11ea-9127-b5f051e46fe0" align="right" /></a>
 
 # Primeiros passos no Linux
 
 :foot: Passos para deixar o ambiente Linux pronto para minha utilização.
 
-<!-- TABLE OF CONTENTS -->
+<!-- SUMÁRIO -->
 - [Primeiros passos no Linux](#primeiros-passos-no-linux)
   - [1. Alterar a aparência do sistema](#1-alterar-a-aparência-do-sistema)
   - [2. Desinstalar os programas indesejados](#2-desinstalar-os-programas-indesejados)
   - [3. Atualizar os pacotes e programas](#3-atualizar-os-pacotes-e-programas)
   - [4. Instalar os compiladores e dependências](#4-instalar-os-compiladores-e-dependências)
-    - [asdf](#asdf)
-      - [Download do asdf](#download-do-asdf)
-      - [Instalar o asdf](#instalar-o-asdf)
-      - [Utilização do asdf](#utilização-do-asdf)
+    - [4.1. asdf](#41-asdf)
+      - [4.1.1. Download do asdf](#411-download-do-asdf)
+      - [4.1.2. Instalar o asdf](#412-instalar-o-asdf)
+      - [4.1.3. Utilização do asdf](#413-utilização-do-asdf)
   - [5. Instalar os serviços](#5-instalar-os-serviços)
   - [6. Configurar cenário GIT](#6-configurar-cenário-git)
-    - [Chave SSH](#chave-ssh)
-    - [Configuração do Git](#configuração-do-git)
-    - [Clonar repositórios do GitHub](#clonar-repositórios-do-github)
+    - [6.1. Chave SSH](#61-chave-ssh)
+    - [6.2. Configuração do Git](#62-configuração-do-git)
+    - [6.3. Clonar repositórios do GitHub](#63-clonar-repositórios-do-github)
   - [7. Preparar cenário para programação](#7-preparar-cenário-para-programação)
-    - [Vim e Tmux](#vim-e-tmux)
-    - [Dotfiles](#dotfiles)
+    - [7.1. Vim e Tmux](#71-vim-e-tmux)
+    - [7.2. Dotfiles](#72-dotfiles)
 
 Um shell script foi criado para automatizar este passo a passo. Portanto, aqui neste documento será mostrado apenas os códigos para cada etapa.
 
@@ -77,17 +77,17 @@ sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurs
 
 > **Nota:** Poderia ser instalado junto as linguagens de trabalho aqui, como python, perl, ruby. Entretanto, diferentemente das mais antigas, como C, C++ e Java, que são estáveis e alteradas com pouca frequência (sendo assim, boas para instalar via gerenciador de pacotes), essas linguagens novas se alteram com frequência (Go, JavaScript) e estes pacotes de distro Linux normalmente não acompanham de perto essas alterações, porque os objetivos são diferentes. Assim, para resolver este problema, surgiu o gerenciador de versões universal: `asdf`, que junta os gerenciadores desenvolvidos para cada versão (`gvm`, `nvm`, `rbenv`, `pyenv` e outros) em um só gerenciador.
 
-### [asdf][1]
+### 4.1. [asdf][1]
 
 Gerencie várias versões de tempo de execução com uma única ferramenta CLI. Adicione integrações com o asdf, com suporte para Ruby, Node.js, Elixir, Erlang e mais. O truque do asdf é utilizar variáveis de ambiente no shell, procura no `$PATH`. Como o asdf é um framework, ou seja, não tem suporte a nenhuma linguagem, em cima dele é necessário instalar plugins. Assim sendo, para cada linguagem, instale o plugin referente (confira as instruções de instalação na página de cada uma - ccrystal, elixir, erlang, golang, kotlin, nodejs, ruby, rust, entre outras).
 
-#### Download do asdf
+#### 4.1.1. Download do asdf
 
 ```zsh
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
 ```
 
-#### Instalar o asdf
+#### 4.1.2. Instalar o asdf
 
 Para cada ambiente de trabalho há uma instalação diferente. Para verificar qual o método para o seu setup, navegue na [página de instalação do asdf][2]. Neste artigo, disponibilizaremos como exemplo a instalação para ZSH e Git:
 
@@ -115,7 +115,7 @@ autoload -Uz compinit && compinit
 
 > **Nota:** Se você estiver usando um ZSH Framework (como oh-my-), o `asdfplug-in` associado pode precisar ser atualizado para usar as novas conclusões ZSH corretamente via `fpath`. O plug-in asdf Oh-My-ZSH ainda não foi atualizado, veja [ohmyzsh/ohmyzsh#8837][4].
 
-#### Utilização do asdf
+#### 4.1.3. Utilização do asdf
 
 Veja a [documentação de utilização do asdf][5] para maiores informações de como utilizar o gerenciador. Abaixo estão alguns exemplos:
 
@@ -162,7 +162,7 @@ Por fim, o último serviço instalado é o postgres. A melhor forma é instalá-
 
 Visto que o download do git já foi realizado, esta etapa consiste em toda a configuração de um ambiente utilizando o git como versionador de código e controlador de versões.
 
-### Chave SSH
+### 6.1. Chave SSH
 
 O primeiro passo consiste na criação da chave SSH utilizada na estação. Verificar a subseção [3.1. Criando chave SSH][9], da documentação [Meu guia de Git][10], para maiores detalhes sobre essa criação.
 
@@ -187,7 +187,7 @@ Estando em execução, adicionar sua chave no agente com:
 ssh-add ~/.ssh/id_ed25519
 ```
 
-### Configuração do Git
+### 6.2. Configuração do Git
 
 O segundo passo é configurar o seu git cadastrando o email e o nome do usuário. Logo, executar os seguintes comandos:
 
@@ -198,7 +198,7 @@ git config --global user.email "email"
 
 > **Nota:** o email cadastrado no seu git local também deve estar cadastrado no seu repositório, para que sejam validadas as contribuições
 
-### Clonar repositórios do GitHub
+### 6.3. Clonar repositórios do GitHub
 
 Fazer o clone de todos os repositórios do meu GitHub
 , com git clone shallow;
@@ -207,7 +207,7 @@ Fazer o clone de todos os repositórios do meu GitHub
 
 Um setup muito comum entre os programadores é a utilização do **Vim** como editor de texto, o **Tmux**, um multiplexer de terminal, tilix, zsh, entre outros dotfiles que variam de acordo com as preferências.
 
-### Vim e Tmux
+### 7.1. Vim e Tmux
 
 ```zsh
 sudo apt install vim-gtk3 
@@ -245,7 +245,7 @@ Por outro lado, se quiser fechar tudo que estava aberto naquela sessão, utiliza
 tmux kill-session -t <nº>
 ```
 
-### Dotfiles
+### 7.2. Dotfiles
 
 ```zsh
 sudo apt install tilix zsh

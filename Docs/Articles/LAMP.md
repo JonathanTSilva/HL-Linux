@@ -1,3 +1,4 @@
+<!-- LOGO DIREITO -->
 <a href="#como-preparar-um-ambiente-lamp"><img width="200px" src="../../Images/lamp.png" align="right" /></a>
 
 # Como preparar um ambiente LAMP

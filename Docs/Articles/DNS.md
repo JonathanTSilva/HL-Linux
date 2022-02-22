@@ -1,4 +1,4 @@
-<a href="#como-adicionar-dns-ao-meu-servidor"><img width="300px" src="../../Images/dns.png" align="right" /></a>
+<a href="#como-adicionar-dns-ao-meu-servidor"><img width="200px" src="../../Images/dns.png" align="right" /></a>
 
 # Como adicionar DNS ao meu servidor?
 

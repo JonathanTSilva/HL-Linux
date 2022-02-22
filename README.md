@@ -67,7 +67,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 
 ## 🤝 Contribuindo
 
-Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda! :tada:
+Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem-vinda! :tada:
 
 **Como fazer um _pull request_ corretamente:**
 

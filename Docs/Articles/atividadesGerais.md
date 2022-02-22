@@ -27,6 +27,9 @@
     - [3.1. 🏆 Melhores temas](#31--melhores-temas)
       - [3.1.1. Gnome](#311-gnome)
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. Manuseio de pacotes
 
 Abaixo estão alguns passos utilizados para a instalação de softwares no linux:
@@ -85,6 +88,9 @@ Essa opção vai remover os binários instalados dele (mas não os arquivos de c
 sudo apt purge <nome do pacote>
 ```
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 2. Manuseio de arquivos
 
 ### 2.1. Descompactar arquivos por um software
@@ -105,6 +111,9 @@ Há diversas formas de descompactar arquivos. De uma forma raiz, para cada tipo 
 - .tar.gz ou .tgz: tar xvzf nome_do_arquivo;
 - .gz: gunzip nome_do_arquivo;
 - .tbz ou .tar.bz2: tar xjf nome_do_arquivo.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 3. Troca de tema
 

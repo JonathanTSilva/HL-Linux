@@ -32,6 +32,9 @@
 
 Um shell script foi criado para automatizar este passo a passo. Portanto, aqui neste documento será mostrado apenas os códigos para cada etapa.
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. Alterar a aparência do sistema
 
 Ao iniciar o sistema, a primeira coisa que faço é personalizar a aparência do sistema. Não que as entregues pelas distribuições são ruins, mas que sempre prefiro utilizar sistemas que tenham mais minha cara. As características que costumo alterar são:
@@ -42,12 +45,18 @@ Ao iniciar o sistema, a primeira coisa que faço é personalizar a aparência do
 - instalar tema terceiro;
 - customizar terminal.
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 2. Desinstalar os programas indesejados
 
 Tendo personalizado o sistema de acordo com minha preferência, o próximo passo é a remoção de pacotes e softwares que não preciso. Geralmente, incluem:
 
 - jogos;
 - Libre Office;
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 3. Atualizar os pacotes e programas
 
@@ -56,6 +65,9 @@ sudo apt update
 ```
 
 Esse comando vai atualizar a base de dados dos pacotes para que você tenha acesso às versões mais atualizadas dos softwares.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 4. Instalar os compiladores e dependências
 
@@ -144,6 +156,9 @@ Utilize o `asdf help` para se atualizar sobre os comandos permitidos. Mesmo que 
 asdf plugin-update --all
 ```
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 5. Instalar os serviços
 
 Tendo instalados os pacotes e linguagens em sua máquina, o próximo passo é instalar alguns serviços que mais utilizo no meu dia a dia:
@@ -163,6 +178,9 @@ Da mesma forma que o anterior, para instalar o Docker, siga as devidas instruç�
 > **Nota:** sempre preste muita atenção nas chaves que são instaladas, para que não caia em golpes de hacker. Verifique o DNS no site, para ver se é confiável, como: `curl -fsSL https://download.docker.com/linux/ubuntu/spg | sudo apt-key add -`
 
 Por fim, o último serviço instalado é o postgres. A melhor forma é instalá-lo em um container com o docker. Verifique a [documentação de instalação do postgres pelo docker][8] para completar com êxito.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 6. Configurar cenário GIT
 
@@ -206,8 +224,10 @@ git config --global user.email "email"
 
 ### 6.3. Clonar repositórios do GitHub
 
-Fazer o clone de todos os repositórios do meu GitHub
-, com git clone shallow;
+Fazer o clone de todos os repositórios do meu GitHub, com git clone shallow;
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 7. Preparar cenário para programação
 

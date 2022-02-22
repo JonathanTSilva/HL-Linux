@@ -35,6 +35,9 @@
     - [5.2. DPGK](#52-dpgk)
     - [5.3. YUM](#53-yum)
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. Conceitos básicos
 
 ### 1.1. Shell
@@ -64,6 +67,9 @@ Quando um cliente SSH se conecta a um servidor, cada um prova sua identidade ao 
 
 Na primeira vez que um cliente se conecta a um host remoto, uma cópia da chave de host é armazenada em sua conta local. Assim, toda vez que o cliente se reconectar a esse host remoto, o cliente SSH verificará a identidade dele usando essa chave pública. Essa técnica ajuda a evitar, por exemplo, ataques do tipo [man-in-the-middle][1].
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 2. Criptografia
 
 No universo da criptografia, existem pelo menos 3 tipos de tecnologias básicas: algoritmos de Digest, de encriptação reversível e assimétrica.
@@ -90,6 +96,9 @@ Pode ser passados para eles uma palavra ou diversas e sempre será retornado uma
 - Blowfish;
 - AES.
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 3. Servidores
 
 ### 3.1. DNS
@@ -99,6 +108,9 @@ Os servidores DNS (Domain Name System, ou sistema de nomes de domínios) são os
 Por padrão, utilizamos o serviço de DNS oferecido pelo provedor de acesso ou a empresa responsável por manter a nossa conexão funcionando, como NET, Vivo e GVT, mas não é obrigatório utilizá-lo. É possível optar por serviços que atendam melhor a nossa necessidade, oferecendo mais performance, mais segurança ou mesmo os dois, como é o caso do OpenDNS, Google Public DNS e Comodo Secure DNS.
 
 Devido a importância do DNS é necessário garantir a sua segurança, esta fornecida pelo DNSSEC (DNS Security Extensions), esquema de criptografia que faz uso de chaves públicas e privadas para garantir a autenticidade dos endereços consultados, de forma a garantir que quando um endereço é consultado ele vai ser traduzido para o número de IP correto, evitando fraudes de internet.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 4. Sinais do Linux
 
@@ -111,6 +123,9 @@ Devido a importância do DNS é necessário garantir a sua segurança, esta forn
 ### 4.3. SIGTERM
 
 ### 4.4. SIGTSTP
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 5. Utilitários de pacotes
 

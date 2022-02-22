@@ -13,9 +13,12 @@
 
 <!-- SUMÁRIO -->
 - [Sistema de arquivos no Linux](#sistema-de-arquivos-no-linux)
-  - [Partições](#partições)
+  - [1. Partições](#1-partições)
 
-## Partições
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
+## 1. Partições
 
 Podemos dividir um disco rígido em várias partes ou partições, onde cada partição é independente das outras, ou seja, cada partição pode ter o seu próprio sistema de arquivo e um diferente sistema operacional. Isto significa que uma partição do disco não interfere nas outras partições.
 

@@ -24,6 +24,9 @@
   - [5. Manusear arquivos](#5-manusear-arquivos)
     - [5.1. Copiar arquivos](#51-copiar-arquivos)
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. O que é o SSH?
 
 O SSH, também conhecido como Secure Shell ou Secure Socket Shell, é um protocolo de rede que fornece aos usuários, particularmente aos administradores de rede, um caminho seguro para acessar um computador através de uma rede não segura. Além disso, também refere-se ao conjunto de utilitários que implementam o protocolo SSH.
@@ -40,6 +43,9 @@ Provê uma forte **autenticação** de senhas e de chaves públicas, assim como 
 A figura abaixo apresenta uma arquitetura básica de uma conexão SSH:
 
 ![auth][SSH-auth]
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 2. Instalando o SSH
 
@@ -104,6 +110,9 @@ Ou, efetivar a mesma permissão utilizando PowerShell:
 New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 3. Configurando o SSH
 
 ### 3.1. Banner
@@ -159,10 +168,15 @@ New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd)' -Enabled Tru
 - AllowUsers <user1> <user2> <userN>
 - DenyUsers <user1> <user2> <userN>
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 4. Tunelamento SSH no VirtualBox
 
 <https://bobcares.com/blog/virtualbox-ssh-nat/>
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 5. Manusear arquivos
 

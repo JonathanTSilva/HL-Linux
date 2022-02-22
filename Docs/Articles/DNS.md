@@ -17,12 +17,18 @@
   - [2. Apache](#2-apache)
   - [3. Nginx](#3-nginx)
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. Pré-requisitos
 
 Para que você consiga reproduzir os passos abaixo para seu servidor, vale ressaltar que há algumas etapas anteriores a serem feitas:
 
 1. **Tornar o IP do servidor estático:** isso vai ajudar ao alocar o nome de domínio que você comprou ou conseguiu de forma gratuita ao seu servidor, visto que caso esteja com DHCP, o IP irá alterar frequentemente, e será necessário linkar o novo ao domínio;
 2. **Linkar o IP ao domínio adquirido:** ao efetuar a aquisição de um domínio, não esqueça de conectá-lo ao IP do seu servidor.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 2. Apache
 
@@ -59,6 +65,9 @@ RewriteRule ^(.*)$ http://smarbt.myvnc.com/$1 [L,R=301]
 
 4. Execute o seguinte comando para ativar o módulo **rewrite**: `a2enmod rewrite`
 5. Reinicie o Apache: `systemctl restart apache2` ou `service apache2 restart`.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 3. Nginx
 

@@ -37,6 +37,9 @@
       - [4.2.1. MySQL - phpMyAdmin](#421-mysql---phpmyadmin)
       - [4.2.2. PostgreSQL - pgAdmin](#422-postgresql---pgadmin)
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 1. Introdução ao LAMP
 
 ### 1.1. O que é?
@@ -48,6 +51,9 @@ LAMP é um acrônimo que denota um dos conjuntos de soluções mais comuns para 
 Sempre que uma requisição de página chega em um servidor, ela passa por uma aplicação chamada servidor web, em nosso caso o Apache. O Apache procura pelo arquivo sendo solicitado na URL da requisição e passa a informação para o intérprete do PHP.
 
 Ele executa a lógica contida no arquivo, retrai as informações do banco de dados MySQL e gera a página da internet. Então o Apache envia a página gerada para o cliente. Esse processo é executado com algumas variações sempre que uma página da internet é requisitada de um servidor LAMP.
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 2. Ubuntu
 
@@ -344,6 +350,9 @@ Uma outra opção (mais atualizada), para essa configuração, é configurar o w
 sudo /usr/pgadmin4/bin/setup-web.sh
 ```
 
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 3. Debian
 
 ### 3.1. Instalação
@@ -353,6 +362,9 @@ sudo /usr/pgadmin4/bin/setup-web.sh
 #### 3.2.1. MySQL - phpMyAdmin
 
 #### 3.2.2. PostgreSQL - pgAdmin
+
+<!-- VOLTAR AO ÍNICIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 4. CentOS
 

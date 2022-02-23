@@ -112,7 +112,7 @@ Devido a importância do DNS é necessário garantir a sua segurança, esta forn
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
-## 4. Sinais do Linux
+## 4. Sinais do KILL
 
 [O que são os sinais do Linux](https://www.cloudsavvyit.com/11072/linux-signals-hacks-definition-and-more/)
 

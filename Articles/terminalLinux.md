@@ -11,7 +11,7 @@
     - [Instalando o Zsh e alterando para shell padrão](#instalando-o-zsh-e-alterando-para-shell-padrão)
     - [Instalando o Oh My Zsh](#instalando-o-oh-my-zsh)
     - [Alterando o tema e instalando temas externos](#alterando-o-tema-e-instalando-temas-externos)
-    - [Powerline fonts](#powerline-fonts)
+    - [Powerline Fonts](#powerline-fonts)
     - [Instalando e habilitando plugins](#instalando-e-habilitando-plugins)
       - [zsh-history-substring-search](#zsh-history-substring-search)
       - [zsh-syntax-highlighting](#zsh-syntax-highlighting)
@@ -89,7 +89,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 > **Nota:** muitos temas precisam da instalação de fontes externas para que funcione corretamente, como [Nerd Fonts][3], [Powerline Fonts][4], entre outras. Assim, abaixo está um guia rápido de instalação da biblioteca de fontes Powerline.
 
-### Powerline fonts
+### Powerline Fonts
 
 Uma instalação rápida pode ser feita com:
 

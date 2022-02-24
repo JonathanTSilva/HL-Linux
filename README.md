@@ -54,7 +54,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
     - [Comandos][9]
     - [Atalhos][]
     - [Conceitos][7]
-    - [Atividades gerais][]
+    - [Atividades gerais][13]
     - [Customização do terminal do Linux][5]
   - **Intermediário**
     - [DNS][12]
@@ -62,8 +62,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
     - [SSH][10]
   - **Avançado**
     - [LAMP][11]
-    - [Shell Script][]
-    - [WSL][]
+    - [Shell Script][14]
 
 ## 🤝 Contribuindo
 
@@ -117,6 +116,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [11]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/lamp.md
 [12]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/dns.md
 [13]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/atividadesGerais.md
+[14]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/shellScript.md
 
 <!-- IMAGES -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

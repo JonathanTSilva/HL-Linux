@@ -18,18 +18,20 @@
     - [1.2. Vantagens](#12-vantagens)
     - [1.3. Desvantagens](#13-desvantagens)
   - [2. Básico](#2-básico)
-  - [3. Variáveis](#3-variáveis)
-    - [3.1. Operações matemáticas](#31-operações-matemáticas)
-    - [3.2. Funções](#32-funções)
-    - [Condicionais](#condicionais)
-  - [4. Programa de automação real](#4-programa-de-automação-real)
-  - [5. Estruturar um script](#5-estruturar-um-script)
-  - [6. Fazer parsing de Strings](#6-fazer-parsing-de-strings)
-  - [7. Expansão de variáveis](#7-expansão-de-variáveis)
-  - [8. Removendo outputs para não poluir a tela](#8-removendo-outputs-para-não-poluir-a-tela)
-  - [9. Exit codes](#9-exit-codes)
-  - [10. Listas](#10-listas)
-  - [11. Colorir o script](#11-colorir-o-script)
+    - [2.1. Variáveis](#21-variáveis)
+    - [2.2. Operações matemáticas](#22-operações-matemáticas)
+    - [2.3. Funções](#23-funções)
+    - [2.4. Condicionais](#24-condicionais)
+    - [2.5. Laços](#25-laços)
+  - [3. Programa de automação real](#3-programa-de-automação-real)
+    - [Pré-requisitos](#pré-requisitos)
+  - [4. Estruturar um script](#4-estruturar-um-script)
+  - [5. Fazer parsing de Strings](#5-fazer-parsing-de-strings)
+  - [6. Expansão de variáveis](#6-expansão-de-variáveis)
+  - [7. Removendo outputs para não poluir a tela](#7-removendo-outputs-para-não-poluir-a-tela)
+  - [8. Exit codes](#8-exit-codes)
+  - [9. Listas](#9-listas)
+  - [10. Colorir o script](#10-colorir-o-script)
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -70,7 +72,7 @@ Já como desvantagens, têm-se:
 
 ## 2. Básico
 
-## 3. Variáveis
+### 2.1. Variáveis
 
 Assim como em todas outras linguagens, as variáveis são utilizadas para armazenar valores. Especificamente no Shell Script, ela pode ser: ou um valor numérico, ou Strings de texto.
 
@@ -102,7 +104,7 @@ Se só é declarado a variável localmente (sem o `export`), e dar o comando par
 > **Nota:** ao criar uma nova sessão, filha da atual, é possível personalizar a visualização dos processos que a envolve digitando `ps --forest`. Assim, uma sessão filha, enxerga todas as variáveis que são globais no pai.
 > **Dica:** o export pode ser feito diretamente com `export NUMERO=1`.
 
-### 3.1. Operações matemáticas
+### 2.2. Operações matemáticas
 
 As operações matemáticas básicas podem ser realizadas da seguinte forma (entre muitas outras formas para bem fazê-las):
 
@@ -121,7 +123,7 @@ $ echo $TOTAL
 > 6
 ```
 
-### 3.2. Funções
+### 2.3. Funções
 
 Funções dentro de Shell Script (como em qualquer outra linguagem) podem ser definidas como uma parte do código (ou código) que é responsável por uma ação específica. Elas são utilizadas para organizar o código. Com as funções, a manutenção do código é facilitada. Podem ser declarada direto no terminal da seguinte forma:
 
@@ -130,26 +132,116 @@ $ lla () {ls -la;} # Declarando a função lla para realizar o comando ls -la
 $ lla
 ```
 
-### Condicionais
+### 2.4. Condicionais
+
+Condicionais são utilizadas para definir o fluxo de execução de um script. No Shell Script. possui as mesmas funções das condicionais de outras linguagens de programação. Exemplo:
+
+```bash
+if [[ -d /var ]]; then
+- echo "Diretório existe"
+else
+- echo "Diretório não existe"
+fi
+```
+
+> **Nota:** o shell script em si não testa apenas condições, mas também instruções.
+> **Nota:** ao observar o código acima, verifica-se os espaços e os colchetes, que representam o comando `test` do shell. Se eles não forem colocados, o código não será executado.
+
+O `-d` atrelado ao `if`, é para testar se o diretório existe. Caso seja adicionado o sinal `!` antes deste comando, é retornado false daquela expressão.
+
+Abaixo, a tabela apresenta as principais expressões que existem no shell script.
+
+<p align="center">
+  <a href="#"><img width="400px" src="../../Images/shellCond.png"/></a>
+</p>
+
+> **Dica:** o comando `man bash` retorna todas as funções e opções existentes para o shell script.
+
+Exemplo de utilização do comando `test`:
+
+```bash
+$ mkdir pasta
+$ test -d pasta # Testa se existe esse diretório
+$ echo $? # O resultado do comando anterior é guardado em $?
+> 0 # Se retorna zero, é verdadeiro. Qualquer coisa diferente de zero é falso
+$ test -d pastaXYS
+> 1 # Falso
+```
+
+### 2.5. Laços
+
+São utilizados para executar várias vezes o mesmo código, varrer uma lista de valores, etc... No shell script há três laços: **until**, **for** e **while**. Exemplo diferentes para a mesma situação:
+
+```bash
+for i in $(seq 10); do
+- echo "Contador = $i"
+done
+```
+
+> **Nota:** o `seq` é um comando que vai executar o comando por tantas vezes.
+
+```bash
+i=0
+while [[ $i -lt 10 ]]; do
+- echo "Contador = $i"
+- i=$(($i+1))
+done
+```
+
+> **Nota:** o `while` não apresenta um contator (`seq`) como o for, por isso é necessário comandos a mais.
+
+```bash
+i=0
+until false
+do
+- echo "Contador = $i"
+- ((i++))
+- sleep 2
+done
+```
+
+Exemplo real para trazer todos os usuários do sistema:
+
+```bash
+for usuario in $(cut -d : -f 1 /etc/passwd); do # Pega a primeira coluna de todos os usuários do sistema
+- echo "Usuário: $usuario";
+done
+```
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
-## 4. Programa de automação real
+## 3. Programa de automação real
 
-## 5. Estruturar um script
+### Pré-requisitos
 
-## 6. Fazer parsing de Strings
+Para viés didático, criou-se uma máquina virtual para realizar todo o estudo envolvendo Shell Script, marcando um snapshot para facilitar o backup da fase inicial da estação. Para isso, utilizou-se o VirtualBox e as seguintes configurações de VM:
 
-## 7. Expansão de variáveis
+- Sistema Operacional: Ubuntu 21.02;
+- Memória RAM: 2 GiB;
+- Disco: 50 GB;
+- Memória de Vídeo: 128 MB.
 
-## 8. Removendo outputs para não poluir a tela
+Além disso, a preparação do checkpoint inicial da máquina deve conter:
 
-## 9. Exit codes
+- OpenSSH - para acessá-la remotamente;
+- Editor de código - de sua preferência (Vim, Nano, entre outros);
+  - Caso utilize o editor pela máquina cliente (como o VSCode, Atom, etc.), opte por instalar extensões que facilite a edição com conexões SSH.
+- Net-tools - para facilitar os comandos de rede
 
-## 10. Listas
+## 4. Estruturar um script
 
-## 11. Colorir o script
+## 5. Fazer parsing de Strings
+
+## 6. Expansão de variáveis
+
+## 7. Removendo outputs para não poluir a tela
+
+## 8. Exit codes
+
+## 9. Listas
+
+## 10. Colorir o script
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

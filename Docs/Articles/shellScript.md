@@ -24,7 +24,16 @@
     - [2.4. Condicionais](#24-condicionais)
     - [2.5. Laços](#25-laços)
   - [3. Programa de automação real](#3-programa-de-automação-real)
-    - [Pré-requisitos](#pré-requisitos)
+    - [3.1. Pré-requisitos](#31-pré-requisitos)
+    - [3.2. Primeiro código](#32-primeiro-código)
+    - [3.3. Primeiro script - pratica1.sh`](#33-primeiro-script---pratica1sh)
+    - [3.4. Aprimoramento do primeiro script](#34-aprimoramento-do-primeiro-script)
+      - [3.4.1. Adicionar variáveis - pratica2.sh](#341-adicionar-variáveis---pratica2sh)
+      - [3.4.2. Adicionar funções - pratica3.sh](#342-adicionar-funções---pratica3sh)
+      - [3.4.3. Exit codes](#343-exit-codes)
+      - [3.4.4. Aplicar condicionais - pratica4.sh](#344-aplicar-condicionais---pratica4sh)
+      - [3.4.5. Lista de pacotes - pratica5.sh](#345-lista-de-pacotes---pratica5sh)
+      - [3.4.6. Parsing de URL - pratica6.sh](#346-parsing-de-url---pratica6sh)
   - [4. Estruturar um script](#4-estruturar-um-script)
   - [5. Fazer parsing de Strings](#5-fazer-parsing-de-strings)
   - [6. Expansão de variáveis](#6-expansão-de-variáveis)
@@ -213,7 +222,9 @@ done
 
 ## 3. Programa de automação real
 
-### Pré-requisitos
+Este capítulo aborda um exemplo de utilização real de Shell Script, para automatizar a configuração posterior à uma instalação do Ubuntu.
+
+### 3.1. Pré-requisitos
 
 Para viés didático, criou-se uma máquina virtual para realizar todo o estudo envolvendo Shell Script, marcando um snapshot para facilitar o backup da fase inicial da estação. Para isso, utilizou-se o VirtualBox e as seguintes configurações de VM:
 
@@ -226,8 +237,324 @@ Além disso, a preparação do checkpoint inicial da máquina deve conter:
 
 - OpenSSH - para acessá-la remotamente;
 - Editor de código - de sua preferência (Vim, Nano, entre outros);
-  - Caso utilize o editor pela máquina cliente (como o VSCode, Atom, etc.), opte por instalar extensões que facilite a edição com conexões SSH.
-- Net-tools - para facilitar os comandos de rede
+  - Caso utilize o editor pela máquina cliente (como o VSCode, Atom, etc.), opte por instalar extensões que facilite a edição com conexões SSH;
+- Net-tools - para facilitar os comandos de rede.
+
+### 3.2. Primeiro código
+
+A primeira coisa a ser feita na fase de planejamento de um script, é replicar, pausadamente, todos os comandos no terminal. Se tudo ocorrer bem nesta etapa, poderá ser passada para o Script, melhorando a solução. Como exemplo, para a automação proposta neste capítulo, há estes comandos:
+
+```shell
+sudo rm /var/lib/dpkg/lock-frontend # Remove este arquivo de lock, pois possivelmente, um processo do apt e dpkg está bloqueado e impossibilitando alteração
+sudo rm /var/cache/apt/archives/lock
+sudo dpkg --add-architecture i386 # Como a arquitetura dos softwares são todas em 64 bits atualmente, os programas que foram desenvolvidos para 32 bits não funcionam. Por isso é preciso adicionar essa arquitetura (i386 = 32 bits)
+sudo apt update -y # Atualiza todo o repositório de pacotes
+sudo add-apt-repository ppa:libratbag-piper/piper-libratbag-git -y # Adicionar o repositório do piper (gestor dos mouses da Logitech)
+sudo add-apt-repository ppa:lutris-team/lutris -y # Adicionar o repositório do Lutris (gestor de jogos livre e de código aberto)
+sudo apt update -y # Atualizar novamente os pacotes, agora com os novos repositórios ppa
+mkdir /home/jonathan/Downloads/softwares # Cria o novo diretório para baixar os softwares
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /home/jonathan/Downloads/softwares # Baixa o Google Chrome utilizando wget
+wget https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb -P /home/jonathan/Downloads/softwares # Baixa o SimpleNote utilizando wget
+sudo dpkg -i /home/jonathan/Downloads/softwares/*.deb # Instala esses programas
+sudo apt -f install -y # Instala todas as dependências desses programas (pois alguns podem não carregar as dependências)
+sudo apt install snapd -y # Instala o snap direto do apt
+sudo apt install winff -y # Instala o winff (conversor de vídeos e áudios) direto do apt
+sudo apt install guvcview -y # Instala o guvcview (aplicativo de webcam) direto do apt
+sudo apt install virtualbox -y # Instala o virtualbox direto do apt
+sudo snap install spotify # Instala o spotify com o Snap
+sudo apt update && sudo apt dist-upgrade -y # Atualizar os pacotes e a distribuição
+sudo apt autoclean # Limpa o cache do sistema
+sudo apt autoremove -y # Limpa os pacotes que não são mais necessários
+```
+
+### 3.3. Primeiro script - [pratica1.sh`][1]
+
+Após ter executado todos os comandos da seção acima, vamos criar o primeiro script para automatizar aquele processo.
+
+O Shell Script geralmente tem a extensão `.sh`. Assim, como primeiro passo, copie aqueles comandos anteriores dentro deste primeiro arquivo, que para fins didáticos, será nomeado como [pratica1.sh][1]. Assim, siga os seguintes passos para finalizar o primeiro script dentro dos padrões de desenvolvimento:
+
+1. Sempre a primeira linha será definida pela declaração do compilador responsável por rodar aquele script (bash, zshell, fish etc.), através de um **shebang**: `#!/bin/bash/`;
+
+> **Nota:** para verificar qual o local do seu shell, utilizar o comando `which [shell]`.
+
+2. Após criado o Script, se tentar inciar ele pelo terminal com `./pratica1.sh`, um erro de permissão negada será mostrado. Isso acontece porque todo novo Script, tem apenas permissão de leitura (verificar com o `ls -l`). Para alterar a permissão, rodar `chmod +x pratica1.sh`;
+
+> **Nota:** ao alterar a permissão e dar o comando `ls`, o arquivo que tem permissão de execução será mostrado de forma destacada.
+
+Pronto! Temos o primeiro shell script para executar as tarefas de forma automática, mas ainda fora das boas práticas. Note que para rodar um script precisamos do `./`. Há uma outra forma de rodar ele, que independe do **shebang**: basta adicionar o compilador antes de chamar o arquivo por linha de comando (e.g. `bash pratica1.sh`).
+
+Entretanto, alguns programadores preferem, pela praticidade, também automatizar esse processo criando um diretório para os scripts (geralmente chamado `~/.bin/`) e adiciona-lo à variável `PATH`, para que seja lido em qualquer lugar. Para isso, realizar os seguintes passos no terminal:
+
+```bash
+$ echo $PATH
+> /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:[...]
+# Criar pasta para os scripts
+$ mkdir ~/.bin
+# Copiar todos os seus scripts para dentro do .bin, neste caso:
+$ cp pratica1.sh ~/.bin/
+# Colocar o diretório .bin dentro da variável PATH:
+$ export PATH=$PATH:/home/jonathan/.bin
+# Executar o script
+$ pratica1.sh
+```
+
+### 3.4. Aprimoramento do primeiro script
+
+Nas próximas fases deste capítulo, vamos aperfeiçoar o script realizado na seção anterior, adicionando estrutura, varáveis, funções etc. ao código, comentando e organizando da melhor maneira.
+
+#### 3.4.1. Adicionar variáveis - [pratica2.sh][2]
+
+Em uma situação real, imagine que, na linha que adiciona o repositório `ppa`, seja alterado por parte da organização fornecedora, o endereço desse. Seria necessária edição no código toda vez que isso acontecesse. Pior ainda, imagina se esse link fosse utilizado muitas vezes ao longo do script...
+
+Para contornar tal situação, inicialmente, cria-se variáveis para que as seguintes situações:
+
+1. Se há um elemento que pode ser alterado sem seu controle;
+2. Quando é um elemento muito grande (e.g. links);
+3. Quando o elemento é utilizado muitas vezes.
+
+Para o nosso caso teste, utilizaremos as seguintes variáveis em nosso novo script ([pratica2.sh][2]):
+
+> **Nota:** relembrar das definições e condições de variáveis apresentadas na [seção 2.1](#21-variáveis).
+
+```shell
+# PPA
+PPA_PIPER_LIBRATBAG="ppa:libratbag-piper/piper-libratbag-git"
+PPA_LUTRIS="ppa:lutris-team/lutris"
+
+# URL
+URL_GOOGLE_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+URL_SIMPLE_NOTE="https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb"
+
+# DIRECTORIES
+DIR_DOWNLOAD_SOFTWARES="$HOME/Downloads/softwares"
+```
+
+Tendo declarado essas variáveis globais (*uppercase*), chamar no script da seguinte forma: `$PPA_LUTRIS` ou `"$PPA_LUTRIS"` (para manter a mesma formatação).
+
+#### 3.4.2. Adicionar funções - [pratica3.sh][3]
+
+A segunda parte do aperfeiçoamento do programa, se dá pela formulação das funções existentes no código. Para isso, passar um pente fino em cada etapa do seu comando inicial e definir o que está sendo feito em cada linha de comando. Feito isso, adicionar funções que definem essas atividades. No caso deste documento:
+
+```shell
+remove_locks () {
+}
+
+add_architecture_i386 () {
+}
+
+update_repos () {
+}
+
+add_ppas () {
+}
+
+install_deb_pkgs () {
+}
+
+install_apt_pkgs () {
+}
+
+install_snap_pkgs () {
+}
+
+upgrade_and_clean_system () {
+}
+```
+
+Para cada função, adicionar os respectivos comandos iniciais (vide [pratica3.sh][3]).
+
+Além de apenas dividir o código em funções, é necessário chamar as funções criadas dentro do Script. Por isso, no final do script, adicionar uma parte para Debug e chamar cada uma delas.
+
+```shell
+remove_locks
+add_architecture_i386
+add_ppas
+update_repos
+install_deb_pkgs
+install_apt_pkgs
+install_snap_pkgs
+upgrade_and_clean_system
+```
+
+#### 3.4.3. Exit codes
+
+Todos os comandos Linux ou Unix executados por um shell script ou usuário têm uma saída de status, que são números inteiros. A saída 0 significa que o comando foi executado com sucesso. Já um número diferente de zero (1-255), remete ao status de falha de um comando.
+
+Para descobrir qual a o código de saída (*exit code*) de um comando, utilizar uma variável particular para este caso: `$?`, que retornará o exit code do último comando dado. Observe o exemplo abaixo:
+
+```bash
+$ date
+> Thu Mar 3 09:04:13 -03 2022
+$ echo $?
+> 0
+```
+
+> **Nota:** o *exit code* também pode ser obtido por um comando `printf`: `printf '%d\n' $?`.
+
+Sabendo disso, fica mais fácil imaginar como manusear os resultados de funções dentro de condicionais, laços, funções etc. em um Shell Script: com os *exit codes*. Em suma, é possível colocar o comando `exit [0-255]` no retorno de uma função para que seja salvo na variável `$?`.
+
+A tabela abaixo apresenta os exit codes recomendados para o seu shell script:
+
+| Exit status |                                                               Descrição |
+| :---------- | ----------------------------------------------------------------------: |
+| `1`         |                                                 Saída para erros gerais |
+| `2`         | Uso indevido de builtin do shell (de acordo com a documentação do Bash) |
+| `126`       |                            O comando requisitado não pode ser executado |
+| `127`       |                                                  Comando não encontrado |
+| `128`       |                              Argumento inválido para o comando de saída |
+| `128+n`     |                                                 Sinal de erro fatal "n" |
+| `130`       |                                    Script Bash encerrado por **Ctrl+C** |
+| `255*`      |                                           Status de saída fora do range |
+
+> **Dica:** os *exit codes* são extremamente importantes para manusear os dados e funções dentro de condicionais.
+
+#### 3.4.4. Aplicar condicionais - [pratica4.sh][4]
+
+A primeira implementação de condicionais no nosso script de prática ([pratica4.sh][4]) será dentro da função `install_deb_pkgs`, visto que há o comando `mkdir` criando sempre a pasta `"$DIR_DOWNLOAD_SOFTWARES"`, mesmo sem conferir se já existe o diretório.
+
+Assim, segue o código aplicado:
+
+```shell
+if [[ ! -d "$DIR_DOWNLOAD_SOFTWARES" ]]; then # Testa: caso o diretório ... não exista, então
+  mkdir "$DIR_DOWNLOAD_SOFTWARES"
+else
+  echo "Esse diretório já existe!"
+fi
+```
+
+> **Nota:** vale ressaltar os comandos `&&` e `||` que podem ser utilizados dentro de condicionais. `&&` passa quando o comando anterior for verdadeiro (*exit code* = 0) e `||` quando o primeiro for falso (*exit code* > 0)
+
+Neste caso, incorporando os operadores `&&` (*and*) e `||` (*or*) dentro da mesma função, teria:
+
+```shell
+[[ ! -d "$DIR_DOWNLOAD_SOFTWARES" ]] && mkdir "$DIR_DOWNLOAD_SOFTWARES"
+```
+
+Note que este método impossibilita a utilização de um `else`na função. Em contrapartida, duas linhas são "economizadas" da memória. Por isso é recomendado essa utilização sempre que possível, quando não for preciso utilizar o `else`.
+
+#### 3.4.5. Lista de pacotes - [pratica5.sh][5]
+
+As funções responsáveis pela instalação dos pacotes apresenta comandos repetitivos e que não são tratados, como no exemplo desta prática ([pratica5.sh][5]). Quatro pacotes são instalados em comandos diferentes e não é verificado se estes já estão instalados, gastando tempo de execução.
+
+Para tal validação, as seguintes listas foram criadas:
+
+```shell
+SOFTWARES_TO_INSTALL_APT = {
+  snapd
+  winff
+  guvcview
+  virtualbox
+}
+```
+
+> **Nota:** sempre que houver comandos repetitivos que alteram alguns argumentos, é recomendado atribuir todos em uma lista. Essas listas devem separar os atributos por espaço (nas boas práticas, utiliza-se a quebra de linha).
+
+Para a instalação destes pacotes dentro da lista, acrescentar um laço que instale cada um:
+
+```shell
+for software in ${SOFTWARES_TO_INSTALL_APT[@]}; do
+  sudo apt install $software -y
+done
+```
+
+> **Nota:** a nomenclatura utilizada pelo shell script para trazer todos os itens da lista é [@].
+
+Feito isso, teremos uma automação do processo de instalação dos pacotes **apt**, mas ainda não acontece uma validação para saber se esses pacotes já estão instalados na máquina. Dessa forma, essa validação pode ser feita utilizando juntos os comandos: `dpkg`e `grep`. Adicionalmente, utiliza-se a opção `-q` (quiet) para que nada seja mostrado na tela:
+
+```shell
+for software in ${SOFTWARES_TO_INSTALL_APT[@]}; do
+  if ! dpkg -l | grep -q $software; then
+    sudo apt install $software -y;
+  else
+    echo "[INFO] - O pacote $software já está instalado.";
+done
+```
+
+Note que a sintaxe do `if` mudou para esta situação, ao retirar os colchetes utilizados para o teste de diretório, pois para testar comando, a condicional precisa necessariamente ler a saída direta do comando, e não o *exit code*.
+
+Dessa forma, realizar as mesmas etapas anteriores para cada parte do código que apresentar recorrência. Neste caso, criar listas e validações para as funções `install_snap_pkgs` (utilizando o comando `snap list | grep $software`)
+
+>**Nota:** se atente aos comandos utilizados para cada situação e gerenciador de pacotes, pois neste caso, será diferente a validação dos pacotes **apt** e **snap**.
+
+#### 3.4.6. Parsing de URL - [pratica6.sh][6]
+
+A função exemplo a ser aprimorada nesta etapa é a `download_deb_pkgs`. Percebe-se que não há uma validação nesta função ao baixar os pacotes **.deb**,, pois não há uma verificação se estes pacotes já estão lá. Entretanto, o próprio comando `wget` já apresenta uma opção que realiza esta validação: `-c`.
+
+Da maneira como foi programado até agora, está sendo instalado algumas variáveis específicas. Imagina em uma situação real, que há diversos pacotes .deb a serem baixados e de URLs distintas, sendo necessário uma criação de uma nova lista. Logo, realocar as URLs das variáveis `URL_GOOGLE_CHROME` e `URL_SIMPLE_NOTE`:
+
+```shell
+SOFTWARES_TO_INSTALL_DEB = (
+    https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
+    https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb # Simple Note
+)
+```
+
+O tratamento desta lista pode ser feito com os seguintes comandos:
+
+```shell
+for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
+  wget -c $url -P "$DIR_DOWNLOAD_SOFTWARES"
+done
+```
+
+Mesmo com esse tratamento feito, há um problema neste código: não se tem o nome do pacote que está sendo instalado, apenas uma URL. Portanto, não é possível realizar um `grep` para verificar se já está instalado.
+
+Um *workaround* encontrado para essa situação, é pegar o tratar a URL para pegar uma palavra chave. Por exemplo, na seguinte URL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb, o nome **google** deve ser extraído. Para isso, utilizaremos uma expansão de parâmetros (do inglês *shell parameter expansion*), que possibilita a retirada deste termo. Para maiores informações, verificar a documentação do [Shell Variable Expansion][7].
+
+A primeira expansão utilizada será `${parameter##word}`, que retorna tudo depois da `word` do `parameter`. Exemplo:
+
+```shell
+$ URL="https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb"
+$ echo ${URL##*/} # Retorna tudo que vem depois do último /
+> Simplenote-linux-1.8.0-amd64.deb
+```
+
+> **Nota:** não é possível utilizar mais de um *variable expansion* na mesma função, obrigando assim, a trabalhar com a saída do anterior.
+
+Com esse dado na mão, deve-se aplicar agora uma substituição de `-` por `_` utilizando o comando `sed`, afim de padronizar os resultados:
+
+```shell
+$ echo ${URL##*/} | sed 's/-/_/g'
+> Simplenote_linux_1.8.0_amd64.deb
+```
+
+Por fim, cortar a string anterior para tudo o que vier antes do `_`, com o comando `cut`:
+
+```shell
+$ echo ${URL##*/} | sed 's/-/_/g' | cut -d _ -f 1
+> Simplenote
+```
+
+As opções `-d` e `-f` do `cut` equivalem, respectivamente, ao delimitador (_) e à coluna (1).
+
+Retornando ao exemplo prático do documento ([pratica6.sh][6]), utilizar o seguinte comando dentro do for da função `download_deb_pkg`:
+
+```shell
+for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
+  url_extract = $(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
+  wget -c $url -P "$DIR_DOWNLOAD_SOFTWARES"
+done
+```
+
+Além da extração de atributo do URL, é necessário tratar os estes dados para a instalação, resultando em um código final:
+
+```shell
+download_and_install_deb_pkgs () {
+    [[ ! -d "$DIRETORIO_DOWNLOAD_PROGRAMAS" ]] && mkdir "$DIRETORIO_DOWNLOAD_PROGRAMAS"
+    for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
+        extract_url = $(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
+        if ! dpkg -l | grep -iq $extract_url; then
+            wget -c "$url" -P "$DIR_DOWNLOAD_SOFTWARES"
+            sudo dpkg -i $DIR_DOWNLOAD_SOFTWARES/${url##*/}
+        else 
+            echo "[INFO] O programa $extract_url já está instalado"
+        fi
+    done
+    sudo apt -f install -y
+}
+```
+
+Pode ser que exista alguma URL que não entre no tratamento de dados realizados acima. Para esses casos, será desenvolvida uma nova forma de tratamento.
 
 ## 4. Estruturar um script
 
@@ -245,5 +572,15 @@ Além disso, a preparação do checkpoint inicial da máquina deve conter:
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
+[1]: ../../Build/shellScripts/pratica1.sh
+[2]: ../../Build/shellScripts/pratica2.sh
+[3]: ../../Build/shellScripts/pratica3.sh
+[4]: ../../Build/shellScripts/pratica4.sh
+[5]: ../../Build/shellScripts/pratica5.sh
+[6]: ../../Build/shellScripts/pratica6.sh
+[7]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
+[7]: ../../Build/shellScripts/pratica7.sh
+[8]: ../../Build/shellScripts/pratica8.sh
+[]
 
 <!-- IMAGES -->

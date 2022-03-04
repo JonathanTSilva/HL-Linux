@@ -594,6 +594,7 @@ fi
 ```
 
 3. Validação da conexão com a internet:
+   * realizar validação com o ping e redirecionador de comando:
 
 ```shell
 if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
@@ -606,7 +607,8 @@ fi
 
 > **Nota:** a opção `-c` para alguns comandos (como o `ping`) é um limitador de resposta, passando o tanto de vezes que o comando deve ser executado.
 
-> **Nota:** no código acima, é utilizado um redirecionador de comandos `&> /dev/null` que será tratado nas próximas seções.
+>  **Nota:** no código acima, é utilizado um redirecionador de comandos `&> /dev/null` que será tratado nas próximas seções.
+
 ## 4. Estruturar um script
 
 ## 5. Fazer parsing de Strings

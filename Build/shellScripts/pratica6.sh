@@ -6,29 +6,29 @@
 #============================================================
 
 # PPA
-PPA_PIPER_LIBRATBAG = "ppa:libratbag-piper/piper-libratbag-git"
-PPA_LUTRIS = "ppa:lutris-team/lutris"
+PPA_PIPER_LIBRATBAG="ppa:libratbag-piper/piper-libratbag-git"
+PPA_LUTRIS="ppa:lutris-team/lutris"
 
 # DIRECTORIES
-DIR_DOWNLOAD_SOFTWARES = "$HOME/Downloads/softwares"
+DIR_DOWNLOAD_SOFTWARES="$HOME/Downloads/softwares"
 
 #============================================================
 #--------------------------LISTS-----------------------------
 #============================================================
 
-SOFTWARES_TO_INSTALL_DEB = (
+SOFTWARES_TO_INSTALL_DEB=(
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
     https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb # Simple Note
 )
 
-SOFTWARES_TO_INSTALL_APT = (
+SOFTWARES_TO_INSTALL_APT=(
     snapd
     winff
     guvcview
     virtualbox
 )
 
-SOFTWARES_TO_INSTALL_SNAP = (
+SOFTWARES_TO_INSTALL_SNAP=(
     spotify
 )
 
@@ -57,7 +57,7 @@ add_ppas () {
 download_and_install_deb_pkgs () {
     [[ ! -d "$DIRETORIO_DOWNLOAD_PROGRAMAS" ]] && mkdir "$DIRETORIO_DOWNLOAD_PROGRAMAS"
     for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
-        extract_url = $(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
+        extract_url=$(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
         if ! dpkg -l | grep -iq $extract_url; then
             wget -c "$url" -P "$DIR_DOWNLOAD_SOFTWARES"
             sudo dpkg -i $DIR_DOWNLOAD_SOFTWARES/${url##*/}

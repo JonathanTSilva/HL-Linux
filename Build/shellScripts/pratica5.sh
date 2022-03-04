@@ -6,28 +6,28 @@
 #============================================================
 
 # PPA
-PPA_PIPER_LIBRATBAG = "ppa:libratbag-piper/piper-libratbag-git"
-PPA_LUTRIS = "ppa:lutris-team/lutris"
+PPA_PIPER_LIBRATBAG="ppa:libratbag-piper/piper-libratbag-git"
+PPA_LUTRIS="ppa:lutris-team/lutris"
 
 # URL
-URL_GOOGLE_CHROME = "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-URL_SIMPLE_NOTE = "https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb"
+URL_GOOGLE_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+URL_SIMPLE_NOTE="https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb"
 
 # DIRECTORIES
-DIR_DOWNLOAD_SOFTWARES = "$HOME/Downloads/softwares"
+DIR_DOWNLOAD_SOFTWARES="$HOME/Downloads/softwares"
 
 #============================================================
 #--------------------------LISTS-----------------------------
 #============================================================
 
-SOFTWARES_TO_INSTALL_APT = {
+SOFTWARES_TO_INSTALL_APT={
     snapd
     winff
     guvcview
     virtualbox
 }
 
-SOFTWARES_TO_INSTALL_SNAP = {
+SOFTWARES_TO_INSTALL_SNAP={
     spotify
 }
 

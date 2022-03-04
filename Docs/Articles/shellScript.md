@@ -34,6 +34,7 @@
       - [3.4.4. Aplicar condicionais - pratica4.sh](#344-aplicar-condicionais---pratica4sh)
       - [3.4.5. Lista de pacotes - pratica5.sh](#345-lista-de-pacotes---pratica5sh)
       - [3.4.6. Parsing de URL - pratica6.sh](#346-parsing-de-url---pratica6sh)
+      - [3.4.7. Teste de requisitos - pratica7.sh](#347-teste-de-requisitos---pratica7sh)
   - [4. Estruturar um script](#4-estruturar-um-script)
   - [5. Fazer parsing de Strings](#5-fazer-parsing-de-strings)
   - [6. Expansão de variáveis](#6-expansão-de-variáveis)
@@ -439,7 +440,7 @@ As funções responsáveis pela instalação dos pacotes apresenta comandos repe
 Para tal validação, as seguintes listas foram criadas:
 
 ```shell
-SOFTWARES_TO_INSTALL_APT = {
+SOFTWARES_TO_INSTALL_APT={
   snapd
   winff
   guvcview
@@ -483,7 +484,7 @@ A função exemplo a ser aprimorada nesta etapa é a `download_deb_pkgs`. Perceb
 Da maneira como foi programado até agora, está sendo instalado algumas variáveis específicas. Imagina em uma situação real, que há diversos pacotes .deb a serem baixados e de URLs distintas, sendo necessário uma criação de uma nova lista. Logo, realocar as URLs das variáveis `URL_GOOGLE_CHROME` e `URL_SIMPLE_NOTE`:
 
 ```shell
-SOFTWARES_TO_INSTALL_DEB = (
+SOFTWARES_TO_INSTALL_DEB=(
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
     https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb # Simple Note
 )
@@ -531,7 +532,7 @@ Retornando ao exemplo prático do documento ([pratica6.sh][6]), utilizar o segui
 
 ```shell
 for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
-  url_extract = $(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
+  url_extract=$(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
   wget -c $url -P "$DIR_DOWNLOAD_SOFTWARES"
 done
 ```
@@ -542,7 +543,7 @@ Além da extração de atributo do URL, é necessário tratar os estes dados par
 download_and_install_deb_pkgs () {
     [[ ! -d "$DIRETORIO_DOWNLOAD_PROGRAMAS" ]] && mkdir "$DIRETORIO_DOWNLOAD_PROGRAMAS"
     for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
-        extract_url = $(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
+        extract_url=$(echo ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
         if ! dpkg -l | grep -iq $extract_url; then
             wget -c "$url" -P "$DIR_DOWNLOAD_SOFTWARES"
             sudo dpkg -i $DIR_DOWNLOAD_SOFTWARES/${url##*/}
@@ -556,6 +557,56 @@ download_and_install_deb_pkgs () {
 
 Pode ser que exista alguma URL que não entre no tratamento de dados realizados acima. Para esses casos, será desenvolvida uma nova forma de tratamento.
 
+#### 3.4.7. Teste de requisitos - [pratica7.sh][8]
+
+Neste ponto, já possuímos um script quase todo automatizado. Entretanto, sempre lembre de ler novamente o seu script e verificar se existe alguma dependência externa, realizando a seguinte pergunta:
+
+* Se rodar esse script no meu Linux zerado, ele vai conseguir rodar 100%?
+
+No nosso caso atual de estudo ([pratica7.sh][8]), não será possível realizar a execução, pois são utilizados os pacotes `wget` e `snap`, que não vêm instalados por *default* na maioria dos sistemas. Por outro lado, há o dpkg. Outro requisito é a configuração prévia de conexão com a internet para que estes gerenciadores de pacotes executem seus comandos com sucesso.
+
+Por esse e outros motivos, é necessária esta etapa de teste de requisitos, para certificar-se que tudo ocorrerá normalmente. Para isso, seguir os passos para realizar as validações da nossa prática:
+
+1. Validação do `wget`:
+   * verificar se o pacote já está instalado, utilizando `which`:
+
+```shell
+if [[ ! -x `which wget` ]]; then
+    echo "[INFO] - O programa wget não está instalado."
+    echo "[INFO] - Instalando wget..."
+    sudo apt install wget -y
+else
+    echo "[INFO] - O programa wget já está instalado."
+fi
+```
+
+2. Validação do `snap`:
+   * verificar se o pacote já está instalado, utilizando `which`:
+
+```shell
+if [[ ! -x `which snap` ]]; then
+    echo "[INFO] - O programa snap não está instalado."
+    echo "[INFO] - Instalando snap..."
+    sudo apt install snap -y
+else
+    echo "[INFO] - O programa snap já está instalado."
+fi
+```
+
+3. Validação da conexão com a internet:
+
+```shell
+if ! ping -c 1 8.8.8.8 -q &> /dev/null; then
+  echo "[ERROR] - Seu computador não tem conexão com a Internet. Verifique os cabos e o modem."
+  exit 1
+else
+  echo "[INFO] - Conexão com a Internet funcionando normalmente."
+fi
+```
+
+> **Nota:** a opção `-c` para alguns comandos (como o `ping`) é um limitador de resposta, passando o tanto de vezes que o comando deve ser executado.
+
+> **Nota:** no código acima, é utilizado um redirecionador de comandos `&> /dev/null` que será tratado nas próximas seções.
 ## 4. Estruturar um script
 
 ## 5. Fazer parsing de Strings

@@ -35,13 +35,8 @@
       - [3.4.5. Lista de pacotes - pratica5.sh](#345-lista-de-pacotes---pratica5sh)
       - [3.4.6. Parsing de URL - pratica6.sh](#346-parsing-de-url---pratica6sh)
       - [3.4.7. Teste de requisitos - pratica7.sh](#347-teste-de-requisitos---pratica7sh)
-  - [4. Estruturar um script](#4-estruturar-um-script)
-  - [5. Fazer parsing de Strings](#5-fazer-parsing-de-strings)
-  - [6. Expansão de variáveis](#6-expansão-de-variáveis)
-  - [7. Removendo outputs para não poluir a tela](#7-removendo-outputs-para-não-poluir-a-tela)
-  - [8. Exit codes](#8-exit-codes)
-  - [9. Listas](#9-listas)
-  - [10. Colorir o script](#10-colorir-o-script)
+      - [3.4.8. Redirecionamento de comandos](#348-redirecionamento-de-comandos)
+      - [Tratando as saída do script - pratica8.sh](#tratando-as-saída-do-script---pratica8sh)
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -396,16 +391,16 @@ Sabendo disso, fica mais fácil imaginar como manusear os resultados de funçõe
 
 A tabela abaixo apresenta os exit codes recomendados para o seu shell script:
 
-| Exit status |                                                               Descrição |
-| :---------- | ----------------------------------------------------------------------: |
-| `1`         |                                                 Saída para erros gerais |
+| Exit status | Descrição                                                               |
+| :---------- | :---------------------------------------------------------------------- |
+| `1`         | Saída para erros gerais                                                 |
 | `2`         | Uso indevido de builtin do shell (de acordo com a documentação do Bash) |
-| `126`       |                            O comando requisitado não pode ser executado |
-| `127`       |                                                  Comando não encontrado |
-| `128`       |                              Argumento inválido para o comando de saída |
-| `128+n`     |                                                 Sinal de erro fatal "n" |
-| `130`       |                                    Script Bash encerrado por **Ctrl+C** |
-| `255*`      |                                           Status de saída fora do range |
+| `126`       | O comando requisitado não pode ser executado                            |
+| `127`       | Comando não encontrado                                                  |
+| `128`       | Argumento inválido para o comando de saída                              |
+| `128+n`     | Sinal de erro fatal "n"                                                 |
+| `130`       | Script Bash encerrado por **Ctrl+C**                                    |
+| `255*`      | Status de saída fora do range                                           |
 
 > **Dica:** os *exit codes* são extremamente importantes para manusear os dados e funções dentro de condicionais.
 
@@ -609,19 +604,137 @@ fi
 
 >  **Nota:** no código acima, é utilizado um redirecionador de comandos `&> /dev/null` que será tratado nas próximas seções.
 
-## 4. Estruturar um script
+#### 3.4.8. Redirecionamento de comandos
 
-## 5. Fazer parsing de Strings
+É possível usar operadores de redirecionamento para redirecionar fluxos de entrada e saída de comandos dos locais padrão para locais diferentes. O local do fluxo de entrada ou saída é conhecido como **identificador**.
 
-## 6. Expansão de variáveis
+A tabela a seguir lista operadores que você pode usar para redirecionar fluxos de entrada e saída de comandos.
 
-## 7. Removendo outputs para não poluir a tela
+| Operador de redirecionamento | Descrição                                                                                                                    |
+| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `>`                          | Grava a saída do comando em um arquivo ou dispositivo, como uma impressora, em vez de gravar na janela do prompt de comando. |
+| `<`                          | Lê a entrada do comando a partir de um arquivo, em vez de ler a partir do teclado.                                           |
+| `>>`                         | Acrescenta a saída do comando ao final de um arquivo, sem excluir as informações já existentes no arquivo.                   |
+| `>&`                         | Grava a saída de um identificador na entrada de outro identificador.                                                         |
+| `<&`                         | Lê a entrada de um identificador e grava essa entrada na saída de outro identificador.                                       |
+| <code>&#124;</code>          | Le a saída de um comando e grava essa saída na entrada de outro comando. Também conhecido como *pipe*.                       |
 
-## 8. Exit codes
+Por padrão, a entrada do comando (isto é, o identificador `STDIN`) é enviada do teclado para o **Cmd.exe**; em seguida, esse arquivo envia a saída do comando (isto é, o identificador `STDOUT`) para a janela do prompt de comando.
 
-## 9. Listas
+A tabela a seguir lista os identificadores disponíveis.
 
-## 10. Colorir o script
+| Identificador | Equivalente numérico do identificador | Descrição                                                                                                 |
+| :------------ | :-----------------------------------: | :-------------------------------------------------------------------------------------------------------- |
+| `STDIN`       |                   0                   | Entrada do teclado (linha de comando).                                                                    |
+| `STDOUT`      |                   1                   | Saída para a janela do prompt de comando.                                                                 |
+| `STDERR`      |                   2                   | Saída de erro para a janela do prompt de comando.                                                         |
+| `UNDEFINED`   |                  3-9                  | Estes identificadores são definidos individualmente pelo aplicativo e são específicos de cada ferramenta. |
+
+Exemplo:
+
+```bash
+$ apt update 2> saida_error
+> Lendo listas de pacotes... Pronto
+$ cat saida_error
+> E: Não foi possível abrir arquivo de trava /var/... (13: Permissão negada)
+> ...
+```
+
+Ou, trabalhando no exemplo acima, pode-se direcionar um comando para dois+ lugares diferentes, como visto na continuação do exemplo acima:
+
+```bash
+$ apt update 1> saida_error 2>&1 # Manda o STDOUT para o saida_error e o STDERR para o mesmo lugar do STDOUT
+$ cat saida_error
+> Lendo listas de pacotes... Pronto
+> E: Não foi possível abrir arquivo de trava /var/... (13: Permissão negada)
+> ...
+```
+
+Para mais informações sobre o redirecionamento de comandos, verificar o manual do bash (`man bash`).
+
+> **Nota:** o local `/dev/null` é um dispositivo nativo de todas as distribuições Linux e funciona como um "buraco negro do Linux", ou seja, não serve para exatamente nada (como se fosse uma lixeira que tritura todos enviados para lá).
+
+#### Tratando as saída do script - [pratica8.sh][9]
+
+O script no estado atual ([pratica7.sh][8]), ao ser executado, está mostrando muita resposta na tela do prompt de comando, podendo em alguns casos ser até prejudicial para o desempenho. Assim, é necessário reduzir as mensagens desnecessárias que são mostradas, com o auxílio dos redirecionadores de comandos, apresentados na seção anterior.
+
+1. Adicionar mensagens em cada processo:
+
+```shell
+remove_locks () {
+    echo "[INFO] - Removendo locks..."
+    [...]
+}
+
+add_architecture_i386 () {
+    echo "[INFO] - Adicionando arquitetura i386..."
+    [...]
+}
+
+update_repos () {
+    echo "[INFO] - Atualizando repositórios..."
+    [...]
+}
+
+add_ppas () {
+    echo "[INFO] - Adicionando PPAs..."
+    [...]
+}
+
+download_and_install_deb_pkgs () {
+    [...]
+        if ! dpkg -l | grep -iq $extract_url; then
+            echo "[INFO] - Baixando o arquivo $extract_url..."
+            wget -c "$url" -P "$DIR_DOWNLOAD_SOFTWARES"
+            echo "[INFO] - Instalando o $extract_url..."
+            sudo dpkg -i $DIR_DOWNLOAD_SOFTWARES/${url##*/}
+            echo "[INFO] - Instalando dependências..."
+        [...]
+}
+
+install_apt_pkgs () {
+    for software in ${SOFTWARES_TO_INSTALL_APT[@]};
+        if ! dpkg -l | grep -q $software; then
+            echo "[INFO] - Instalando o $software..."
+            sudo apt install $software -y;
+        else
+            echo "[INFO] - O pacote $software já está instalado.";
+    done
+}
+
+install_snap_pkgs () {
+    for software in ${SOFTWARES_TO_INSTALL_SNAP[@]};
+        if ! snap list | grep -q $software; then
+            echo "[INFO] - Instalando o $software..."
+            sudo snap install $software;
+        else
+            echo "[INFO] - O pacote $software já está instalado.";
+    done
+}
+
+upgrade_and_clean_system () {
+    echo "[INFO] - Fazendo upgrade e limpeza do sistema..."
+    sudo apt dist-upgrade -y
+    sudo apt autoclean
+    sudo apt autoremove -y
+}
+```
+
+Feito isso e executado o script, percebe-se que ainda está muito poluído: muitas informações aparecendo rapidamente na tela do terminal, misturando as informações inseridas, com as saídas padrão.
+
+Para resolver isso, deve se utilizar o redirecionamento de comando para o `/dev/null`. Entretanto, se implementá-lo de forma indevida, ao debugar o código e falhar, não será possível notar esta falha, por falta de informação. Sendo assim, é extremamente importante tratar e identificar todas as condições de erro (jogando-as em logs de debug).
+
+1. Enviar todas as saídas do código para o `/dev/null`:
+
+```shell
+sudo apt install wget -y &> /dev/null
+[...]
+sudo apt dist-upgrade -y &> /dev/null
+sudo apt autoclean &> /dev/null
+sudo apt autoremove -y &> /dev/null
+```
+
+> **Nota:** apesar de parecer uma boa ideia retirar todas as informações de debug do script, sempre deve-se perguntar qual o público final para aquele. Caso sejam usuários mais avançados, é válido deixar as informações aparentes para que haja maior controle.
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
@@ -632,8 +745,7 @@ fi
 [5]: ../../Build/shellScripts/pratica5.sh
 [6]: ../../Build/shellScripts/pratica6.sh
 [7]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
-[7]: ../../Build/shellScripts/pratica7.sh
-[8]: ../../Build/shellScripts/pratica8.sh
-[]
+[8]: ../../Build/shellScripts/pratica7.sh
+[9]: ../../Build/shellScripts/pratica8.sh
 
 <!-- IMAGES -->

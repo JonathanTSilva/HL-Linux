@@ -36,7 +36,11 @@
       - [3.4.6. Parsing de URL - pratica6.sh](#346-parsing-de-url---pratica6sh)
       - [3.4.7. Teste de requisitos - pratica7.sh](#347-teste-de-requisitos---pratica7sh)
       - [3.4.8. Redirecionamento de comandos](#348-redirecionamento-de-comandos)
-      - [Tratando as saída do script - pratica8.sh](#tratando-as-saída-do-script---pratica8sh)
+      - [3.4.9. Tratando as saída do script - pratica8.sh](#349-tratando-as-saída-do-script---pratica8sh)
+      - [3.4.10. Colorindo o script - prática9](#3410-colorindo-o-script---prática9)
+      - [3.4.11. Organização do código](#3411-organização-do-código)
+  - [4. Avançado](#4-avançado)
+    - [4.1.](#41)
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -654,7 +658,7 @@ Para mais informações sobre o redirecionamento de comandos, verificar o manual
 
 > **Nota:** o local `/dev/null` é um dispositivo nativo de todas as distribuições Linux e funciona como um "buraco negro do Linux", ou seja, não serve para exatamente nada (como se fosse uma lixeira que tritura todos enviados para lá).
 
-#### Tratando as saída do script - [pratica8.sh][9]
+#### 3.4.9. Tratando as saída do script - [pratica8.sh][9]
 
 O script no estado atual ([pratica7.sh][8]), ao ser executado, está mostrando muita resposta na tela do prompt de comando, podendo em alguns casos ser até prejudicial para o desempenho. Assim, é necessário reduzir as mensagens desnecessárias que são mostradas, com o auxílio dos redirecionadores de comandos, apresentados na seção anterior.
 
@@ -736,6 +740,123 @@ sudo apt autoremove -y &> /dev/null
 
 > **Nota:** apesar de parecer uma boa ideia retirar todas as informações de debug do script, sempre deve-se perguntar qual o público final para aquele. Caso sejam usuários mais avançados, é válido deixar as informações aparentes para que haja maior controle.
 
+#### 3.4.10. Colorindo o script - [prática9][10]
+
+As cores em um código bash são chamadas de *escape corrector* ou *escape sequences* (sendo *escape* relacionado com a tecla `ESC`), que é uma combinação de caracteres que tem um outro significado do que aqueles digitados. Para maiores informações, verificar documentação [bash:tip_colors_and_formatting][11]
+
+No bash, o caractere <kbd>Esc</kbd> pode ser obtido com as seguintes sintaxes:
+
+- `\e`
+- `\033`
+- `\x1B`
+
+Exemplos:
+
+```shell
+echo -e "\e[31mHello World\e[0m" # Vermelho
+echo -e "\033[31mHello\e[0m World"
+```
+
+Assim sendo, para personalizar o nosso script de prática ([prática9][10]), utilizaremos essa formatação por *escape sequences* criando variáveis de cores (para seguir as melhores práticas).
+
+> **Nota:** sempre que utilizar desta formatação, acrescentar o parâmetro `-e` no comando `echo`.
+
+As cores criadas para o script são:
+
+```shell
+RED="\e[1;91m"
+GREEN="\e[1;92m"
+BLUE="\e[1;94m"
+NO_COLOR="\e[0m"
+```
+
+É muito importante criar uma variável para zerar a formatação anterior, neste caso a variável `NO_COLOR`, para que a cor fique apenas no echo que queremos. Caso não queira criar a variável, utilizar apenas o comando `\e[0m`.
+
+> **Nota:** para adicionar mais de uma formatação, utilizar o seguinte padrão: \e[<c1>;<c2>;...;<cN>m (IDs de formatação separados por ponto e vírgula).
+
+A aplicação destas cores no código será da seguinte forma:
+
+```shell
+# INTERNET TEST
+[...]
+echo -e "[ ${RED}FAIL${NO_COLOR} ] - Seu computador não tem conexão com a Internet. Verifique os adaptadores de rede, os cabos e o modem."
+[...]
+echo -e "[ ${BLUE}INFO${NO_COLOR} ] - Conexão com a Internet funcionando normalmente."
+[...]
+echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Instalando wget..."
+[...]
+```
+
+#### 3.4.11. Organização do código
+
+Na busca de qualidade do script, é imprescindível a adoção de boas práticas. Algumas delas ajudam a manter o código mais legível, fácil de compreender e de manter. Lembre-se, para alcançarmos um bom código, não basta apenas que ele funcione.
+
+Pensando nisso, e visto todo o trabalho feito com o script de prática, foi separado em tópicos o que é necessário para o seu script estar dentro dos padrões de boas práticas.
+
+1. Estrutura:
+   - deixa o código muito mais legível, limpo e esteticamente mais bonito;
+   - Variáveis > Listas > Testes > Funções > Execução
+2. Comentários e documentação:
+   - explicar o algoritmo ou a lógica usada, mostrando o objetivo de uma variável, método, classe...
+   - documentar o projeto, descrevendo a especificação do código. Desta maneira, qualquer pessoa poderá analisar um arquivo de documentação, mesmo que este não apresente o código fonte.
+3. Convenções de nomes:
+   - variáveis: globais com letras maiúsculas e locais com minúsculas;
+   - funções: precisa de fato descrever o funcionamento do programa como um todo, como “CalculaRaizQuadrada” ou “calcula_raiz_quadrada”.
+4. Forma reduzida
+   - optar sempre pela forma reduzida de validações `if` quando possível. Pode-se utilizar o `&&` para condições positivas e `||` para condições negativas.
+5. Outras boas práticas em diversas linguagens de programação:
+   - Endentação;
+   - Utilização de pacotes;
+   - Tratamento de erros;
+   - Padrões de projeto;
+   - Deprecation;
+   - Testar e depurar;
+   - Versionamento;
+   - Tamanho.
+
+Outra dica muito importante é sempre colocar o seu header no início dos seus scripts, para que, lendo o header, o usuário entenda qual o objetivo, como funciona, onde foi testado, qual o histórico, quem é o desenvolvedor, mantenedor, o contato para relatar algum bug, entre outras informações.
+
+```shell
+#============================================================
+#------------------------ HEADER ----------------------------
+#============================================================
+# UbuntuSetup.sh - post installations of Ubuntu 20.04.
+# 
+# DESCRIPTION
+#    This is a script to configure and prepare your Ubuntu
+#    environment
+#
+# IMPLEMENTATION
+#    version         1.0.0
+#    author          Jonathan T. Silva
+#    license         MIT License
+#    script_id       0
+# 
+# CHANGELOG
+#    v 1.0.0 : 2022/03/08 : JonathanTSilva
+#        - Script creation
+#============================================================
+#           Copyright (C) 2022 Jonathan T. Silva
+#          https://www.github.com/JonathanTSilva
+```
+
+Um exemplo de comentário em bloco utilizado nos meus scripts:
+
+```shell
+#------------------------------------------------------------
+# The ${extract_url} variable keeps the software name that 
+# must be installed doing the URL parsing that is in the 
+# ${SOFTWARES_TO_INSTALL_DEB}. Performs the following actions:
+# 1. Keep all contents after the last URL bar (/ - bash variable expansion);
+# 2. Change '-' for '_';
+# 3. Take only the first column using '_' as separator.
+#------------------------------------------------------------
+```
+
+## 4. Avançado
+
+### 4.1. 
+
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: ../../Build/shellScripts/pratica1.sh
@@ -747,5 +868,7 @@ sudo apt autoremove -y &> /dev/null
 [7]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 [8]: ../../Build/shellScripts/pratica7.sh
 [9]: ../../Build/shellScripts/pratica8.sh
+[10]: ../../Build/shellScripts/pratica9.sh
+[11]: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
 <!-- IMAGES -->

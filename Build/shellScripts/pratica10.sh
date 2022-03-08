@@ -81,7 +81,7 @@ else
 fi
 
 # SNAP TEST
-if [[ ! -x `which snap` ]]; then
+if [[ ! -x ${which snap} ]]; then
     echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O programa snap não está instalado."
     echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Instalando snap..."
     sudo apt install snap -y &> /dev/null

@@ -23,6 +23,7 @@
     - [2.3. Funções](#23-funções)
     - [2.4. Condicionais](#24-condicionais)
     - [2.5. Laços](#25-laços)
+    - [2.6. Diferenças de sintaxe](#26-diferenças-de-sintaxe)
   - [3. Programa de automação real](#3-programa-de-automação-real)
     - [3.1. Pré-requisitos](#31-pré-requisitos)
     - [3.2. Primeiro código](#32-primeiro-código)
@@ -216,6 +217,36 @@ for usuario in $(cut -d : -f 1 /etc/passwd); do # Pega a primeira coluna de todo
 - echo "Usuário: $usuario";
 done
 ```
+
+### 2.6. Diferenças de sintaxe
+
+No shell script, é comum existir várias aplicações para diferentes sintaxes, e uma das que mais causam dúvidas nos programadores é a diferença entre aspas duplas e simples.
+
+- Aspas simples servem para a expressão ser literalmente o que ela é, sem considerar nome de variáveis.
+- Aspas duplas servem para a expressão converter nomes de variáveis para seu conteúdo.
+
+Exemplo:
+
+```bash
+$ echo '$VAR é legal.'
+> $VAR é legal.
+$ echo "$VAR é legal."
+> Linux é legal. # Retorna a variável $VAR
+```
+
+Sempre quando uma variável é declarada com aspas, é recomendado que ela seja utilizada com aspas também. Como exemplo:
+
+```bash
+$ NOME="Jonathan
+Silva"
+$ echo $NOME
+> Jonathan Silva
+$ echo "$NOME"
+> Jonathan
+> Silva
+```
+
+Por isso que é muito importante utilizar sempre as aspas para manter a variável em sua formatação original, até mesmo em $(subshells). Quando for preciso referenciar variáveis sem aspas, utilize comentários para explicar a exceção e faça isso apenas quando for estritamente necessário.
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -803,7 +834,7 @@ Pensando nisso, e visto todo o trabalho feito com o script de prática, foi sepa
    - variáveis: globais com letras maiúsculas e locais com minúsculas;
    - funções: precisa de fato descrever o funcionamento do programa como um todo, como “CalculaRaizQuadrada” ou “calcula_raiz_quadrada”.
 4. Forma reduzida
-   - optar sempre pela forma reduzida de validações `if` quando possível. Pode-se utilizar o `&&` para condições positivas e `||` para condições negativas.
+   - optar sempre pela forma reduzida de validações `if` quando possível (geralmente, sempre quando não existir um `else` para aquela condição). Pode-se utilizar o `&&` para condições positivas e `||` para condições negativas.
 5. Outras boas práticas em diversas linguagens de programação:
    - Endentação;
    - Utilização de pacotes;
@@ -852,6 +883,10 @@ Um exemplo de comentário em bloco utilizado nos meus scripts:
 # 3. Take only the first column using '_' as separator.
 #------------------------------------------------------------
 ```
+
+> **Nota:** nesta última prática, o *shebang* foi alterado de `#!/bin/bash` para `#!/usr/bin/env bash`. Essa segunda opção é diferente da outra por ser mais portável, visto que é buscado nas variáveis de ambiente (env) a variável bash, por todos os diretórios.
+
+> **Dica:** neste script final foi alterado uma pedaço de código dentro do if que estava dentro de `` acentos de crase. Pode ser utilizado dessa forma, mas a maneira correta é estes códigos dentro de ${}.
 
 ## 4. Avançado
 

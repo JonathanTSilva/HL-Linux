@@ -41,7 +41,7 @@
       - [3.4.10. Colorindo o script - prática9](#3410-colorindo-o-script---prática9)
       - [3.4.11. Organização do código](#3411-organização-do-código)
   - [4. Avançado](#4-avançado)
-    - [4.1.](#41)
+    - [4.1. Configurando parâmetros](#41-configurando-parâmetros)
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -890,7 +890,7 @@ Um exemplo de comentário em bloco utilizado nos meus scripts:
 
 ## 4. Avançado
 
-### 4.1. 
+### 4.1. Configurando parâmetros
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

@@ -20,8 +20,8 @@
   - [2. Básico](#2-básico)
     - [2.1. Comandos básicos](#21-comandos-básicos)
     - [2.2. Variáveis](#22-variáveis)
-      - [Variáveis especiais](#variáveis-especiais)
-      - [Variáveis "instantâneas"](#variáveis-instantâneas)
+      - [2.2.1. Variáveis especiais](#221-variáveis-especiais)
+      - [2.2.2. Variáveis "instantâneas"](#222-variáveis-instantâneas)
     - [2.3. Operações matemáticas](#23-operações-matemáticas)
     - [2.4. Funções](#24-funções)
     - [2.5. Condicionais](#25-condicionais)
@@ -44,13 +44,16 @@
       - [3.4.10. Colorindo o script - prática9](#3410-colorindo-o-script---prática9)
       - [3.4.11. Organização do código](#3411-organização-do-código)
   - [4. Avançado](#4-avançado)
+    - [4.1. Configurando parâmetros](#41-configurando-parâmetros)
   - [5. Exercícios](#5-exercícios)
     - [5.1. Obter informações do computador](#51-obter-informações-do-computador)
     - [5.2. Obter o IP local](#52-obter-o-ip-local)
     - [5.3. Obter a memória](#53-obter-a-memória)
     - [5.4. Obter nomes e endereços de memória](#54-obter-nomes-e-endereços-de-memória)
     - [5.5. Obter portas e serviços](#55-obter-portas-e-serviços)
-    - [5.6. Criptografar uma *sting*](#56-criptografar-uma-sting)
+    - [5.6. Criptografia de *string*](#56-criptografia-de-string)
+      - [5.6.1. Criptografar uma *string*](#561-criptografar-uma-string)
+      - [5.6.2. Descriptografar uma *string*](#562-descriptografar-uma-string)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -181,7 +184,7 @@ Se só é declarado a variável localmente (sem o `export`), e dar o comando par
 > **Nota:** ao criar uma nova sessão, filha da atual, é possível personalizar a visualização dos processos que a envolve digitando `ps --forest`. Assim, uma sessão filha, enxerga todas as variáveis que são globais no pai.
 > **Dica:** o export pode ser feito diretamente com `export NUMERO=1`.
 
-#### Variáveis especiais
+#### 2.2.1. Variáveis especiais
 
 Existem algumas variáveis especiais no sistema que são variáveis apenas de leitura, ou seja, só pode-se obter o seu valor, e não atribuir. Abaixo, estão algumas das variáveis mais utilizadas em **bash**:
 
@@ -197,7 +200,7 @@ Existem algumas variáveis especiais no sistema que são variáveis apenas de le
 | `$_`      | Antes de nada ser executado, contem o caminho e nome do script (ou shell) pelo qual foi chamado na linha de comando. Depois, no decorrer do script, esta variável contem o valor do último argumento do último comando que foi executado. Além disso, esta variável é exportada para o ambiente. |
 | `$1`-`$9` | Argumentos passados                                                                                                                                                                                                                                                                              |
 
-#### Variáveis "instantâneas"
+#### 2.2.2. Variáveis "instantâneas"
 
 Dentro do shell, há um truque que permite a execução de uma variável que não tem nome; guardam um valor, mas não carregam nome algum. A sintaxe para essas variáveis é: `$()` e `$(())`. Veja os exemplos.
 
@@ -1020,7 +1023,7 @@ Um exemplo de comentário em bloco utilizado nos meus *scripts*:
 
 ## 4. Avançado
 
-..### 4.1. Conf.igurando parâmetros
+### 4.1. Configurando parâmetros
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -1094,66 +1097,107 @@ rm t1 t2
 
 > **Nota:** `xargs` neste comando, está fazendo um papel de limpador de código, ao retirar todos os espaços vazios da saída.
 
-### 5.6. Criptografar uma *sting*
+### 5.6. Criptografia de *string*
+
+#### 5.6.1. Criptografar uma *string*
 
 - Entrada de dados: ``;
 - Objetivo: criptografar uma string utilizando shell script;
 - Adicional: Criptografar substituindo todas as letras do alfabeto e posteriormente reforçando-a.
 
-**Resolução 1:**
+**Resolução:**
 
 1. Primeira estruturação a ser feita, é passar o dado para o shell script;
 2. Para o usuário que não passar nenhum parâmetro ao iniciar o script, deve haver uma condição de contorno;
 3. Como primeira ação criptográfica, trocar todas as letras do alfabeto (`$p1`);
-4. Imprimir string criptografada;
-5. Retirar os espaços da frase (`$p2`);
-6. Remover a quebra de linha (`$p3`);
-7. Separar com espaço todos os caracteres;
-8. Trocar todos os caracteres pelo seu respectivo número no alfabeto (`retorna_numero()`);
-9. Entretanto, antes foi trocado o último caractere por um arroba, e ele não conta como um número. Assim, é preciso tratar todos os caracteres para ver se é ou não uma letra;
+4. Retirar os espaços da frase e substituir por ":" (`$p2`);
+5. Remover a quebra de linha e substituir por "@" (`$p3`);
+6. Separar com espaço todos os caracteres, e;
+7. Trocar todos os caracteres pelo seu equivalente numérico (`retorna_numero()` e (`$p4`));
+8. Entretanto, antes foi trocado o último caractere por um arroba, e ele não conta como um número. Assim, é preciso tratar todos os caracteres para ver se é ou não uma letra;
+9. Nesta etapa, já temos uma criptografia válida, mas ainda é fácil de entender. Para aumentar o nível, vamos multiplicar o número de cada letra, pela sua respectiva posição na string criptografada. Por exemplo: a string original "apenas uma frase de teste" deve estar criptografada da seguinte forma "26 11 22 13 26 8 : 6 14 26 : 21 9 26 8 22 : 23 22 : 7 22 8 7 22 @". Nessa próxima fase, devemos ter uma criptografia na qual 26x1 11x2 22x3 13x4... (`$p5`);
+10. Colocar letras aleatórias no espaço entre os dados. Para isso, utilizar a variável `$RANDOM` para que sejam jogados números aleatórios. Há um porém: a resposta de `$RANDOM` pode ser 0, devendo assim, contornar a possibilidade com `$(( ($RANDOM%25)+1 ))`.
 
 ```shell
 #!/usr/bin/env bash
 
-# ----- 8 -----
-retorna_numero() { echo "a b c d e f g h i j k l m n o p q r s t u v w x y z" | cut -d"$1" -f1 | tr " " "\n" | wc -l ; }
+# ----- 07 -----
+retorna_numero() { echo "a b c d e f g h i j k l m n o p q r s t u v w x y z" | cut -d"$1" -f1 | tr " " "\n" | wc -l; }
+# ----- 10 -----
+random_letter() { echo "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z" | cut -d" " -f$(( ($RANDOM%25)+1 )); }
 
-# ----- 2 -----
+# ----- 02 -----
 if [ "$1" == "" ]; then exit; fi
 
-# ----- 1 -----
+# ----- 01 -----
 IN=$1
 echo "String original: $IN"
 echo
 
-# ----- 3 -----
+# ----- 03 -----
 p1="$(echo $IN | tr "abcdefghijklmnopqrstuvwxyz" "zyxwvutsrqponmlkjihgfedcba")"
 
-# ----- 4 -----
-echo "String criptografada alterando ordem alfabética: $p1"
-echo
-
-# ----- 5 -----
+# ----- 04 -----
 p2="$(echo $p1 | tr " " ":")"
 
-# ----- 6 -----
+# ----- 05 -----
 p3="$(echo $p2 | tr "\n" "@")"
 
-# ----- 7 -----
-for a in $(seq $(echo -n "$p3" | wc -c)); do 
+# ----- 06 -----
+p4="$(for a in $(seq $(echo -n "$p3" | wc -c)); do 
   local carac="$(echo "$p3" | cut -b $a;)" 
 
-  # ----- 9 -----  
+  # ----- 08 -----  
   local isLetter="$(echo $carac | grep "[a-zA-Z]")"
   if [ "$isLetter" != "" ]; then
-    # ----- 8 -----
+    # ----- 07 -----
     retorna_numero $carac
   else
     echo "$carac"
   fi
 
-done | tr "\n" " "
+done | tr "\n" " ")"
+
+# ----- 09 -----
+p5="$(for a in $p4; do
+  isNumber="$(echo $a | grep "[1-9]")"
+  if [ "$isNumber" != "" ]; then
+    let count++
+    echo -n $(($count * $a))$(random_letter)
+  else
+    echo -n "$a$(random_letter)"
+  fi
+done)"
+
+echo $p5
 ```
+
+Em suma:
+
+- Passo 1 (`$p1`): substituição alfabética
+  - a - z
+  - b - y
+  - ...
+- Passo 2 (`$p2`): substituir os espaços adicionais e quebra de linha por ":" e "@", respectivamente
+  - abc def ghi
+  - abc:def:ghi@
+  - ...
+- Passo 3 (`$p3`): substituição pelo valor numérico
+  - a - 1
+  - b - 2
+  - ...
+- Passo 4 (`$p4`): multiplicar cada caractere numérico pela sua posição
+  - a - 26 * 1
+  - b - 11 * 2
+  - ...
+- Passo 5 (`$p5`): substituir os espaços por letras aleatórias
+  - 26 11
+  - 26H11
+
+> **Nota:** um truque que pode ser feito é rodar o resultado final mais uma vez no script, para que seja criptografado duas vezes, e posteriormente, descriptografar duas vezes.
+
+#### 5.6.2. Descriptografar uma *string*
+
 
 
 <!-- MARKDOWN LINKS -->

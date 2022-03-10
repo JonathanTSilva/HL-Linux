@@ -21,6 +21,7 @@
     - [2.1. Comandos básicos](#21-comandos-básicos)
     - [2.2. Variáveis](#22-variáveis)
       - [Variáveis especiais](#variáveis-especiais)
+      - [Variáveis "instantâneas"](#variáveis-instantâneas)
     - [2.3. Operações matemáticas](#23-operações-matemáticas)
     - [2.4. Funções](#24-funções)
     - [2.5. Condicionais](#25-condicionais)
@@ -49,6 +50,7 @@
     - [5.3. Obter a memória](#53-obter-a-memória)
     - [5.4. Obter nomes e endereços de memória](#54-obter-nomes-e-endereços-de-memória)
     - [5.5. Obter portas e serviços](#55-obter-portas-e-serviços)
+    - [5.6. Criptografar uma *sting*](#56-criptografar-uma-sting)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -194,6 +196,25 @@ Existem algumas variáveis especiais no sistema que são variáveis apenas de le
 | `$0`      | Nome/caminho do script                                                                                                                                                                                                                                                                           |
 | `$_`      | Antes de nada ser executado, contem o caminho e nome do script (ou shell) pelo qual foi chamado na linha de comando. Depois, no decorrer do script, esta variável contem o valor do último argumento do último comando que foi executado. Além disso, esta variável é exportada para o ambiente. |
 | `$1`-`$9` | Argumentos passados                                                                                                                                                                                                                                                                              |
+
+#### Variáveis "instantâneas"
+
+Dentro do shell, há um truque que permite a execução de uma variável que não tem nome; guardam um valor, mas não carregam nome algum. A sintaxe para essas variáveis é: `$()` e `$(())`. Veja os exemplos.
+
+```shell
+$ echo $(ls)
+> # Resultado do comando ls
+$ uname
+> Linux
+$ echo "Variável instantânea: $(uname)"
+> Variavel instantânea: Linux
+$ echo $((2+2))
+> 4
+```
+
+Note que, a variável instantânea com aspas duplas (`$(())`) é utilizada para realizar cálculos. Também pode ser utilizado uma dentro da outra, ou seja, realizar cálculos de outras variáveis instantânea (`$(( $()+$() ))`).
+
+> **Nota:** a variável instantânea é deletada após sua execução.
 
 ### 2.3. Operações matemáticas
 
@@ -1069,7 +1090,71 @@ paste t1 t2 | tr "\t" " ";
 rm t1 t2
 ```
 
+> **Nota:** `nmap` é um mapeador de rede muito utilizado pelos administradores para mapear suas redes.
+
 > **Nota:** `xargs` neste comando, está fazendo um papel de limpador de código, ao retirar todos os espaços vazios da saída.
+
+### 5.6. Criptografar uma *sting*
+
+- Entrada de dados: ``;
+- Objetivo: criptografar uma string utilizando shell script;
+- Adicional: Criptografar substituindo todas as letras do alfabeto e posteriormente reforçando-a.
+
+**Resolução 1:**
+
+1. Primeira estruturação a ser feita, é passar o dado para o shell script;
+2. Para o usuário que não passar nenhum parâmetro ao iniciar o script, deve haver uma condição de contorno;
+3. Como primeira ação criptográfica, trocar todas as letras do alfabeto (`$p1`);
+4. Imprimir string criptografada;
+5. Retirar os espaços da frase (`$p2`);
+6. Remover a quebra de linha (`$p3`);
+7. Separar com espaço todos os caracteres;
+8. Trocar todos os caracteres pelo seu respectivo número no alfabeto (`retorna_numero()`);
+9. Entretanto, antes foi trocado o último caractere por um arroba, e ele não conta como um número. Assim, é preciso tratar todos os caracteres para ver se é ou não uma letra;
+
+```shell
+#!/usr/bin/env bash
+
+# ----- 8 -----
+retorna_numero() { echo "a b c d e f g h i j k l m n o p q r s t u v w x y z" | cut -d"$1" -f1 | tr " " "\n" | wc -l ; }
+
+# ----- 2 -----
+if [ "$1" == "" ]; then exit; fi
+
+# ----- 1 -----
+IN=$1
+echo "String original: $IN"
+echo
+
+# ----- 3 -----
+p1="$(echo $IN | tr "abcdefghijklmnopqrstuvwxyz" "zyxwvutsrqponmlkjihgfedcba")"
+
+# ----- 4 -----
+echo "String criptografada alterando ordem alfabética: $p1"
+echo
+
+# ----- 5 -----
+p2="$(echo $p1 | tr " " ":")"
+
+# ----- 6 -----
+p3="$(echo $p2 | tr "\n" "@")"
+
+# ----- 7 -----
+for a in $(seq $(echo -n "$p3" | wc -c)); do 
+  local carac="$(echo "$p3" | cut -b $a;)" 
+
+  # ----- 9 -----  
+  local isLetter="$(echo $carac | grep "[a-zA-Z]")"
+  if [ "$isLetter" != "" ]; then
+    # ----- 8 -----
+    retorna_numero $carac
+  else
+    echo "$carac"
+  fi
+
+done | tr "\n" " "
+```
+
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

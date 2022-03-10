@@ -48,21 +48,20 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 
 ## 🔎 Índice
 
-- **Meu HomeLab de Linux**
-  - [Primeiros passos][6]
-  - **Básico**
-    - [Comandos][9]
-    - [Atalhos][]
-    - [Conceitos][7]
-    - [Atividades gerais][13]
-    - [Customização do terminal do Linux][5]
-  - **Intermediário**
-    - [DNS][12]
-    - [Sistema de arquivos][8]
-    - [SSH][10]
-  - **Avançado**
-    - [LAMP][11]
-    - [Shell Script][14]
+- [Primeiros passos][6]
+- **Básico**
+  - [Comandos][9]
+  - [Atalhos][]
+  - [Conceitos][7]
+  - [Atividades gerais][13]
+  - [Customização do terminal do Linux][5]
+- **Intermediário**
+  - [DNS][12]
+  - [Sistema de arquivos][8]
+  - [SSH][10]
+- **Avançado**
+  - [LAMP][11]
+  - [Shell Script][14]
 
 ## 🤝 Contribuindo
 

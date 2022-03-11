@@ -54,6 +54,8 @@
     - [5.6. Criptografia de *string*](#56-criptografia-de-string)
       - [5.6.1. Criptografar uma *string*](#561-criptografar-uma-string)
       - [5.6.2. Descriptografar uma *string*](#562-descriptografar-uma-string)
+    - [5.7. Quebrar senhas](#57-quebrar-senhas)
+    - [5.8. Mapear rede interna](#58-mapear-rede-interna)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -1101,7 +1103,7 @@ rm t1 t2
 
 #### 5.6.1. Criptografar uma *string*
 
-- Entrada de dados: ``;
+- Entrada de dados: `./criptoString.sh`;
 - Objetivo: criptografar uma string utilizando shell script;
 - Adicional: Criptografar substituindo todas as letras do alfabeto e posteriormente reforçando-a.
 
@@ -1198,6 +1200,75 @@ Em suma:
 
 #### 5.6.2. Descriptografar uma *string*
 
+### 5.7. Quebrar senhas
+
+- Entrada de dados: `./brokeScript.sh <wordlist.txt>`;
+- Objetivo: quebrar senhas criptografadas utilizando *wordlist*;
+- Adicional: N/A.
+
+No Kali Linux há algumas *wordlists* prontas para realizar uma quebra de senhas. Ficam dentro de `/usr/share/wordlists/` e são divididas em alguns diretórios. Neste exercício utilizaremos a lista `common.txt` da pasta `fern-wifi` (muito utilizada para quebrar senhas de redes sem fio) - não é uma *wordlist* potente/muito grande, mas suficiente para o testar os conceitos.
+
+O princípio geralmente utilizado para quebrar *hashs*, é armazenar uma lista de palavras no arquivo da *wordlist* e criar um script que vai interpretando palavra por palavra e *encryptando* (na ordem), comparando com a *hash* que ela fornece. Entretanto, apesar de ser um método bem eficiente, utiliza muito recurso do computador (gerando muito desperdício de resposta e tempo). Uma maneira mais eficiente é *encryptar* as palavras, salvar no arquivo de *wordlist* e na frente da palavra, a *hash* correspondente, pois é muito mais fácil utilizar o grep do que realizar o método anterior (cerca de 2mi de operações)
+
+Utilizaremos alguns algoritmos prontos para *encryptar* nossas palavras:
+- md5sum;
+- sha256sum;
+- base64;
+
+```shell
+#!/usr/bin/env/ bash
+
+if [ "$1" == "" ]; then 
+  echo
+  echo "Uso: $0 wordlist.txt"
+  exit; 
+fi
+
+dos2unix $1 >> /dev/null
+
+for word in $(cat $1); do
+  md5="$(echo -n "$word" | md5sum | cut -d" " -f1)"
+  b64="$(echo -n "$word" | base64)"
+  sha256="$(echo -n "$word" | sha256sum | cut -d" " -f1)"
+  echo "$word:$md5:$b64:$sha256"
+done | temp$1
+
+cat tem$1 | column -s: -t >> "$1.final"
+rm temp$1
+```
+
+> **Nota:** para alguns arquivos de wordlist criados no windows, o padrão de término e quebra de linha muda, como é o caso do utilizado (`common.txt`). Ao executar o comando `file common.txt` é possível observar a resposta: `common.txt: ASCII text, with CRLF line terminator` (padrão utilizado pelo Windows que termina e quebra a linha com `\r\n`). Para isso, tratar essa condição com o comando `tr` ou o comando `dos2unix` (próprio para essas situações).
+
+A sua utilização de dá pelo comando `grep`. Vamos supor que você encontre uma *hash* em um banco de dados e queira descobrir qual é a string para ela (caso já exista em seu banco/*wordlist*). Utilize:
+
+```bash
+$ grep "HASH" <script.txt>
+> <palavra> <md5sum> <base64> <sha256sum>
+```
+
+### 5.8. Mapear rede interna
+
+- Entrada de dados: ``;
+- Objetivo: mapear a rede interna, descobrindo computadores onlines na rede, portas, etc.;
+- Adicional: N/A.
+
+```shell
+#!/usr/bin/env/ bash
+
+mynet="$(nmap -sN -p 21,22,80 $(echo "$(ifconfig | grep "inet" | grep "broadcast" | cut -d" " -f10 | cut -d"." -f1-3).0/24") | grep "report for" | cut -d" " -f5 )"
+
+for ip in $(mynet); do
+  nmap -sS -F -O %ip > temp
+
+  ports="$(cat temp | grep "/tcp" | cut -d"/" -f1 | tr "\n" " ")"
+  if [ "$ports" ==  ""]; then ports="N/A"; fi
+
+  os="$(cat temp | grep "OS details" | cut -d":" -f2 | cut -d" " -f2-99 | cut -d"," -f1 | grep -v "many fingerprints")"
+  if [ "$os" ==  ""]; then os="N/A"; fi
+
+  echo "IP Ativo: $ip | Portas: $ports | Sistema Operacional: $os"
+done
+```
 
 
 <!-- MARKDOWN LINKS -->

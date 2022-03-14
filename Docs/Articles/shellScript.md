@@ -56,6 +56,7 @@
       - [5.6.2. Descriptografar uma *string*](#562-descriptografar-uma-string)
     - [5.7. Quebrar senhas](#57-quebrar-senhas)
     - [5.8. Mapear rede interna](#58-mapear-rede-interna)
+    - [5.9. Requisitar informações WEB](#59-requisitar-informações-web)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -1270,6 +1271,43 @@ for ip in $(mynet); do
 done
 ```
 
+### 5.9. Requisitar informações WEB
+
+- Entrada de dados: ``;
+- Objetivo: monitorar o pastebin.com e obter o link das postagens com algum conteúdo específico;
+- Adicional: demonstrar pré-procedimento de criação do script.
+
+**Resolução:**
+
+1. Acessar o pastebin.com (com o `curl` ou `get`. `Curl` não se passa por um navegador como o `get`, podendo não exibir algumas informações bloqueadas por sites. Por outro lado, o `curl` tem uma opção para isso, tornando a escolha mais poderosa);
+2. Extrair os links das novas postagens:
+   - Problema: dependendo da frequência, isso pode extrair o mesmo link duas vezes. Assim, filtrar para não repetir os links;
+3. Acessar cada um dos links e obter conteúdo;
+4. Filtrar o conteúdo de interesse;
+5. Exibir o link (ou não)/salvar o link.
+
+```shell
+#!/usr/bin/env bash
+
+touch templinks
+
+links="$(curl -s "http://pastbin.com/archive" | grep "i_p0" | cut -d"=" -f5 | cut -d'"' | tr -d "/")"
+
+while :: do # Loop infinito
+  for l in links; do
+    res1="$(grep "$l" templinks)"
+    if ( "$res1" == "" ); then echo $l >> templinks; fi
+  done
+done
+
+for r in $(cat templinks); do
+  echo "$r" >> templinks2
+  res2="$(curl -s "http://pastebin.com/raw/$a" | grep "admin")"; 
+  if [ "$res2" != " " ]: then 
+    echo "http://pastebin.com/raw/$a"; 
+  fi
+done
+```
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

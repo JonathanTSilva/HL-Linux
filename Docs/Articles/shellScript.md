@@ -57,6 +57,8 @@
     - [5.7. Quebrar senhas](#57-quebrar-senhas)
     - [5.8. Mapear rede interna](#58-mapear-rede-interna)
     - [5.9. Requisitar informações WEB](#59-requisitar-informações-web)
+    - [5.10. Proteger de ataques *defacement* (*deface*)](#510-proteger-de-ataques-defacement-deface)
+    - [5.11. Proteger de invasor de porta](#511-proteger-de-invasor-de-porta)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -1273,7 +1275,7 @@ done
 
 ### 5.9. Requisitar informações WEB
 
-- Entrada de dados: ``;
+- Entrada de dados: `./script.sh "string"`;
 - Objetivo: monitorar o pastebin.com e obter o link das postagens com algum conteúdo específico;
 - Adicional: demonstrar pré-procedimento de criação do script.
 
@@ -1289,24 +1291,91 @@ done
 ```shell
 #!/usr/bin/env bash
 
+rm templinks templinks2 2> /dev/null > /dev/null
 touch templinks
+touch templinks2
 
-links="$(curl -s "http://pastbin.com/archive" | grep "i_p0" | cut -d"=" -f5 | cut -d'"' | tr -d "/")"
-
-while :: do # Loop infinito
+# Extract site links | templinks
+extract() {
+  links="$(curl -s "http://pastbin.com/archive" | grep "i_p0" | cut -d"=" -f5 | cut -d'"' | tr -d "/")"
+  sleep2 # Required time to don't be blocked for pastebin.com
   for l in links; do
     res1="$(grep "$l" templinks)"
     if ( "$res1" == "" ); then echo $l >> templinks; fi
   done
-done
+}
 
-for r in $(cat templinks); do
-  echo "$r" >> templinks2
-  res2="$(curl -s "http://pastebin.com/raw/$a" | grep "admin")"; 
-  if [ "$res2" != " " ]: then 
-    echo "http://pastebin.com/raw/$a"; 
-  fi
+# Access the links and filter which have the word "public" | templinks2
+access() {
+  for r in $1; do
+    echo "$r" >> templinks2
+    res2="$(curl -s "http://pastebin.com/raw/$r" | grep $2)"; 
+    if [ "$res2" != "" ]: then 
+      echo "http://pastebin.com/raw/$r"; 
+    fi
+  done
+}
+
+[ "$1" == "" ] && { clear; echo "[+] Use: $0 \"string\""; exit; }
+clear
+echo "[+] Monitoring \"$1\" on pastebin.com"
+echo
+while :; do
+  extract
+  links="$(diff templinks templinks2 | cut -d" " -f2 | grep -v ",")"
+  access "$links" "$1"
+  sleep 3
 done
+```
+
+### 5.10. Proteger de ataques *defacement* (*deface*)
+
+- Entrada de dados: `bash`;
+- Objetivo: Se proteger de um ataque *deface*, que altera as informações da página principal de sua aplicação (`index.html`);
+- Adicional: Loop infinito para verificar se o arquivo foi deletado ou modificado, gerando uma hash **md5**. Executar o script como **root**.
+
+```shell
+#!/usr/bin/env/ bash
+
+ho="$(md5sum index.html | cut -d" " -f1)"; 
+mkdir ~/backup/; cp index.html ~/backup/i.html; clear; 
+while :; do
+  ha="$(md5sum index.html 2> /dev/null | cut -d" " -f1)";
+  echo $ha
+  sleep 0.3
+  if [ "$ha" != "$ho" ]; then
+    echo "[+] Recovering original file";
+    cp ~/backup/i.html ./index.html;
+  fi
+done & # Foreground execution
+```
+
+Para executar o script como um **daemon** (serviço de sistema), execute o script com o caractere `&` no final, no mesmo shell, será retornado o ID do script. Copie este ID, e cole na frente do comando `disown`: `disown 18264`. Após isso, só fechar as shells abertas.
+
+### 5.11. Proteger de invasor de porta
+
+- Entrada de dados: ``;
+- Objetivo: Se proteger de um ataque com `nmap` para ler alguma porta aberta;
+- Adicional: N/A.
+
+**Terminal 1 - attacker**
+
+```bash
+$ nmap -sS IP
+> # Can listen all ports in your IP
+$ nmap -sS -sV IP
+> # Listen and see the services version
+```
+
+**Terminal 2 - defender**
+
+```bash
+$ while :; do cat /dev/urandom | nc -lvp 22; done
+> listening on [any] 22 ...
+# OR
+$ for a in $(seq 30); do nc -lvp $a & done
+# OR
+$ while :; do nc -lkvvp 80 | nc -lkvvp 443; done
 ```
 
 <!-- MARKDOWN LINKS -->

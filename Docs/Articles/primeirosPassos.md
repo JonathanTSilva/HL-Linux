@@ -29,6 +29,12 @@
   - [7. Preparar cenário para programação](#7-preparar-cenário-para-programação)
     - [7.1. Vim e Tmux](#71-vim-e-tmux)
     - [7.2. Dotfiles](#72-dotfiles)
+  - [8. Particularidade das distros](#8-particularidade-das-distros)
+    - [8.1. Fedora](#81-fedora)
+    - [8.1.1. RPM Fusion](#811-rpm-fusion)
+    - [8.1.2. Snaps e Flatpack](#812-snaps-e-flatpack)
+    - [8.1.3. COPR e DNFDragora](#813-copr-e-dnfdragora)
+      - [8.1.4. Comandos gerais](#814-comandos-gerais)
 
 Um shell script foi criado para automatizar este passo a passo. Portanto, aqui neste documento será mostrado apenas os códigos para cada etapa.
 
@@ -277,6 +283,109 @@ tmux kill-session -t <nº>
 sudo apt install tilix zsh
 ```
 
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
+## 8. Particularidade das distros
+
+### 8.1. Fedora
+
+### 8.1.1. RPM Fusion
+
+Inicialmente, no Fedora, é preciso instalar e habilitar o repositório externo RPM Fusion. Segundo o próprio [site do projeto][11], o RPM Fusion é um repositório que distribui softwares que a Red Hat e o Projeto Fedora não querem disponibilizar em seus repositórios próprios, em sua maioria por questões de licença, visto que a Red Hat só disponibiliza softwares open source.  
+
+Todos os softwares presentes no RPM Fusion já estão pré-compilados em formato RPM, necessitando apenas pesquisar na loja do sistema, ou digitar um único comando no terminal.  
+
+O RPM Fusion nasceu como uma junção de outros 3 repositórios: Dribble, Freshrpms e Livna, na intenção de distribuir a maior quantidade de softwares possíveis em um único local.
+
+Para instalar o RPM Fusion é bem simples. Basta ir à [página de configuração][12] do projeto, baixar os dois arquivos dele: **free** e **nonfree**, e instalar em sua máquina. Ou, caso prefira, realizar os procedimentos via terminal:
+
+```bash
+sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+```
+
+Para visualizar os aplicativos do RPM Fusion diretamente da loja, basta inserir o seguinte comando e depois reiniciar o sistema:
+
+```bash
+sudo dnf groupupdate core
+```
+
+Pronto! Feito isso, você terá acesso a todos os softwares do RPM Fusion através da loja ou do próprio terminal.  
+
+Para atualizar o seu sistema, seguir com o comando:
+
+```bash
+sudo dnf update
+```
+
+### 8.1.2. Snaps e Flatpack
+
+Já para ativar o suporte à **snaps** e **flatpacks** provindos do **flathub** (para saber mais sobre essas e outras tecnologias, confira esse [artigo][13]), é necessário apenas ativar o suporte ao **flathub** para a segunda opção, visto que o Fedora já traz instalado o **flatpack**. Esta instalação pode ser verificada pelo [site da organização][14], em *Quick setup* e escolhendo o Fedora na próxima janela. Basta copiar o comando, colar e executar em seu terminal.
+
+```bash
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+```
+
+Em seguida, precisa-se matar o processo e reiniciá-lo para que a feature nova do **flathub** seja carregada na loja do Fedora (na opção **source** de cada pacote).
+
+```bash
+killall gnome-software
+```
+
+O Snapcraft pode ser instalado também pela [página do projeto][15], selecionando a opção Fedora, e da mesma forma que o anterior: copiar, colar e executar o comando de instalação.
+
+```bash
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+```
+
+Feito isso, a sua estação já está com suporte para snaps. Entretanto, não há uma loja nativa para gerenciar esses pacotes no Fedora, sendo necessária instalação da **snap-store**:
+
+```bash
+snap install snap-store
+```
+
+### 8.1.3. COPR e DNFDragora
+
+**Copr** é um sistema de compilação automática fácil de usar que fornece um repositório de pacotes como saída. Ele está para o Fedora, assim como os **PPAs** estão para o Ubuntu. Da mesma forma, os pacotes RMP para o Fedora, os DEB para Ubuntu e EXE para Windows.
+
+Para ativar um repositório COPR é simples:
+
+1. Procure pelo seu repositório/pacote na página [do projeto COPR][16];
+2. Copie o código exibido na barra lateral direita;
+3. Cole e execute este comando no terminal.
+
+Basicamente, a estrutura dos comandos para adicionar um novo repositório é a mesma:
+
+```bash
+dns copr enable <nome>/<repositório>
+```
+
+Para remover um repositório COPR, digite o comando:
+
+```bash
+dnf copr remove <nome>/<repositório>
+```
+
+Uma vez que um repositório COPR é ativado, os pacotes presentes naquele repositório podem ser instalados via terminal ou via **DNFDragora**. O **DNFDragora** está para o Fedora, assim como o **Synaptic** está para o Ubuntu, que são gerenciadores de pacotes. Pode ser instalado pela loja ou pelo comando:
+
+```bash
+sudo dnf install dnfdragora
+```
+
+#### 8.1.4. Comandos gerais
+
+A tabela abaixo apresenta os comandos mais utilizados pelo terminal para gerenciar o sistema Fedora:
+
+| Comando                     | Descrição                                                                                 |
+| :-------------------------- | :---------------------------------------------------------------------------------------- |
+| `sudo dnf update`           | Atualiza o sistema Fedora                                                                 |
+| `dnf search <string>`       | Pesquisa por algum pacote que contenha a string passada                                   |
+| `sudo dnf install <pacote>` | Instala o pacote                                                                          |
+| `sudo dnf remove <pacote>`  | Remove o pacote                                                                           |
+| `dnf info <pacote>`         | Mostra informações do pacote                                                              |
+| `sudo dnf autoremove`       | Remove dependências desnecessárias do sistema                                             |
+| `sudo dnf distro-sync`      | Sincroniza a lista de softwares instalados com a lista dos repositórios ativos no momento |
+
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: https://github.com/asdf-vm/asdf
@@ -289,5 +398,11 @@ sudo apt install tilix zsh
 [8]: https://hub.docker.com/_/postgres
 [9]: https://github.com/JonathanTSilva/HL-Git#31-criando-chave-ssh
 [10]: https://github.com/JonathanTSilva/HL-Git
+[11]: https://rpmfusion.org/
+[12]: https://rpmfusion.org/Configuration
+[13]: https://diolinux.com.br/flatpak/qual-o-melhor-appimage-flatpak-ou-snap.html
+[14]: https://flatpak.org/
+[15]: https://snapcraft.io/docs/installing-snapd
+[16]: https://copr.fedorainfracloud.org/
 
 <!-- IMAGES -->

@@ -1,5 +1,5 @@
 <!-- LOGO DIREITO -->
-<a href="#rsync"><img width="100px" src="../../Images/rsync.png" align="right" /></a>
+<a href="#rsync"><img width="200px" src="../../Images/rsync.png" align="right" /></a>
 
 # RSYNC
 
@@ -12,7 +12,12 @@
 ☄ Tudo o que precisa saber para começar utilizar o **Rsync**.
 
 <!-- SUMÁRIO -->
-
+- [RSYNC](#rsync)
+  - [1. O que é o RSYNC?](#1-o-que-é-o-rsync)
+  - [2. Instalação](#2-instalação)
+  - [3. Sintaxe](#3-sintaxe)
+    - [3.1. Para o shell remoto](#31-para-o-shell-remoto)
+  - [4. Comandos](#4-comandos)
 
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>

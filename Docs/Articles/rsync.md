@@ -101,13 +101,18 @@ verbose and human readable
 
 Aqui está uma tabela dos comandos mais comuns usados com o rsync:
 
-| Opção                         | Descrição                                                              |
-| :---------------------------- | :--------------------------------------------------------------------- |
-| `-a, --archive`               | Habilita o modo de arquivo (copiar também o diretório)                 |
-| `-v, --verbose`               | Dá a você uma saída visual que mostra o progresso do processo          |
-| `-h, --human-readable format` | Exibe o output num formato legível para humanos                        |
-| `-z, --compress`              | Comprime os dados dos arquivos durante a transferência                 |
-| `-r`                          | Copia os dados recursivamente                                          |
-| `-u, --update`                | Opção de update, que envia apenas os arquivos diferentes (incremental) |
-| `--delete`                | Excluir no servidor todos os arquivos que não tiverem na origem |
-| `--include '...' --exclude '...'`                | Incluir ou excluir algum padrão para a sincronização |
+| Opção                             | Descrição                                                              |
+| :-------------------------------- | :--------------------------------------------------------------------- |
+| `-a, --archive`                   | Habilita o modo de arquivo (copiar também o diretório)                 |
+| `-v, --verbose`                   | Dá a você uma saída visual que mostra o progresso do processo          |
+| `-h, --human-readable format`     | Exibe o output num formato legível para humanos                        |
+| `-z, --compress`                  | Comprime os dados dos arquivos durante a transferência                 |
+| `-r`                              | Copia os dados recursivamente                                          |
+| `-u, --update`                    | Opção de update, que envia apenas os arquivos diferentes (incremental) |
+| `--delete`                        | Excluir no servidor todos os arquivos que não tiverem na origem        |
+| `--include '...' --exclude '...'` | Incluir ou excluir algum padrão para a sincronização                   |
+
+<!-- MARKDOWN LINKS -->
+<!-- SITES -->
+
+<!-- IMAGES -->

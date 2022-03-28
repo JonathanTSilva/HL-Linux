@@ -62,6 +62,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 - **Avançado**
   - [LAMP][11]
   - [Shell Script][14]
+  - [RSYNC][15]
 
 ## 🤝 Contribuindo
 
@@ -116,6 +117,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [12]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/dns.md
 [13]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/atividadesGerais.md
 [14]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/shellScript.md
+[15]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/rsync.md
 
 <!-- IMAGES -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

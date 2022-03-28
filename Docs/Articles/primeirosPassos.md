@@ -162,6 +162,8 @@ Utilize o `asdf help` para se atualizar sobre os comandos permitidos. Mesmo que 
 asdf plugin-update --all
 ```
 
+> **Nota:** algumas linguagens de programação precisam do pacote **build-essential** para serem instaladas.
+
 <!-- VOLTAR AO ÍNICIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 

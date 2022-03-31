@@ -25,7 +25,8 @@
       - [4.2.1. nikto](#421-nikto)
       - [4.2.2. nmap](#422-nmap)
     - [4.3. Web Application Analysis](#43-web-application-analysis)
-      - [4.3.1.](#431)
+      - [4.3.1. burpsuit](#431-burpsuit)
+      - [4.3.2. sqlmap](#432-sqlmap)
     - [4.4. Database Assessment](#44-database-assessment)
       - [4.4.1.](#441)
     - [4.5. Password Attacks](#45-password-attacks)
@@ -37,7 +38,10 @@
     - [4.8. Exploitation Tools](#48-exploitation-tools)
       - [4.8.1.](#481)
     - [4.9. Sniffing & Spoofing](#49-sniffing--spoofing)
-      - [4.9.1.](#491)
+      - [4.9.1. arpspoof](#491-arpspoof)
+      - [4.9.2. dnsspoof](#492-dnsspoof)
+      - [4.9.3. ettercap](#493-ettercap)
+      - [4.9.4. wireshark](#494-wireshark)
     - [4.10. Post Exploitation](#410-post-exploitation)
       - [4.10.1.](#4101)
     - [4.11. Forensics](#411-forensics)
@@ -69,6 +73,9 @@ O Kali Linux dispõe de numerosos softwares pré-instalados, incluindo o **Nmap*
 - Suporte multi idiomas;
 - Completamente customizável.
 
+<!-- VOLTAR AO INÍCIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 2. Instalação
 
 Vale enfatizar a priori que o Kali Linux possui uma versão Live (até uma versão Live Forencis) para instalação em dispositivos remotos. Entretanto, para uma instalação normal do sistema operacional em disco, é necessários seguir os procedimentos padrões para isso:
@@ -79,6 +86,9 @@ Vale enfatizar a priori que o Kali Linux possui uma versão Live (até uma vers�
 - Selecione todas as configurações iniciais;
 - Por boas práticas, particione o seu disco manualmente seguindo [recomendações do RedHat][1];
 - Finalize a instalação.
+
+<!-- VOLTAR AO INÍCIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 3. Utilização
 
@@ -118,16 +128,30 @@ Primeiramente, antes de inicializá-lo, há algumas configurações básicas a s
 - Para verificar se a base de dados está funcionando corretamente:
   - `db_status`;
 
+<!-- VOLTAR AO INÍCIO -->
+<a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
+
 ## 4. Ferramentas
 
 Para analisar as ferramentas a seguir, foi criado um servidor *metasploitable*, utilizando um outro ambiente Kali, para que este seja alvo dos ataques. Apenas para fins didáticos, ele foi alocado no IP: **192.168.0.10/25**, mas possui um DNS: **metasploitable.testserver.com**. Sendo assim, para cada representação de um servidor web será utilizado este endereço.
 
 ### 4.1. Information Gathering
 
+Esses softwares ou aplicativos têm a função de coletar e formatar os dados em um formato que possa ser usado posteriormente. Isso é semelhante aos cookies usados ​​por diferentes sites ou ao seu histórico de navegação usado pelo Google para personalizar cada anúncio e fornecer os melhores serviços para você. O sistema operacional Kali fornece essas ferramentas para a comunidade de desenvolvedores e testes de penetração para ajudar na coleta e formulação de dados capturados. 
+Algumas das ferramentas são:
+
+> **Nota:** o Nmap é o mais famoso dessas ferramentas.
 
 #### 4.1.1. 3.1.1.
 
 ### 4.2. Vulnerability Analysis
+
+Vulnerabilidade é um estado ou condição de ser exposto à possibilidade de ser atacado ou prejudicado de uma ou outra forma. Essas ferramentas são usadas para verificar um sistema ou máquina quanto a qualquer tipo de fluxo e vulnerabilidade disponível neles, o que pode levar a qualquer violação de segurança e perda de dados. Essas ferramentas também ajudam a corrigir essas vulnerabilidades, pois a identificação torna o usuário ciente do fluxo.
+
+Por exemplo: Se o Windows lançar seu novo sistema operacional, antes de fornecê-lo ao usuário final, ele o enviará para análise e correção de vulnerabilidades.
+Algumas das ferramentas:
+
+> **Nota:** todas essas ferramentas são muito comuns na comunidade.
 
 #### 4.2.1. nikto
 
@@ -171,47 +195,200 @@ nmap -sV -O metasploitable.testserver.com # -sV = detalha a porta, estado, servi
 
 ### 4.3. Web Application Analysis
 
-#### 4.3.1. 
+Aplicação Web é uma página web de resposta dinâmica que auxilia em uma melhor e interativa relação cliente-servidor. Essas ferramentas identificam e acessam sites por meio do navegador para verificar qualquer bug ou brecha presente, o que pode levar à perda de qualquer informação ou dado.
+
+Por exemplo, se houver um site com um gateway de pagamento, esses analisadores da web verificam se há autenticação e autorização suficientes no site. Esses aplicativos da web usam:
+
+- Injeções de SQL
+- Negação de serviço
+- Manipulação de URL
+
+Algumas das ferramentas são: 
+
+> **Nota:** Burpsuite, vega e web scarab são algumas das ferramentas mais famosas.
+
+#### 4.3.1. burpsuit
+
+**Descrição**
+
+Ferramenta que serve como um proxy. Para mais informações, acesse os comandos de ajuda `man nmap`e `nmap --help`.
+
+**Exemplos**
+
+- Comandos básicos
+
+```bash
+
+```
+
+#### 4.3.2. sqlmap
+
+**Descrição**
+
+Ataques de injeção SQL. Para mais informações, acesse os comandos de ajuda `man sqlmap`e `sqlmap --help`.
+
+**Exemplos**
+
+- Comandos básicos
+
+```bash
+$ sqlmap -u http://testphp.vulnweb.com/listproducts.php?cat=1 --dbs
+```
+
+> **Nota:** para testes, há um site desenvolvido próprio para ser vulnerável, chamado: testphp.vulnweb.com.
 
 ### 4.4. Database Assessment
+
+Esses aplicativos são feitos para acessar o banco de dados e analisá-lo para diferentes ataques e problemas de segurança. Essa avaliação mostra algumas oportunidades de melhorias e mudanças. Eles desenvolvem um relatório da análise feita no sistema de banco de dados. Eles executam:
+
+- Verificação de configuração
+- Examinando a conta de usuário
+- Concessões de privilégios e funções
+- Controle de autorização
+- Gerenciamento de chaves
+- Criptografia de dados
+
+Algumas das ferramentas são:
+
+> **Nota:** Sqlmap é a ferramenta de avaliação de banco de dados mais famosa.
 
 #### 4.4.1. 
 
 ### 4.5. Password Attacks
 
+São basicamente uma coleção de ferramentas que podem manipular a lista de palavras ou a lista de senhas a serem verificadas em quaisquer credenciais de login por meio de diferentes serviços e protocolos. Algumas ferramentas são coletores de listas de palavras e algumas delas são o invasor. Algumas das ferramentas são:
+
+> **Nota:** John the Ripper e Medusa são as ferramentas mais famosas.
+
 #### 4.5.1. 
 
 ### 4.6. Wireless Attacks
+
+Essas ferramentas são crackers de segurança sem fio, como quebrar wifi – roteadores, trabalhar e manipular pontos de acesso. Os ataques sem fio não se limitam à quebra de senhas, eles também são usados ​​na coleta de informações e no conhecimento do comportamento das vítimas na Internet.
+
+Por exemplo, a vítima está conectada a um ponto de acesso comprometido ou a um ponto de acesso falso e pode ser usado como um ataque *Man-in-The-Middle*. Algumas das ferramentas são:
+
+> **Nota:** Aircrack-ng e Ghost Phisher são as ferramentas mais famosas.
 
 #### 4.6.1. 
 
 ### 4.7. Reverse Engineering
 
+Engenharia Reversa é quebrar as camadas dos aplicativos ou software. Isso é usado na criação de rachaduras e patches para diferentes softwares e serviços. Essas ferramentas alcançam o código-fonte da aplicação, entendem seu funcionamento e manipulam de acordo com as necessidades.
+
+Por exemplo, ferramentas de engenharia reversa também são usadas por empresas de ponta para conhecer a lógica e a ideia por trás do software. Algumas das ferramentas são:
+
+> **Nota:** as ferramentas mais famosas são ollydbg e apltools.
+
 #### 4.7.1. 
 
 ### 4.8. Exploitation Tools
+
+Essas ferramentas são usadas para explorar diferentes sistemas como computadores pessoais e telefones celulares. Essas ferramentas podem gerar cargas úteis para o sistema vulnerável e, por meio dessas cargas, as informações dos dispositivos podem ser exploradas.
+
+Por exemplo, o sistema da Vítima é comprometido usando cargas úteis pela Internet ou instalando-o se estiver fisicamente acessível. Algumas das ferramentas são:
+
+> **Nota:** a ferramenta mais famosa é o Metasploit (há cursos para aprender o Metasploit)
 
 #### 4.8.1. 
 
 ### 4.9. Sniffing & Spoofing
 
-#### 4.9.1. 
+Acessar secretamente qualquer dado não autorizado pela rede é sniffing. Ocultar identidade real e criar identidade falsa e usá-la para qualquer trabalho ilegal ou não autorizado é spoofing. A falsificação de IP e a falsificação de MAC são dois ataques famosos e mais usados. Algumas das ferramentas são:
+
+> **Nota:** a ferramenta mais utilizada é o Wireshark.
+
+#### 4.9.1. arpspoof
+
+**Descrição**
+
+Ataque *Man-in-The-Middle*, aplica um envenenamento na rede, fazendo com que o MACAddress da máquina seja o mesmo do Gateway, visualizando toda a informação que passa por mim. Para mais informações, acesse os comandos de ajuda `man arpspoof`e `arpspoof --help`.
+
+**Exemplos**
+
+- Utilização
+
+```bash
+$ arpspoof [-i interface] [-c own|host|both] [-t target] [-r] host
+```
+
+#### 4.9.2. dnsspoof
+
+**Descrição**
+
+Ataque *Man in the Middle*, aplica um envenenamento no DNS, fazendo com que o DNS principal seja sua máquina, visualizando toda a informação que passa. Por exemplo, ao aplicar o comando `nslookup facebook.com.br`, será retornado um endereço de IP, com o `dnsspoof`, será alterado este para o da sua máquina. Para mais informações, acesse os comandos de ajuda `man dnsspoof`e `dnsspoof --help`.
+
+**Exemplos**
+
+- Utilização
+
+```bash
+$ dnsspoof [-i interface] [-f hostfile] [expression]
+```
+
+#### 4.9.3. ettercap
+
+**Descrição**
+
+Para mais informações, acesse os comandos de ajuda `man ettercap`e `ettercap --help`.
+
+**Exemplos**
+
+- Utilização
+
+```bash
+
+```
+
+#### 4.9.4. wireshark
+
+**Descrição**
+
+
+
+**Exemplos**
+
+- Utilização
+
+```bash
+
+```
 
 ### 4.10. Post Exploitation
+
+Essas ferramentas usam *backdoors* para voltar ao sistema vulnerável, ou seja, para manter o acesso à máquina. Como o nome sugere, eles são úteis ou usados ​​principalmente após um ataque ter sido feito anteriormente na máquina da vítima.
+
+Por exemplo, depois que uma vítima de ataque removeu a vulnerabilidade do sistema, nessa situação, se o invasor quiser acessar os dados novamente, essas ferramentas serão úteis. Algumas das ferramentas são:
+
+> **Nota:** a ferramenta mais famosa é o Powersploit.
 
 #### 4.10.1. 
 
 ### 4.11. Forensics
 
+Essas ferramentas são usadas por especialistas forenses para recuperar informações de qualquer sistema ou dispositivo de armazenamento. Isso ajuda na coleta de informações durante a busca de evidências de qualquer crime cibernético. Algumas das ferramentas são:
+
+> **Nota:** a ferramenta mais famosa é a autópsia, que também tem sido usada por forças de segurança, muitos funcionários judiciais e investigadores.
+
 #### 4.11.1. 
 
 ### 4.12. Reporting Tools
+
+Após toda a avaliação e teste de vulnerabilidade os analistas têm que reportar tudo isso ao cliente de forma organizada e autenticada. Essas ferramentas desenvolvem estatísticas e informações para ajudar na análise. Algumas das ferramentas são:
+
+> **Nota:** as ferramentas mais famosas são faraday, Dradis e Pipal.
 
 #### 4.12.1. 
 
 ### 4.13. Social Engineering Tools
 
-#### 4.13.1. 
+Como o nome sugere, essas ferramentas geram serviços semelhantes que as pessoas usam no dia a dia e extraem informações pessoais usando esses serviços falsos. Essas ferramentas usam e manipulam o comportamento humano para coleta de informações.
+
+Por exemplo, o Phishing é um dos exemplos de engenharia social, nisso, uma página inicial de aparência semelhante de qualquer plataforma social é criada e, em seguida, os detalhes de login são comprometidos. Algumas das ferramentas são:
+
+> **Nota:** a ferramenta de engenharia social mais famosa é o SET.
+
+#### 4.13.1.
 
 ### 4.14. System Services
 

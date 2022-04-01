@@ -58,7 +58,7 @@
 
 ## 1. Introdução
 
-Kali Linux é uma distribuição GNU/Linux baseada no Debian, considerado o sucessor do Back Track. O projeto apresenta várias melhorias, além de mais aplicativos. É voltado principalmente para auditoria e segurança de computadores em geral. É desenvolvido e mantido pela Offensive Security Ltd. Desde 21 de janeiro de 2016, é uma distribuição "rolling-release", que remete basicamente à entrega contínua de um software.
+Kali Linux é uma distribuição GNU/Linux baseada no Debian (mais especificamente no Debian "Testing"), considerado o sucessor do Back Track. O projeto apresenta várias melhorias, além de mais aplicativos. É voltado principalmente para auditoria e segurança de computadores em geral. É desenvolvido e mantido pela Offensive Security Ltd. Desde 21 de janeiro de 2016, é uma distribuição "rolling-release", que remete basicamente à entrega contínua de um software.
 
 O Kali Linux dispõe de numerosos softwares pré-instalados, incluindo o **Nmap** (*port scanner*), **WireShark** (um sniffer), **John the Ripper** (*crackeador* de *password*) e **Aircrack-ng** (software para testes de segurança em rede de computadores/redes sem fios, entre muitas outras aplicações voltadas para diversas tarefas da área de segurança da informação, como: teste de penetração, computação forense, pesquisa de segurança, etc.
 
@@ -73,12 +73,22 @@ O Kali Linux dispõe de numerosos softwares pré-instalados, incluindo o **Nmap*
 - Suporte multi idiomas;
 - Completamente customizável.
 
+> **Nota:** como alternativa do Kali Linux, há o sistema Parrot. Verifique mais detalhes na [página oficial do site][3].
+
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
 
 ## 2. Instalação
 
-Vale enfatizar a priori que o Kali Linux possui uma versão Live (até uma versão Live Forencis) para instalação em dispositivos remotos. Entretanto, para uma instalação normal do sistema operacional em disco, é necessários seguir os procedimentos padrões para isso:
+Vale enfatizar a priori que o Kali Linux possui uma versão Live (até uma versão Live Forensics) para instalação em dispositivos remotos. Segue as formas possíveis de instalação do Kali Linux:
+
+- Live USB
+- DualBoot
+- Virtualizado
+- Raspberry Pi
+- ...
+
+Entretanto, para uma instalação normal do sistema operacional em disco, é necessários seguir os procedimentos padrões para isso:
 
 - Criar um USB Bootável com o Kali Linux (Ventoy, Rufus, Win32 - ou com o comando no Linux: `dd if=<nomeISO> of=/dev/<nome> bs=512k`);
 - Iniciar sistema pelo bootável;
@@ -398,5 +408,6 @@ Por exemplo, o Phishing é um dos exemplos de engenharia social, nisso, uma pág
 <!-- SITES -->
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s2-diskpartrecommend-x86
 [2]: https://www.kali.org/docs/general-use/kali-linux-sources-list-repositories/
+[3]: 
 
 <!-- IMAGES -->

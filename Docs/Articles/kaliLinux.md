@@ -356,13 +356,7 @@ Para mais informações, acesse os comandos de ajuda `man ettercap`e `ettercap -
 
 
 
-**Exemplos**
-
-- Utilização
-
-```bash
-
-```
+Verifique o artigo [Dominando o Wireshark][4], criado para agrupar as melhores dicas e conteúdos dessa ferramenta poderosa de análise de tráfego de rede.
 
 ### 4.10. Post Exploitation
 
@@ -408,6 +402,7 @@ Por exemplo, o Phishing é um dos exemplos de engenharia social, nisso, uma pág
 <!-- SITES -->
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s2-diskpartrecommend-x86
 [2]: https://www.kali.org/docs/general-use/kali-linux-sources-list-repositories/
-[3]: 
+[3]: https://www.parrotsec.org/
+[4]: ../Articles/wireshark.md
 
 <!-- IMAGES -->

@@ -55,11 +55,24 @@ Existem dois tipos de regras que podem ser criadas: as permanentes e as temporá
 
 Para criar uma regra, siga os seguintes passos:
 
-- Clicar no pacote que queira criar a regra para;
-- View > Coloring Rules;
-- Aqui, estará a tabela padrão de regras já existente:
+- **Analyse** > **Display Filter Expression...**;
+- Aqui está todas as relações de regras de expressões que existem;
+- Crie a sua regra a partir daqui (confira o exemplo abaixo);
+  - **TCP - Transmission Control Protocol** > **tcp.analysis.fast_retransmission - Expert info**;
+  - **is present** > **OK** > **enter**;
+  - Perceba que sua regra de filtro vai para a barra superior do Wireshark. Ali, é possível editar os seus filtros manualmente:
+    - **tcp.analysis.fast_retransmission or tcp.analysis.duplicate_ack**.
+- Tendo o seu filtro em mãos, entrar no menu:
+  - **View** > **Coloring Rules**;
+  - **New coloring rule** > Colar o filtro na opção **Filter** > Alterar o nome da regra > **OK**;
+
+Aqui, estará a tabela padrão de regras já existente:
 
 ![A][A]
+
+Vale ressaltar que a ordem das regras nessa tela significa a prioridade da regra para o item. Por exemplo, caso exista três regras para um determinado item, e as três estão validadas ao mesmo tempo, a primeira a aparecer será pela ordem de cima para baixo do quadro de regras.
+
+
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

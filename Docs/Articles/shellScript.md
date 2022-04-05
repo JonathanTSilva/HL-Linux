@@ -59,6 +59,8 @@
     - [5.9. Requisitar informações WEB](#59-requisitar-informações-web)
     - [5.10. Proteger de ataques *defacement* (*deface*)](#510-proteger-de-ataques-defacement-deface)
     - [5.11. Proteger de invasor de porta](#511-proteger-de-invasor-de-porta)
+    - [5.12. IP Sweeping](#512-ip-sweeping)
+    - [5.12. MAC spoofing](#512-mac-spoofing)
 
 <!-- VOLTAR AO INÍCIO -->
 <a href="#"><img width="40px" src="https://github.com/JonathanTSilva/JonathanTSilva/blob/main/Images/back-to-top.png" align="right" /></a>
@@ -1354,7 +1356,7 @@ Para executar o script como um **daemon** (serviço de sistema), execute o scrip
 
 ### 5.11. Proteger de invasor de porta
 
-- Entrada de dados: ``;
+- Entrada de dados: `bash`;
 - Objetivo: Se proteger de um ataque com `nmap` para ler alguma porta aberta;
 - Adicional: N/A.
 
@@ -1377,6 +1379,54 @@ $ for a in $(seq 30); do nc -lvp $a & done
 # OR
 $ while :; do nc -lkvvp 80 | nc -lkvvp 443; done
 ```
+
+### 5.12. IP Sweeping
+
+- Entrada de dados: `./ipsweeper <IPmask>`;
+- Objetivo: Listar todos os endereços de IPs conectadosem minha rede;
+- Adicional: N/A.
+
+```shell
+#!/bin/bash
+for ip in `seq 0 254`; do
+  ping -c 1 $1.$ip | grep "64 bytes" | cut -d" " -f 4 | tr -d":"
+done &
+```
+
+### 5.12. MAC spoofing
+
+- Entrada de dados: `bash`;
+- Objetivo: Alterar o enderço MAC de um dispositivo;
+- Adicional: Mostrar para Windows também e apresentar as soluções para prever este ataque.
+
+**Linux**
+
+```bash
+$ ifconfig eth0 down # Disable the interface
+$ ifconfig eth0 hw ether 00:11:22:33:44:55 # Change the MAC
+$ ifconfig eth0 up # Enable interface
+```
+
+**Windows**
+
+- Instalar uma ferramenta que chama Technitium MAC Address Changer;
+- Execute o arquivo;
+- Vá para a **guia de conexões de rede** no Technitium;
+- Selecione o **Wifi**;
+- Selecione a opção de **MAC Address randômico**;
+- Clique em **Mudar agora**.
+
+**Prevenção - MAC Locking**
+
+É possível trancar o endereço de MAC para uma porta física específica no switch. Quando o  MAC-locking tranca uma combinação MAC/porta, isso previne que o endereço de MAC seja utilizado por outra porta no segmento. Switchs gerenciáveis permitem esse bloqueio de porta, mas são muito caros.
+
+Assim, utilizar uma tabela ARP (estático) na combinação com a tabela de rotas pode previnir a marioria das possibilidades de spoofings de segmento compartilhado.
+
+**Observações**
+
+- MAC Addres não é um ataque que vai te dar acesso ao sistema, mas pode desempenhar regras muito importantes na rede de hacking;
+- O MAC spoofing é um dos passos mais importantes em um Hacking de Wifi (Man-in-the-middle - MITM);
+- Você pode alterar o seu MAC para outro e pretender se passar por outro dispositivo. Assim, épossível "ficar no meio" interceptando os pacotes;
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

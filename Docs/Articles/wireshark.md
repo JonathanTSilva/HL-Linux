@@ -72,12 +72,55 @@ Aqui, estará a tabela padrão de regras já existente:
 
 Vale ressaltar que a ordem das regras nessa tela significa a prioridade da regra para o item. Por exemplo, caso exista três regras para um determinado item, e as três estão validadas ao mesmo tempo, a primeira a aparecer será pela ordem de cima para baixo do quadro de regras.
 
+### 3.2. Usando filtros de exibição
 
+Os filtros de exibição (`Analyze`) se diferem dos filtros de captura (`Capture`), que são aplicados no momento da captura do tráfego, selecionando quais pacotes serão recolhidos. Os de exibição são aplicados após a captura do tráfego, analisando e exibindo as informações filtradas depois da requisição destes pacotes. Após remover os filtros de exibição, todos os pacotes ainda estarão lá.
+
+**Composição básica da sintaxe**
+
+- Protocolo (IP, porta de pesquisa, SNMP, FTP, etc);
+- String (`dst`, `src`, `tcp`, etc);
+- Relação;
+  - Expressões Matemáticas:
+    - `==` (igual a);
+    - `!=` (não igual a);
+    - `>` (maior que);
+    - `<` (menor que);
+    - `>=` (maior ou igual a);
+    - `<=` (menor ou igual a).
+- Resultado (`10.0.0.1`);
+- Condições:
+  - Is present (está presente);
+  - Contains (contém - não pode ser utilizado em campos diferentes);
+  - Matches (correspondências - permitem que o filtro se aplique em uma expressão regular).
+- Combinações de filtros:
+  - AND;
+  - OR;
+  - XOR;
+  - NOT.
+
+**Exemplo**
+
+```cmd
+ip.src == 10.0.0.1 and tcp.port == 80
+!(udp.port == 443) and udp
+```
+
+Há uma forma de facilitar esses comandos utilizados com frequência, adicionando-os como atalhos na barra de ferramenta ao clicar no botão `+` ao lado da barra de filtros. Além disso, esses atalhos de filtros podem ser editados pela janela **Edit** > **Preferences** > **Filter Buttons**.
+
+Existem três tipos de filtros de exibição diferentes:
+
+1. Filtros padrão;
+2. Filtros de expressão;
+3. Filtros direto dos pacotes (clicando com o botão direito nas informações do pacote e selecionar **Apply as filter**).
+
+> **Nota:** para mais informações, verifique a página de [filtros do Wireshark][3].
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
 [1]: https://issuu.com/novateceditora/docs/capitulo9788575223888
 [2]: https://www.wireshark.org/
+[3]: https://www.wireshark.org/docs/man-pages/wireshark-filter.html
 
 <!-- IMAGES -->
 [A]: ../../Images/wireshark01.png

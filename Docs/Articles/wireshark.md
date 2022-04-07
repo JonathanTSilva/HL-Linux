@@ -38,6 +38,11 @@ Um analisador de rede geralmente oferecem os seguintes recursos:
 
 A instalação do Wireshark pode ser efetivada de maneira muito simples. O download dos arquivos para todos os sistemas operacionais pode ser feito através do [site oficial do software][2].
 
+Note que para o ambiente windows, é perguntado se pode ser instalado dois softwares complementares:
+
+- USBpcap - é um sniffer USB de código aberto para Windows, e
+- Npcap - Biblioteca de captura (e envio) de pacotes do Nmap Project para Microsoft Windows.
+
 Entretanto, para ambientes baseados em Debian/Ubuntu, por exemplo, pode ser realizado através da linha de comando:
 
 ```bash
@@ -115,6 +120,31 @@ Existem três tipos de filtros de exibição diferentes:
 3. Filtros direto dos pacotes (clicando com o botão direito nas informações do pacote e selecionar **Apply as filter**).
 
 > **Nota:** para mais informações, verifique a página de [filtros do Wireshark][3].
+
+### 3.3. Perfis de configuração
+
+Os perfis de configuração definirão suas preferências pessoais para cada projeto, facilitando o processo e o otimizando o tempo de configuração. Os perfis estão ligados com as colunas de exibição, filtros e interfaces com o usuário. Exemplo, um perfil para desempenho, outro para análise do tráfego para o protocolo UDP, outro para Wireless, entre outros.
+
+Para adicionar colunas, sem ligá-las com perfis, basta clicar com o botão direito em algum parâmetro do pacote, na aba de **Packet Details**, e selecionar **Apply as Column** (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>). Note que foi acrescentado uma coluna na visualização, com aquele determinado parâmetro. Entretanto, vale ressaltar que esta coluna estará em todas as análises de pacotes (mesmo para as que não possuem aquele parâmetro), e sumirá na próxima reinicialização do software. Da mesma forma ocorre para filtros e outras interfaces com usuário. Para resolver tal problema, adicionar perfis.
+
+Para criar um novo perfil, clicar na aba **Edit** e **Configuration Profiles**. Ao adicionar um novo, é criado um perfil por base no default, sendo necessárias modificações para este perfil atual.
+
+Para alterar facilmente entre os perfis, pode-se clicar no canto inferior direito e manusear todas as configurações para isso.
+
+Os arquivos que são salvos para cada perfil são:
+
+- colorfilters
+- decode_as_entries
+- dfilter_buttons
+- dfilters
+- language
+- preferences
+- recent
+- recent_common
+
+> **Nota:** para compartilhar algum perfil criado, acesse a pasta de configuração do Wireshark (**Help** > **About Wireshark** > **Folders** > **Personal configuration**) e copiar os arquivos da pasta (perfil) que lhe interessa.
+
+> **Atenção:** para restaurar o perfil **default**, abra a pasta de configuração de perfis (**Help** > **About Wireshark** > **Folders** > **Personal configuration**) e elimine os arquivos de configuração `colorfilters`, `dfilters` e `preferences`, deixando apenas os filtros `language`, `recent` e `recent_common`. Assim, ao abrir novamente o perfil **default**, estes arquivos são resetados.
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->

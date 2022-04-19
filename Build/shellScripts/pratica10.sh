@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 #============================================================
 #------------------------ HEADER ----------------------------
@@ -9,7 +10,7 @@
 #    environment
 #
 # IMPLEMENTATION
-#    version         1.0.0
+#    version         1.0.1
 #    author          Jonathan T. Silva
 #    license         MIT License
 #    script_id       0
@@ -17,6 +18,8 @@
 # CHANGELOG
 #    v 1.0.0 : 2022/03/08 : JonathanTSilva
 #        - Script creation
+#    v 1.0.2 : 2022/04/18 : JonathanTSilva
+#        - Fix some syntax problems
 #============================================================
 #           Copyright (C) 2022 Jonathan T. Silva
 #          https://www.github.com/JonathanTSilva
@@ -27,11 +30,10 @@
 #============================================================
 
 # PPA
-PPA_PIPER_LIBRATBAG="ppa:libratbag-piper/piper-libratbag-git"
 PPA_LUTRIS="ppa:lutris-team/lutris"
 
 # DIRECTORIES
-DIR_DOWNLOAD_SOFTWARES="$HOME/Downloads/softwares"
+DIR_DOWNLOAD_SOFTWARES="$HOME/Downloads/Softwares"
 
 # CORES
 RED="\e[1;91m"
@@ -46,13 +48,15 @@ NO_COLOR="\e[0m"
 SOFTWARES_TO_INSTALL_DEB=(
     https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
     https://github.com/Automattic/simplenote-electron/releases/download/v1.8.0/Simplenote-linux-1.8.0-amd64.deb # Simple Note
+    https://az764295.vo.msecnd.net/stable/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1/code_1.65.2-1646927742_amd64.deb # VSCode
+    https://repo.steampowered.com/steam/archive/precise/steam_latest.deb # Steam
 )
 
 SOFTWARES_TO_INSTALL_APT=(
-    snapd
-    winff
     guvcview
+    obs-studio
     virtualbox
+    anki
 )
 
 SOFTWARES_TO_INSTALL_SNAP=(
@@ -81,10 +85,10 @@ else
 fi
 
 # SNAP TEST
-if [[ ! -x ${which snap} ]]; then
+if [[ ! -x `which snap` ]]; then
     echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O programa snap não está instalado."
     echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Instalando snap..."
-    sudo apt install snap -y &> /dev/null
+    sudo apt install snapd -y &> /dev/null
 else
     echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O programa snap já está instalado."
 fi
@@ -125,8 +129,8 @@ add_ppas () {
 #------------------------------------------------------------
 
 download_and_install_deb_pkgs () {
-    [[ ! -d "$DIRETORIO_DOWNLOAD_PROGRAMAS" ]] && mkdir "$DIRETORIO_DOWNLOAD_PROGRAMAS"
-    for url in %{SOFTWARES_TO_INSTALL_DEB[@]}; do
+    [[ ! -d "$DIR_DOWNLOAD_SOFTWARES" ]] && mkdir "$DIR_DOWNLOAD_SOFTWARES"
+    for url in ${SOFTWARES_TO_INSTALL_DEB[@]}; do
         extract_url=$(echo -e ${url##*/} | sed 's/-/_/g' | cut -d _ -f 1)
         if ! dpkg -l | grep -iq $extract_url; then
             echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Baixando o arquivo $extract_url..."
@@ -142,22 +146,24 @@ download_and_install_deb_pkgs () {
 }
 
 install_apt_pkgs () {
-    for software in ${SOFTWARES_TO_INSTALL_APT[@]};
+    for software in ${SOFTWARES_TO_INSTALL_APT[@]}; do
         if ! dpkg -l | grep -q $software; then
             echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Instalando o $software..."
             sudo apt install $software -y &> /dev/null
         else
-            echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O pacote $software já está instalado.";
+            echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O pacote $software já está instalado."
+    	fi
     done
 }
 
 install_snap_pkgs () {
-    for software in ${SOFTWARES_TO_INSTALL_SNAP[@]};
+    for software in ${SOFTWARES_TO_INSTALL_SNAP[@]}; do
         if ! snap list | grep -q $software; then
-            echo -e "[  ${GREEN}OK${NO_COLOR}  ]  - Instalando o $software..."
+            echo -e "[  ${GREEN}OK${NO_COLOR}  ] - Instalando o $software..."
             sudo snap install $software &> /dev/null
         else
-            echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O pacote $software já está instalado.";
+            echo -e "[ ${BLUE}INFO${NO_COLOR} ] - O pacote $software já está instalado."
+        fi
     done
 }
 

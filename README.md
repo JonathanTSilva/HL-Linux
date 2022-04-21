@@ -66,27 +66,7 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
 
 ## 🤝 Contribuindo
 
-Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem-vinda! :tada:
-
-**Como fazer um _pull request_ corretamente:**
-
-- Criar um _fork_ pessoal do projeto no GitHub;
-- Clonar o _fork_ em sua máquina local. Seu repositório remoto do GitHub é conhecido por `origin`;
-- Adicionar o repositório original como um remoto chamado `upstream`;
-- Se você criou o _fork_ há algum tempo, certifique-se de realizar pull das alterações no seu repositório local;
-- Criar um nova _branch_ para trabalhar nela! Ramifique da `develop`, se existir; caso contrário, crie da `main`;
-- Implementar/corrigir sua _feature_, não esquecendo de comentar o seu código;
-- Siga o estilo de código do projeto em questão, inclusive a indentação;
-- Se o projeto apresentar testes, execute-os;
-- Escreva ou adapte os testes, conforme necessário;
-- Adicionar ou alterar a documentação, conforme necessário;
-- Junte seus _commits_ em um único _commit_ com o [rebase interativo][1] do Git. Criar uma nova _branch_, caso seja necessário;
-- _Push_ sua _branch_ para seu _fork_ do GitHub, o remoto `origin`;
-- Do seu _fork_, abra uma _pull request_ na _branch_ correta. Aponte a _branch_ `develop` do projeto se existir; caso contrário, vá para `main`;
-- Uma vez que o _pull request_ for aprovado e mesclado, é possível extrair as alterações do `upstream` para seu repositório local e excluir suas _branchs_ extras;
-- Pronto! Muito obrigado pela contribuição.
-
-> Sempre escreva suas mensagens de commit no tempo presente. Sua mensagem de commit deve descrever o que o commit, quando aplicado, faz com o código – não o que você fez com o código.
+Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda! Por favor, leia as [diretrizes de contribuição][16] para contribuir corretamente. :tada:
 
 <!-- MIT LICENSE -->
 <a href="https://github.com/JonathanTSilva/HL-Linux/blob/main/LICENSE"><img width="100px" src="https://miro.medium.com/max/886/1*C87EjxGeMPrkTuVRVWVg4w.png" align="right" /></a>
@@ -118,6 +98,7 @@ Distribuída por **MIT License**. Veja [LICENSE][2] para mais informações.
 [13]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/atividadesGerais.md
 [14]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/shellScript.md
 [15]: https://github.com/JonathanTSilva/HL-Linux/blob/main/Docs/Articles/rsync.md
+[16]: Docs/CONTRIBUTING.md
 
 <!-- IMAGES -->
 [discos]: https://guialinux.uniriotec.br/wp-content/uploads/sites/28/2021/06/parti%C3%A7%C3%B5es-768x232.png

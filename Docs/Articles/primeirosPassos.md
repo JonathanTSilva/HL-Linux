@@ -175,6 +175,15 @@ Tendo instalados os pacotes e linguagens em sua máquina, o próximo passo é in
 sudo apt -y install postgresql-10 postgresql-contrib postgresql-server-dev-10 redis-server libhired is-dev memcached libmemcached-dev
 ```
 
+- **postgresql-10** → ;
+- **postgresql-contrib** → ;
+- **postgresql-server-dev-10** → ;
+- **redis-server** → ;
+- **libhired** → ;
+- **is-dev** → ;
+- **memcached** → ;
+- **libmemcached-dev** → ;
+
 Também instalo o mongodb como banco, mas uma dica é não utilizar o mongodb como banco de dados primário, sem saber se realmente o precisa utilizar. Não só isso, podemos acabar utilizando o mongodb em situações que a melhor opção seria o postgresql.
 
 > **Nota:** na dúvida, sempre escolha o postgresql como padrão; nunca o mongodb, nem o redis. Redis é um bom cache e o mongo é excelente para dados indiferentes, como de *analytics* ou logs.

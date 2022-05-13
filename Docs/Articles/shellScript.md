@@ -461,7 +461,7 @@ $ mkdir ~/.bin
 # Copiar todos os seus scripts para dentro do .bin, neste caso:
 $ cp pratica1.sh ~/.bin/
 # Colocar o diretório .bin dentro da variável PATH:
-$ export PATH=$PATH:/home/jonathan/.bin
+$ export PATH=$PATH:$HOME/.bin
 # Executar o script
 $ pratica1.sh
 ```

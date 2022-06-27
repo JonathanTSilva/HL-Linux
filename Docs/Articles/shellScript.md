@@ -1430,16 +1430,16 @@ Assim, utilizar uma tabela ARP (estático) na combinação com a tabela de rotas
 
 <!-- MARKDOWN LINKS -->
 <!-- SITES -->
-[1]: ../../Build/shellScripts/pratica1.sh
-[2]: ../../Build/shellScripts/pratica2.sh
-[3]: ../../Build/shellScripts/pratica3.sh
-[4]: ../../Build/shellScripts/pratica4.sh
-[5]: ../../Build/shellScripts/pratica5.sh
-[6]: ../../Build/shellScripts/pratica6.sh
+[1]: ../../Build/shellScripts/Course-ADSS/pratica1.sh
+[2]: ../../Build/shellScripts/Course-ADSS/pratica2.sh
+[3]: ../../Build/shellScripts/Course-ADSS/pratica3.sh
+[4]: ../../Build/shellScripts/Course-ADSS/pratica4.sh
+[5]: ../../Build/shellScripts/Course-ADSS/pratica5.sh
+[6]: ../../Build/shellScripts/Course-ADSS/pratica6.sh
 [7]: https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
-[8]: ../../Build/shellScripts/pratica7.sh
-[9]: ../../Build/shellScripts/pratica8.sh
-[10]: ../../Build/shellScripts/pratica9.sh
+[8]: ../../Build/shellScripts/Course-ADSS/pratica7.sh
+[9]: ../../Build/shellScripts/Course-ADSS/pratica8.sh
+[10]: ../../Build/shellScripts/Course-ADSS/pratica9.sh
 [11]: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
 <!-- IMAGES -->

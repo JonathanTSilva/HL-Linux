@@ -66,6 +66,12 @@ Este projeto pertence à uma série de repositórios denominada HomeLab. Essa se
   - [Shell Script][14]
   - [RSYNC][15]
 
+## 📚 Bibliografia
+
+MULLER, M. G. **Aprenda a dominar o shell script.** Curso do Diolinux Play. Disponível em: https://play.diolinux.com.br/. Acesso em: 10 março 2020.
+
+BLUM, R.; BRESNAHAN, C. **Linux command line and shell scripting bible - 3rd Edition**. John Wiley & Sons, 2015.
+
 ## 🤝 Contribuindo
 
 Se você quer contribuir com este projeto e aprimorá-lo, sua ajuda é sempre bem vinda! Por favor, leia as [diretrizes de contribuição][16] para contribuir corretamente. :tada:

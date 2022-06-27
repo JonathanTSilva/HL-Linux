@@ -11,3 +11,13 @@
 #============================================================
 #------------------------- BODY -----------------------------
 #============================================================
+
+# Process new user accounts
+input="users.csv"
+# The read command does the work of moving onto the next line of text in the .csv text file
+while IFS=',' read -r userid name
+do
+  echo "adding $userid"
+  useradd -c "$name" -m $userid
+# Feed the data from the file into the while command
+done < "$input"

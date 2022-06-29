@@ -49,7 +49,7 @@
 <table>
   <tr>
     <td>
-    Este projeto pertence à uma série de repositórios denominada HomeLab. Essa sequência foi criada a fim de agrupar todos os estudos realizados em determinada area, neste caso, o Linux. Documenta toda a experiência de um iniciante neste kernel, contendo <i>insights<i>, dicas, resoluções de problemas e muitas outras coisas interessantes que fazem valer a pena o consumo e contribuição ao projeto <b>HomeLab - Linux</b>! Aproveite e sinta-se a vontade para comentar, tirar suas dúvidas, criticar e, principalmente, contribuir. :penguin:
+    Este projeto pertence à uma série de repositórios denominada HomeLab. Essa sequência foi criada a fim de agrupar todos os estudos realizados em determinada area, neste caso, o Linux. Documenta toda a experiência de um iniciante neste kernel, contendo <i>insights</i>, dicas, resoluções de problemas e muitas outras coisas interessantes que fazem valer a pena o consumo e contribuição ao projeto <b>HomeLab - Linux</b>! Aproveite e sinta-se a vontade para comentar, tirar suas dúvidas, criticar e, principalmente, contribuir. :penguin:
     </td>
   </tr>
 </table>

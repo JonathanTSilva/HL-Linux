@@ -2,7 +2,7 @@
 #============================================================
 #------------------------ HEADER ----------------------------
 #============================================================
-# LCLSSB02.sh - Exercice 03 - Read a file and insert it into
+# LCLSSB03.sh - Exercice 03 - Read a file and insert it into
 # a database
 #     Book: Linux Command Line and Shell Scripting Bible
 #============================================================

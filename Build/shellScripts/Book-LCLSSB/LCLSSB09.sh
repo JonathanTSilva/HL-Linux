@@ -128,59 +128,113 @@ EXIT_LINE1="Because the account, $USER_ACCOUNT, is not "
 EXIT_LINE2="the one you wish to delete, we are leaving the script..."
 process_answer
 
+#===========================================================
+#----------------------- SOLUTION 1 ------------------------
+#===========================================================
+# # Search for any running processes that belong to the User Account
+# echo
+# echo "Step #2 - Find process on system belonging to user account"
+# echo
+# echo "$USER_ACCOUNT has the following processes running: "
+# echo
+# ps -u $USER_ACCOUNT # List user processes running.
+
+# case $? in
+# 1)     # No processes running for this User Account
+#     echo "There are no processes for this account currently running."
+#     echo
+# ;;
+# 0)     # Processes running for this User Account.
+#     # Ask Script User if wants us to kill the processes.
+#     unset ANSWER
+#     LINE1="Would you like me to kill the process(es)? [y/n]"
+#     get_answer
+
+#     case $ANSWER in
+#     y|Y|YES|yes|Yes|yEs|yeS|YEs|yES )      # If user answers "yes", kill User Account processes.
+#         echo
+
+#         # Clean-up temp file upon signals
+#         trap "rm $USER_ACCOUNT_Running_Process.rpt" SIGTERM SIGINT SIGQUIT
+
+#         # List user processes running
+#         ps -u $USER_ACCOUNT > $USER_ACCOUNT_Running_Process.rpt
+
+#         exec < $USER_ACCOUNT_Running_Process.rpt # Make report Std Input
+        
+#         read USER_PROCESS_REC  First record will be blank
+#         read USER_PROCESS_REC 
+        
+#         while [ $? -eq 0 ]
+#         do
+#             # obtain PID
+#             USER_PID=$(echo $USER_PROCESS_REC | cut -d " " -f1)
+#             kill -9 $USER_PID
+#             echo "Killed process $USER_PID"
+#             read USER_PROCESS_REC
+#         done
+
+#         echo
+#         rm $USER_ACCOUNT_Running_Process.rpt # Remove temp report.
+#     ;;
+#     *) # If user answers anything but "yes", do not kill.
+#         echo
+#         echo "Will not kill the process(es)"
+#         echo
+#     ;; 
+#     esac
+# ;; 
+# esac
+
+#===========================================================
+#----------------------- SOLUTION 2 ------------------------
+#===========================================================
 # Search for any running processes that belong to the User Account
 echo
 echo "Step #2 - Find process on system belonging to user account"
 echo
-echo "$USER_ACCOUNT has the following processes running: "
-echo
-ps -u $USER_ACCOUNT # List user processes running.
+
+ps -u $USER_ACCOUNT >/dev/null # Are user processes running?
 
 case $? in
-1)     # No processes running for this User Account
+1)  # No processes running for this User Account
     echo "There are no processes for this account currently running."
     echo
 ;;
-0)     # Processes running for this User Account.
+0)  # Processes running for this User Account.
     # Ask Script User if wants us to kill the processes.
-    unset ANSWER
+    echo "$USER_ACCOUNT has the following processes running: "
+    echo
+    ps -u $USER_ACCOUNT
+
     LINE1="Would you like me to kill the process(es)? [y/n]"
     get_answer
 
     case $ANSWER in
-    y|Y|YES|yes|Yes|yEs|yeS|YEs|yES )      # If user answers "yes", kill User Account processes.
+    y|Y|YES|yes|Yes|yEs|yeS|YEs|yES )   # If user answers ''yes'',
+                                        # kill User Account processes.
         echo
+        echo "Killing off process(es)..."
 
-        # Clean-up temp file upon signals
-        trap "rm $USER_ACCOUNT_Running_Process.rpt" SIGTERM SIGINT SIGQUIT
+        # List user processes running code in variable, COMMAND_1
+        COMMAND_1="ps -u $USER_ACCOUNT --no-heading"
 
-        # List user processes running
-        ps -u $USER_ACCOUNT > $USER_ACCOUNT_Running_Process.rpt
+        # Create command to kill proccess in variable, COMMAND_3
+        COMMAND_3="xargs -d [[Backslash Backslash]]n /usr/bin/sudo /bin/kill -9"
 
-        exec < $USER_ACCOUNT_Running_Process.rpt # Make report Std Input
-        
-        read USER_PROCESS_REC  First record will be blank
-        read USER_PROCESS_REC 
-        
-        while [ $? -eq 0 ]
-        do
-            # obtain PID
-            USER_PID=$(echo $USER_PROCESS_REC | cut -d " " -f1)
-            kill -9 $USER_PID
-            echo "Killed process $USER_PID"
-            read USER_PROCESS_REC
-        done
+        # Kill processes via piping commands together
+        $COMMAND_1 | gawk '{print $1}' | $COMMAND_3
 
         echo
-        rm $USER_ACCOUNT_Running_Process.rpt # Remove temp report.
+        echo "Process(es) killed."
     ;;
-    *) # If user answers anything but "yes", do not kill. 
+    *)   # If user answers anything but ''yes'', do not kill.
         echo
-        echo "Will not kill the process(es)"
+        echo ''Will not kill the process(es)''
         echo
-    ;; 
+    ;;
     esac
-;; 
+;;
 esac
 
 # Create a report of all files owned by User Account

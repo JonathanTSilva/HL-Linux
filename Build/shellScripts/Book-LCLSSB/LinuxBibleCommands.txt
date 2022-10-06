@@ -1,0 +1,1312 @@
+============================================================
+------------------- KEYBOARDS SHORTCUTS --------------------
+============================================================
+
+Ctrl + Alt + [F1 - F2]
+    change between graphical and virtual console interface
+
+============================================================
+------------------------- COMMANDS -------------------------
+============================================================
+
+setterm -inversescreen on/off
+    inverse screen in virtual console terminal
+ls
+    ls -laFR
+    ls -l my_script
+    ls -l my_scr?pt
+    ls -l my*
+    ls -l my_s*t
+    ls -l my_scr[ai]pt
+        two potential choices for a single character in that position
+    ls -l f[a-i]ll
+        range of characters ([a - i])
+    ls -l f[!a]ll
+        specify what should not be included in the pattern (!)
+    ls -l --time=atime test_one
+        to see a file's access time
+    ls -i *data_file
+        view a file or directory inode number
+touch <file>
+    touch -a test_one
+        change the file's access time
+cp <file> <detination>
+    cp -i test_one test_two
+        force the shell to ask whether you want to overwrite a file
+    cp -R Scripts/  Mod_Scripts
+        allows you to recursively copy the contents of an entire directory
+ln
+    ln -s data_file sl_data_file
+        create a symbolic link
+    ln code_file hl_code_file
+        create a hard link
+mv <file1> <file2>
+    mv fall fzll
+        rename file
+    mv /home/christine/Pictures/fzll /home/christine/fall
+        move files/directories
+    mv -i test_one test_two
+rm <file>
+    rm -i fall
+        remove file, with prompts confirmation
+    rm -f f?ll
+        remove using wildcard metachareacter without any prompt confirmation
+    rm -ri My_Dir
+        remove dir and files, with prompts confirmation
+    rm -rf Small_Dir
+        remove an entire directory, contents and all,
+mkdir <dir>
+    mkdir -p New_Dir/Sub_Dir/Under_Dir
+        to create several directories and subdirectories at the same time
+rmdir <dir>   
+    remove empty directories
+tree <dir>
+    display directories, subdirectories, and their files.
+readlink -f [dir]
+    produces the linked file series' final object
+
+------------------- VIEWING FILE CONTENTS ------------------
+
+file <my_file>
+    get a handle on what type of file it inverse
+cat <file>
+    cat -n test1
+        display all the data inside a text file, numbers all the line
+    cat -b test1
+        just number the lines that have text in them
+    cat -T test1
+        don't display tab characteres
+more <file>
+
+less <file>
+
+tail <file>
+        display the last lines in a file (default = 10 lines)
+    tail -n 2 log_file
+        change the number of lines shown
+        or tail -2 logfile
+    tail -f log_file
+        stays active and continues to display a new lines of a file used by other process
+head <file>
+        display a file's first group of lines (default = 10 lines)
+    head -5 log_file
+        change the number of lines shown (-n parameter)
+
+------------------------ PROCESSES -------------------------
+    
+ps
+    ps -ef
+        see everything running on the system
+    ps --forest
+        Displays processes in a hierarchical listing showing parent processes
+top
+    display process information similarly to the ps command, but it does it in real-time mode.
+htop
+    an improved version of the top command
+
+------------------------ DISK SPACE ------------------------
+
+mount -t type device directory
+    basic command for manually mounting a media device. E.g. mount -t vfat /dev/sdb1 /media/disk
+umount [directory | device ]
+    unmount devices
+df
+        see what's happening on all the mounted disks
+    df -h
+        shows the disk space in human-readable form
+du
+        shows the disk usage for a specific directory (by default, the current directory)
+    du -ch
+        produces a grand total of all the files listed, in human-readable form
+
+------------------------ DATA FILES -----------------------
+
+sort <file>
+        sorts data
+    sort -n file1
+        recognize numbers as numbers instead of characters and to sort them based on their numerical values
+    sort -M file1
+        recognize th three-character month nomenclature and sorts appropriately
+    sort -t ':' -k 3 -n /etc/passwd
+        sort the password file based on numerical userid
+    du -sh * | sort -nr
+        sorting numerical outputs
+grep [options] pattern [file]
+    grep t file1
+
+    grep -v t file1
+        reverse the search - output lines that don't match the pattern
+    grep -n t file1
+        find the line numbers where the matching patterns are found
+    grep -c t file1
+        count of how many lines contain the matching pattern
+    grep -e t -e f file1
+        specify more than one matching pattern
+    grep [tf] file1
+        same the above, but using a regular expression
+egrep
+    an offshoot of grep, which allows you to specify POSIX extended regular expressions
+fgrep
+    another version that allows you to specify matching patterns as a list of fixed-string values, separated by newline characters
+gzip
+    compress every file in the directory or gzip [file] (support wildcards)
+tar function [options] object1 object2 ...
+        write the output to a file, popular way to archive data in Linux
+    tar -cvf test.tar test/ test2/
+        create an archive file using this command
+    tar -tf test.tar
+        list (but doesn't extract) the contents of the tar file
+    tar -xvf test.tar
+        extract the contents of the tar file
+    tar -zxvf filename.tgz
+        extract .tgz files
+
+-------------------------- SHELL ---------------------------
+
+echo $BASH_SUBSHELL
+    return 0 for no subshell, one if there is a subshell, 2 if there is a grandchild subshell ...
+( pwd ; echo $BASH_SUBSHELL )
+    between curly brackets for create a process list. This command create a subshell for execute the content in
+sleep 10
+    accepts as a parameter the number of seconds you want the process to wait (sleep)
+jobs
+        display background job information
+    jobs -l
+        see more information for the background processes
+kill
+    pkill -9 ping
+        kill a process in background mode by the name too
+coproc [cmd]
+        perform almost identically to putting a command in background mode, except for the fact that it creates a subshell
+    coproc My_Job { sleep 10; }
+        set the name yourself by using extended syntax for the command
+which [cmd]
+    find the [cmd] filename
+type [cmd]
+        see the command type
+    type -a [cmd]
+        find the [cmd] filename
+        see the multiple flavors for commands
+history
+        see a recently used commands list. $HISTSIZE to set the number of commands to keep in the bash history
+        Command history is kept in the hidden .bash_history
+    history -a
+        force the command history to be written to the .bash_history file before leaving a shell session
+    history -n
+        force the .bash_history file to reread and a terminal session's history to be updated
+    !4
+        recall any command from the history list
+alias
+        see a list of the active aliases
+    alias li='ls -li'
+        create your own aliases
+
+------------------- ENVIRONMENT VARIABLES ------------------
+
+env (or printenv)
+        view global environment variables
+    printenv HOME (echo $HOME)
+        display an individual environment variable's value
+set
+        display all variables defines for a specif process, including both local and global environment variable and user-defined variable
+        !!!!!!!! The set command displays both global and local environment variables and user-defined variables. It also sorts the display alphabetically. 
+        !!!!!!!! The env and printenv are different from set in that they do not sort the variables, nor do they include local environment or local user-defined variables.
+unset [variable]
+    remove an existing environment variable
+
+--------------------- USER's MANAGEMENT --------------------
+
+useradd
+        add new users to your Linux system
+    useradd -D
+        see the system default values used on your Linux distribution
+    useradd -D [parameters]
+        change the system default new user values
+    /etc/skel
+        template directory to create the new user's HOME
+    useradd -m test
+        tells it to create the HOME directory
+userdel
+        remove a user from the system (removes only the user information from the /etc/passwd)
+    userdel -r test
+        removes the user's HOME directory
+usermod
+        provides options for changing most of the field in the /etc/passwd file
+    usermod [parameter] test
+        a couple of addtional parameter might come in handy
+passwd test
+        change just the password for a user
+chpasswd < users.txt
+        reads a list of login name and password pairs from the STDIN, automatically encrypts the password, and sets it for the user account
+chsh -s /bin/csh test
+        allows you to quickly change the default login shell for a user
+chfn
+        provides a standard method for storing information in the comments field in the /etc/passwd file
+finger [user]
+        allows you to easily find information about people on your Linux system
+change
+        helps you manage 
+groupadd
+        allows you to create new groups on your system
+    /usr/sbin/groupadd shared    
+    /usr/sbin/usermod -G shared test
+        creates a shared group and adds the test user to the group
+groupmod
+    groupmod -n sharing shared
+        change the group name of an existing group (shared)
+    groupmod -g 
+        change the GUI
+unmask
+        sets the default permissions for any file or directory you create
+        Thus, in the example, the file starts out with permissions 666, and the umask of 022 is applied, leaving a file permission of 644.
+chmod [options] [mode] [file]
+        allows you to change the security settings for files and directories
+    chmod 760 newfile
+    chmod o+r newfile
+    chmod u-x newfile
+chown [options] [owner].[group] file
+        change the owner (and the group) of a file
+    chown test. newfile
+        when your system uses individual group names that match user login names
+chgrp 
+
+----------------- FILESYSTEM's MANAGEMENT -----------------
+
+fdisk /dev/sdb
+        interactive program that allows you to enter commands to walk through the steps of partitioning a hard drive
+fsck [options] [filesystem]
+        check and repair most Linux filesystem types
+pvcreate /dev/sdb
+        defines the physical partition to use for the Physical volume
+pvdisplay /dev/sdb
+        display a list of physical volumes you've created
+vgcreate [name] /dev/sdb
+        create the volume group from the command line
+vgdisplay [name]
+        see some details about the created volume group
+lvcreate [options] 
+        create the logical volume
+lvdisplay [name]
+        se the details of created logical volume
+vgchange
+        activates and deactivates a volume group
+vgremove
+        removes a volume group
+vgextend
+        Adds physical volumes to a volume group
+vgreduce
+        removes physical volumes from a volume group
+lvextend
+        Increases the size of a logical volume
+lvreduce
+        decreases the size of a logical volume
+
+------------------- INSTALLING SOFTWARE -------------------
+
+aptitude
+        aptitude tool is essentially a front-end for both the apt tools and dpkg
+    aptitude show [pkg]
+        display detailed information about a particular package
+    aptitude search [pkg]
+        find a particular software package
+    aptitude install [pkg]
+        install a software package on a system from a repository using aptitude
+    aptitude safe-upgrade
+        safely update all the software packages on a system with any versions in the repository
+    aptitude full-upgrade
+    aptitude dist-upgrade
+        the difference between these and safe-upgrade is that they do not check dependencies between packages
+    aptitude remove [pkg]
+        remove a software package, but not the data and configuration files
+    aptitude purge [pkg]
+        remove a software package and the related data and configuration files
+dpkg
+        core of the Debian-based family of PMS tools
+    dpkg -L [pkg]
+        list all the files associated with a particular software package
+    dpkg --search [filename]
+        find what package a particular file belongs
+yum
+    yum list [pkg]
+        verbose description of the package
+    yum list installed
+        find out what is currently installed on your system. Use it plus the package name for see the more detailed information about it
+    yum list installed > [file]
+        redirect the installed software listing into a file
+    yum provides [file]
+        find out what software package provides a particular file on your filesystem
+    yum install [pkg]
+        install a software
+    yum localinstall package_name.rpm
+        install using an npm installation file
+    yum list updates
+        see the list of all the available updates for your installed packages
+    yum update
+        update all the packages. Use it with the package name to update a particular software package
+    yum remove [pkg]
+        just remove the software package and keep any configuration and data files
+    yum erase [pkg]
+        uninstall the software and all its files
+    yum clean all
+        clean the broken dependencies
+    yum deplist [pkg]
+        displays all the package's library dependencies and what software package provides them
+    yum update --skip-broken
+        the last tool for solve the update problem. Just ignore the package with the broken dependency and update the other software packages
+    yum repolist
+        see what repositories you are currently pulling software from
+rpm
+    rpm -qa > [file]
+        list installed software
+    rpm -q [pkg]
+        see various package details
+
+------------------- WORKING WITH EDITORS ------------------
+
+VIM
+    readlink -f $(which vi)
+        return the final link of vi
+    i
+        enter the insert mode
+    Escape key
+        go back into normal mode
+    PageDown or Ctrl+F
+        move forward one screen data
+    PageUp or Ctrl+B
+        move backward one screen of data
+    G
+        move to the last line in the buffer
+    [num] G
+        move to the line number in the buffer
+    gg
+        move to the first line in the buffer
+COMMAND LINE MODE
+    q
+        quit if no changes have been made to the buffer data
+    q!
+        quit and discard any changes made to the buffer data
+    w filename
+        save the file under a different filename
+    wq
+        save the buffer data to the file and quit
+    x
+        Deletes the character at the current cursor position
+    dd
+        Deletes the line at the current cursor position
+    dw
+        Deletes the word at the current cursor position
+    d$
+        Deletes to the end of the line from the current cursor position
+    J
+        Deletes the line break at the end of the line at the current cursor position (joins lines)
+    u
+        Undoes the previous edit command
+    a
+        Appends data after the current cursor position
+    A
+        Appends data to the end of the line at the current cursor position
+    r char
+        Replaces a single character at the current cursor position with char
+    R text
+        Overwrites the data at the current cursor position with text, until you press Escape
+    y
+        Copy command
+    /{termo}
+        search for data in the buffer
+    :s/old/new
+        substitute one word for another in the text
+    :s/old/new/g
+        replace all occurrences of old in a line
+    :n,ms/old/new/g
+        replace all occurrences of old between line numbers n and M
+    :%s/old/new/g
+        replace all occurrences of old in the entire file
+    :%s/old/new/gc
+        replace all occurrences of old in the entire file, but prompt for each occurrences
+    
+VISUAL MODE
+    v
+        enter the visual mode
+
+------------------ BASIC SCRIPT BUILDING ------------------
+
+echo
+    echo -n ""
+        print a msg without break line
+    echo "msg $var"
+        print a variable
+$(cmd) or `cmd`
+        assign the output of a command to a variable
+cmd > file
+        standard output redirection - send output from a command to a file
+cmd >> file
+        append output from a command to an existing file
+cmd < file
+        input redirection - the data is flowing from the input file to the command
+cmd << marker
+        inline input redirection
+wc
+        provides a count of text in the data
+    wc << EOF
+    > msg
+    > msg
+    > msg
+    >EOF
+var1=$[exp]
+        assigning a mathematical value to a variable
+expr 1 \* 2
+        allow the processing of equations from the command line
+bc
+        bash calculator - programming language that allows you to enter floating-point expression at a command line
+    scale=4
+        provides the answer to [n] decimal places
+    bc -q
+        suppresses the lengthy welcome banner from the bash calculator
+    variable=$(echo "scale=4; 3.44 / 5" | bc)
+        you can use the command substitution character to run a bc command and assign the output to a variable
+    variable=$(bc << EOF
+    options
+    statements
+    expressions
+    EOF
+    )
+exit [number]
+        set the exit code for your shell Scripts
+    exit $var
+        the exit command accept a variable
+if-then
+        most basic type of structured command
+    
+    if command
+    then
+        commands
+    fi
+
+if-then-else
+        provides another group of commands in the statements
+
+    if command; then
+        commands
+    else
+        commands
+    fi
+elif
+    if command1; then
+        commands
+    elif command2; then
+        more commands
+    else
+        more commands
+    fi
+test condition
+        provides a way to test different conditions in an if-then statements
+    [ condition ]
+        alternative way of testing a condition without declaring the test command in an if-then statement
+    -d file
+        checks if file exists and is a directory
+    -e file
+        checks if file exists
+    -f file
+        checks if file exists and is a file
+    -r file
+        checks if file exists and is not empty
+    -s file
+        Checks if file exists and is not empty
+    -w file
+        Checks if file exists and is writable
+    -x file
+        Checks if file exists and is executable
+    -O file
+        Checks if file exists and is owned by the current user
+    -G file
+        Checks if file exists and the default group is the same as the current user
+    file1 -nt file2
+        Checks if file1 is newer than file2
+    file1 -ot file2
+        Checks if file1 is older than file2
+(( expression ))
+        allows you to incorporate advanced mathematical formulas in your comparisons
+    val++
+        Post-increment
+    val--
+        Post-decrement
+    ++val
+        Pre-increment
+    --val
+        Pre-decrement
+    !
+        Logical negation
+    ∼
+        Bitwise negation
+    **
+        Exponentiation
+    <<
+        Left bitwise shift
+    >>
+        Right bitwise shift
+    &
+        Bitwise Boolean AND
+    |
+        Bitwise Boolean OR
+    &&
+        Logical AND
+    ||
+        Logical OR
+[[ expression ]]
+        provides advanced features for string comparisons
+case
+        checks multiples values of single variable in a list-oriented format
+    case variable in
+    pattern1 | pattern2) commands1;;
+    pattern3) commands2;;
+    *) default commands;;
+    esac
+for
+        allow you to create a loop that iterates through a series of values
+    for var in list; do
+        commands
+    done
+for (( variable assignment ; condition ; iteration process ))
+
+IFS=$'\n'
+        change the internal field separator to recognize only the newline character
+    IFS.OLD=$IFS
+    IFS=$‘∖n’
+    <use the new IFS value in code>
+    IFS=$IFS.OLD
+        best practice to reset the default IFS value for future operations within the script.
+IFS=:
+while
+        allows you to define a command to test and then loop through a set of commands for as long as the defined test command returns a iteration
+    while test command; do
+        other commands
+    done
+until
+        works in exactly the opposite way from the while command
+    until test commands; do
+        other commands
+    done
+break
+        simple way to escape a loop in progress
+    break n
+        break out of an outer loop, where n indicates the level of the loop to break out of. By default, n is 1
+continue
+        prematurely stop processing commands inside of a loop but not terminate the loop completely
+    continue n
+        specify what level of loop to continue, where n defines the loop level to continue
+basename $0
+    name=$(basename $0)
+        returns just the script's name without the path
+shift
+    shift n
+        literally shifts the command line parameters in their relative positions
+read var
+        accepts input either from standard input (such as from the keyboard) or from another file descriptor.
+    read -p "msg" var
+        allows you to specify a prompt directly in the read command line
+    read -t 5 -p "msg" var
+        specifies the number of seconds for the read command to wait for input
+    read -n1 -p "msg" var
+        instruct the read command to accept only a single character before existing
+    read -s ...
+        prevents the data entered in the read command from being displayed on the monitor
+exec 1> testout
+        redirect a specific file descriptor for the duration of the script
+    exec 2> testerr
+    exec 0< testfile
+lsof
+        lists all the open files descriptors on the entire Linux system
+    lsof -p PID
+        allows you to specify a process ID
+    lsof -d n
+        allows you to specify the file descriptor numbers to display
+    lsof -a
+        perform a boolean AND of the results of the other two options
+    lsof -a -p $$ -d 0,1,2
+mktemp
+        easily create a unique temporary file in the /tmp folder
+    mktemp -t testfile.XXXXXX
+        forces mktemp to create the file in the temporary directory of the system
+    mktemp -d dir.XXXXXX
+        create a temporary directory instead of a file
+tee
+        is like a T-connector for pipes. It sends data from STDIN to two destinations at the same time.
+    tee -a
+        append data to the file
+
+------------------------- SIGNALS -------------------------
+
+SIGINT
+        Ctrl+C
+SIGSTP
+        Ctrl+Z
+trap CMD SIGNALS
+        allows you to specify which linux signals your shell script can watch for and intercept from the shell
+    trap -- SIGINT
+        remove a set trap
+& (ampersand)
+        put the process in background mode
+nohup
+        runs another command blocking any SIGHUP signals that are sent to the process, preventing the process from exiting when you exit your terminal session
+jobs
+        view the current jobs being handled by the shell
+    jobs -l
+        view the various jobs' PIDs
+    jobs -n	
+        Lists only jobs that have changed their status since the last notification from the shell
+    jobs -p	
+        Lists only the PIDs of the jobs
+    jobs -r	
+        Lists only the running jobs
+    jobs -s	
+        Lists only stopped jobs
+kill PID
+        send a SIGHUP signal to the default process causes the job to terminate
+bg (or plus CMD NUMBER whether have additional jobs)
+        restart a job in background mode
+fg (or plus CMD NUMBER whether have additional jobs)
+        restart a job in foreground mode
+nice
+        allows you to set the scheduling priority of a command as you start it
+    nice -n NUMBER (or nice -NUMBER, or --NUMBER (negative priority - higher))
+        make a command run with less priority
+renice
+        allows you to specify the PID of a running process to change its priority
+at [-f filename] time
+        allows you to specify a time when the Linux system will run a script
+    at -M -f test13b.sh now
+        if you don't want to use email or redirection with at, it is best to add the -M option to suppress any output generated by jobs using the at command
+atq
+        allows you to view what jobs are pending on the system
+atrm JOBNUMBER
+        remove a pending job
+cron
+        allow you to schedule jobs that need to run on a regular bash_history
+        cron table format: min hour dayofmonth month dayofweek command
+    00 12 * * * if ["date +%d -d tomorrow" = 01 ] ; then ; command
+        set a command to execute the last day of every month
+    crontab -l
+        list an existing cron table
+    crontab -e
+        add entries to your cron table
+    ls /etc/cron.*ly
+anacron
+        determines that a job has missed a scheduled running, it runs the job as soon as possible
+        The anacron program deals only with programs located in the cron directories, such as /etc/cron.monthly.
+        A timestamp file exists for each cron directory and is located in /var/spool/anacron
+        The anacron program has its own table (usually located at /etc/anacrontab) to check the job directories:
+        The basic format of the anacron table is: period delay identifier command
+
+------------------------ FUNCTIONS ------------------------
+
+function name {
+    commands
+}
+name() {
+    commands
+}
+
+return
+        exit a function with a specific exit status
+local var
+        declare a variable uses in the function as local variable
+    local temp=$[ $value + 5 ]
+source ./script
+        executes commands within the current shell context instead of creating a new shell to execute them
+    . ./script
+    . script
+        in this case, add the command into the .bashrc file to get it each uptime
+shtool
+    ftp://ftp.gnu.org/gnu/shtool/shtool-2.0.8.tar.gz
+    tar -zxvf shtool-2.0.8.tar.gz
+    ./confifgure
+    make
+    make test
+    make install
+    
+    shtool [options] [function [options] [args]]
+
+------------------------ ITERACTIVE ------------------------
+
+clear
+        clear screen
+select
+        create a menu from a single command line and then retrieve the entered answer and automatically process it
+    select variable in list
+    do
+        commands
+    done
+dialog
+        use command line parameter to determine what type of Windows widget to produce
+    dialog --inputbox "Enter your age:" 10 20 2>age.txt
+    dialog --msgbox text height width
+        dialog --title Testing --msgbox "This is a test" 10 20
+    dialog --title "Please answer" --yesno "Is this thing on?" 10 20
+    dialog --textbox /etc/passwd 15 45
+    dialog --menu "Sys Admin Menu" 20 30 10 1 "Display disk space" 2 "Display users" 3 "Display memory usage" 4 "Exit" 2> test.txt
+    dialog --title "Select a file" --fselect $HOME/ 10 50 2>file.txt
+kdialog
+    kdialog display-options window-options arguments
+    kdialog --checklist "Items I need" 1 "Toothbrush" on 2 "Toothpaste" off 3 "Hair brush" on 4 "Deodorant" off 5 "Slippers" off
+sed
+        editor called stream editor, as opposed to a normal interactive text editor
+        edit a stream of daata based on a set of rules you supply ahead of time, before the editor processes the data
+    echo "This is a test" | sed 's/test/big test/'
+    sed 's/dog/cat/' data1.txt
+    sed -e 's/brown/green/; s/dog/cat/' data1.txt
+    
+    sed -e '
+    > s/brown/green/
+    > s/fox/elephant/
+    > s/dog/cat/' data1.txt
+
+    cat script1.sed
+    s/brown/green/
+    s/fox/elephant/
+    s/dog/cat/
+
+    sed -f script1.sed data1.txt
+    sed 's/test/trial/2' data4.txt
+    sed 's/test/trial/g' data4.txt
+    sed -n 's/test/trial/p' data5.txt
+    sed 's/test/trial/w test.txt' data5.txt
+    sed 's!/bin/bash!/bin/csh!' /etc/passwd
+
+    [address]command
+    address {
+        command1
+        command2
+        command3
+    }
+
+    sed '2,$s/dog/cat/' data1.txt
+    sed '/Samantha/s/bash/csh/' /etc/passwd
+
+    sed '[address]command\
+    new line'
+    sed '$a\
+    > This is a new line of text.' data6.txt
+    echo "Test Line 2" | sed 'i\Test Line 1'
+    echo "Test Line 2" | sed 'a\Test Line 1'
+
+    sed 'y/123/789/' data8.txt
+
+    sed -n '/number 3/p' data6.txt
+gawk
+        takes stream editing one step further than the sed editor by providing a programming language instead of just editor commands.
+    gawk '{print $1}' data2.txt
+    gawk -F: '{print $1}' /etc/passwd
+    echo "My name is Rich" | gawk '{$4="Christine"; print $0}'
+
+    $ cat script2.gawk
+    {print $1 "'s home directory is " $6}
+    $
+    $ gawk -F: -f script2.gawk /etc/passwd
+
+    gawk 'BEGIN {print "Hello World!"}'
+
+    gawk 'BEGIN {print "The data3 File Contents:"}
+    > {print $0}
+    > END {print "End of File"}' data3.txt
+
+------------------------- REGEX --------------------------
+
+- Case sensitive
+    $ echo "This is a test" | sed -n '/this/p'
+    >
+    $ echo "This is a test" | sed -n '/This/p'
+    > This is a test
+- You don't have to limit yourself to whole words or single text words in the regular expression.
+    $ echo "The books are expensive" | sed -n '/book/p'
+    > The books are expensive
+    $ echo "This is line number 1" | sed -n '/ber 1/p'
+    > This is line number 1
+- Special characters recognized by regular expressions
+    .*[]^${}\+?|()
+
+$ echo "Books are great" | sed -n '/^Book/p'
+        pattern that starts at the beginning of a line of text in the data stream
+$ echo "This is a good book" | sed -n '/book$/p'
+        indicate that the line of data must end with the text pattern
+$ sed -n '/^this is a test$/p' data4
+$ sed '/^$/d' data5
+        remove blank lines from the document
+$ sed -n '/.at/p' data6
+The cat is sleeping.
+That is a very nice hat.
+This test is at line four.
+        match any single character except a newline character
+$ sed -n '/[ch]at/p' data6
+        class of characters that would match a position in a text pattern
+$ sed -n '/[^ch]at/p' data6
+        look for ant character that's not in the class
+$ sed -n '/^[0-9][0-9][0-9][0-9][0-9]$/p' data8
+$ sed -n '/[c-h]at/p' data6
+$ echo "ik" | sed -n '/ie*k/p'
+$ echo "ieeek" | sed -n '/ie*k/p'
+        character must appear zero or more times in the text to match the pattern
+$echo "this is a regular pattern expression" | sed -n '
+> /regular.*expression/p'
+        search for multiple words that may appear anywhere in a line of text in the data stream.
+
+------ POSIX ERE ------
+
+$ echo "bet" | gawk '/be?t/{print $0}'
+        indicates that the preceding character can appear zero or one time, but that's all
+$ echo "baet" | gawk '/b[ae]?t/{print $0}'
+$ echo "beeet" | gawk '/be+t/{print $0}'
+$ echo "beeat" | gawk '/b[ae]+t/{print $0}'
+$ echo "bet" | gawk --re-interval '/be{1}t/{print $0}'
+        This is often referred to as an interval. You can express the interval in two formats:
+        m: The regular expression appears exactly m times.
+        m,n: The regular expression appears at least m times, but no more than n times.
+$ echo "beet" | gawk --re-interval '/be{1,2}t/{print $0}'
+$ echo "beat" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+$ echo "The cat is asleep" | gawk '/cat|dog/{print $0}'
+        The pipe symbol allows to you to specify two or more patterns that the regular expression engine uses in a logical OR formula when examining the data stream.
+$ echo "Sat" | gawk '/Sat(urday)?/{print $0}'
+$ echo "cab" | gawk '/(c|b)a(b|t)/{print $0}'
+
+--------------------- ADVANCED SED -----------------------
+
+$ sed '/header/{n ; d}' data1.txt
+$ sed '/first/{ N ; s/\n/ / }' data2.txt
+        uses the N command to combine the next line with that line.
+    $ sed 'N ; s/System.Administrator/Desktop User/' data3.txt
+    $ sed '
+    > s/System Administrator/Desktop User/
+    > N
+    > s/System\nAdministrator/Desktop\nUser/
+    > ' data4.txt
+$ sed '/∧$/{N ; /header/D}' data5.txt
+        remove a blank line that appears before the first line in a data stream
+$ sed -n 'N ; /System\nAdministrator/P' data3.txt
+
+------ HOLD SPACE ------
+
+$ sed -n '/first/ {h ; p ; n ; p ; g ; p }' data2.txt
+$ sed -n '/first/ {h ; p ; n ; p ; g ; p }' data2.txt
+
+------ NEGATING A COMMAND ------
+
+$ sed -n '/header/!p' data2.txt
+$ sed '$!N;
+> s/System\nAdministrator/Desktop\nUser/
+> s/System Administrator/Desktop User/
+> ' data4.txt
+$ sed -n '{1!G ; h ; $p }' data2.txt
+        line-reversing
+tac
+        displays a text file in reverse order
+
+------ CHANGING THE FLOW ------
+
+$ sed '{/first/b jump1 ; s/This is the/No jump on/
+> :jump1
+> s/This is the/Jump here on/}' data2.txt
+
+$ echo "This, is, a, test, to, remove, commas." | sed -n '{
+> :start
+> s/,//1p
+> /,/b start
+
+$ echo "The cat sleeps in his hat." | sed 's/.at/"&"/g'
+$ echo "The System Administrator manual" | sed '
+> s/\(System\) Administrator/\1 User/'
+$ echo "That furry cat is pretty" | sed 's/furry \(.at\)/\1/'
+$ sed '$!G' data2.txt
+$ sed '/∧$/d ; $!G' data6.txt
+$ sed 's/<[∧>]*>//g ; /∧$/d' data11.txt
+
+--------------------- ADVANCED GAWK -----------------------
+
+------ USING VARIABLES ------
+
+$ cat data1
+data11,data12,data13,data14,data15
+data21,data22,data23,data24,data25
+data31,data32,data33,data34,data35
+$ gawk 'BEGIN{FS=","} {print $1,$2,$3}' data1
+$ gawk 'BEGIN{FS=","; OFS="--"} {print $1,$2,$3}' data1
+$ gawk 'BEGIN{FS=","; OFS="<-->"} {print $1,$2,$3}' data1
+
+$ cat data1b
+1005.3247596.37
+115-2.349194.00
+05810.1298100.1
+$ gawk 'BEGIN{FIELDWIDTHS="3 5 2 5"}{print $1,$2,$3,$4}' data1b
+
+$ cat data2
+Riley Mullen
+123 Main Street
+Chicago, IL  60601
+(312)555-1234 
+BLANKLINE
+Frank Williams
+456 Oak Street
+Indianapolis, IN  46201
+(317)555-9876
+BLANKLINE
+Haley Snell
+4231 Elm Street
+Detroit, MI 48201
+(313)555-4938
+BLANKLINE
+$ gawk 'BEGIN{FS="\n"; RS=""} {print $1,$4}' data2
+Riley Mullen (312)555-1234
+Frank Williams (317)555-9876
+Haley Snell (313)555-4938
+
+$ gawk 'BEGIN{print ARGC,ARGV[1]}' data1
+2 data1
+    The ARGC variable indicates that two parameters are on the command line. This includes the gawk command and the data1 parameter (remember that the program script doesn't count as a parameter).
+
+$ gawk '
+> BEGIN{
+> print ENVIRON["HOME"]
+> print ENVIRON["PATH"]
+> }'
+/home/rich
+/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
+
+$ gawk 'BEGIN{FS=":"; OFS=":"} {print $1,$NF}' /etc/passwd
+
+$ gawk 'BEGIN{FS=","}{print $1,"FNR="FNR}' data1 data1
+
+$ gawk '
+> BEGIN {FS=","}
+> {print $1,"FNR="FNR,"NR="NR}
+> END{print "There were",NR,"records processed"}' data1 data1
+
+$ gawk '
+> BEGIN{
+> testing="This is a test"
+> print testing
+> testing=45
+> print testing
+> }'
+This is a test
+45
+
+$ gawk 'BEGIN{x=4; x= x * 2 + 3; print x}'
+11
+
+$ cat script1
+BEGIN{FS=","}
+{print $n}
+$ gawk -f script1 n=2 data1
+data12
+data22
+data32
+$ gawk -f script1 n=3 data1
+data13
+data23
+data33
+
+specific data field in the file:
+
+$ cat script1
+BEGIN{FS=","}
+{print $n}
+$ gawk -f script1 n=2 data1
+data12
+data22
+data32
+$ gawk -f script1 n=3 data1
+data13
+data23
+data33
+$
+This feature allows you to change the behavior of the script without necessitating that you change the actual script code. The first example displays the second data field in the file, while the second example displays the third data field, just by setting the value of the n variable in the command line.
+
+There's one problem with using command line parameters to define variable values. When you set the variable, the value isn't available in the BEGIN section of the code:
+
+$ cat script2
+BEGIN{print "The starting value is",n; FS=","}
+{print $n}
+$ gawk -f script2 n=3 data1
+The starting value is
+data13
+data23
+data33
+
+$ gawk -v n=3 -f script2 data1
+The starting value is 3
+data13
+data23
+data33
+
+------ WORKING WITH ARRAYS ------
+
+$ gawk 'BEGIN{
+> capital["Illinois"] = "Springfield"
+> print capital["Illinois"]
+> }'
+Springfield
+
+$ gawk 'BEGIN{
+> var["a"] = 1
+> var["g"] = 2
+> var["m"] = 3
+> var["u"] = 4
+> for (test in var)
+> {
+>    print "Index:",test," - Value:",var[test]
+> }
+> }'
+Index: u  - Value: 4
+Index: m  - Value: 3
+Index: a  - Value: 1
+Index: g  - Value: 2
+
+$ gawk 'BEGIN{
+> var["a"] = 1
+> var["g"] = 2
+> for (test in var)
+> {
+>    print "Index:",test," - Value:",var[test]
+> }
+> delete var["g"]
+> print "---"
+> for (test in var)
+>    print "Index:",test," - Value:",var[test]
+> }'
+
+------ USING PATTERNS ------
+
+$ gawk 'BEGIN{FS=","} /11/{print $1}' data1
+data11
+
+$ gawk 'BEGIN{FS=","} $2 ~ /^data2/{print $0}' data1
+
+$ gawk -F: '$1 ~ /rich/{print $1,$NF}' /etc/passwd
+$ gawk –F: '$1 !∼ /rich/{print $1,$NF}' /etc/passwd
+
+$ gawk -F: '$4 == 0{print $1}' /etc/passwd
+
+------ STRUCTURED COMMANDS ------
+
+$ cat data4
+10
+5
+13
+50
+34
+$ gawk '{if ($1 > 20) print $1}' data4
+
+$ gawk '{
+> if ($1 > 20)
+> {
+>   x = $1 * 2
+>   print x
+> }
+> }' data4
+100
+68
+
+$ gawk '{
+> if ($1 > 20)
+> {
+>    x = $1 * 2
+>    print x
+> } else
+> {
+>    x = $1 / 2
+>    print x
+> }}' data4
+5
+2.5
+6.5
+100
+68
+
+$ gawk '{if ($1 > 20) print $1 * 2; else print $1 / 2}' data4
+
+$ cat data5
+130 120 135
+160 113 140
+145 170 215
+$ gawk '{
+> total = 0
+> i = 1
+> while (i < 4)
+> {
+>    total += $i
+>    i++
+> }
+> avg = total / 3
+> print "Average:",avg
+> }' data5
+Average: 128.333
+Average: 137.667
+Average: 176.667
+
+$ gawk '{
+> total = 0
+> i = 1
+> do
+> {
+>    total += $i
+>    i++
+> } while (total < 150)
+> print total }' data5
+250
+160
+315
+
+$ gawk '{
+> total = 0
+> for (i = 1; i < 4; i++)
+> {
+>    total += $i
+> }
+> avg = total / 3
+> print "Average:",avg
+> }' data5
+Average: 128.333
+Average: 137.667
+Average: 176.667
+
+------ FORMATTED PRINTING ------
+
+$ gawk 'BEGIN{
+> x = 10 * 100
+> printf "The answer is: %e\n", x
+> }'
+The answer is: 1.000000e+03
+
+$ gawk 'BEGIN{FS="\n"; RS=""} {printf "%s %s\n", $1, $4}' data2
+Riley Mullen  (312)555-1234
+Frank Williams  (317)555-9876
+Haley Snell  (313)555-4938
+
+$ gawk 'BEGIN{FS=","} {printf "%s ", $1} END{printf "\n"}' data1
+data11 data21 data31
+
+$ gawk 'BEGIN{FS="\n"; RS=""} {printf "%16s  %s\n", $1, $4}' data2
+   Riley Mullen  (312)555-1234
+ Frank Williams  (317)555-9876
+    Haley Snell  (313)555-4938
+
+$ gawk 'BEGIN{FS="\n"; RS=""} {printf "%-16s  %s\n", $1, $4}' data2
+Riley Mullen      (312)555-1234
+Frank Williams    (317)555-9876
+Haley Snell       (313)555-4938
+
+$ gawk '{
+> total = 0
+> for (i = 1; i < 4; i++)
+> {
+>    total += $i
+> }
+> avg = total / 3
+> printf "Average: %5.1f\n",avg
+> }' data5
+Average: 128.3
+Average: 137.7
+Average: 176.7
+
+------ BUILTIN FUNCTIONS ------
+
+$ gawk 'BEGIN{x=exp(1000); print x}'
+gawk: warning: exp argument 1000 is out of range
+inf
+
+$ gawk 'BEGIN{x = "testing"; print toupper(x); print length(x) }'
+TESTING
+7
+
+$ gawk 'BEGIN{
+> var["a"] = 1
+> var["g"] = 2
+> var["m"] = 3
+> var["u"] = 4
+> asort(var, test)
+> for (i in test)
+>     print "Index:",i," - value:",test[i]
+> }'
+Index: 4  - value: 4
+Index: 1  - value: 1
+Index: 2  - value: 2
+Index: 3  - value: 3
+
+$ gawk 'BEGIN{ FS=","}{
+> split($0, var)
+> print var[1], var[5]
+> }' data1
+data11 data15
+data21 data25
+data31 data35
+
+$ gawk 'BEGIN{
+> date = systime()
+> day = strftime("%A, %B %d, %Y", date)
+> print day
+> }'
+Friday, December 26, 2014
+
+------ USER-DEFINED FUNCTIONS ------
+
+function name([variables])
+{
+   statements
+}
+
+$ gawk '
+> function myprint()
+> {
+>     printf "%-16s - %s\n", $1, $4
+> }
+> BEGIN{FS="\n"; RS=""}
+> {
+>     myprint()
+> }' data2
+Riley Mullen     - (312)555-1234
+Frank Williams   - (317)555-9876
+Haley Snell      - (313)555-4938
+
+$ cat funclib
+function myprint()
+{
+  printf "%-16s - %s\n", $1, $4
+}
+function myrand(limit)
+{
+  return int(limit * rand())
+}
+function printthird()
+{
+  print $3
+}
+$ cat script4
+BEGIN{ FS="\n"; RS=""}
+{
+    myprint()
+}
+$ gawk -f funclib -f script4 data2
+Riley Mullen     - (312)555-1234
+Frank Williams   - (317)555-9876
+Haley Snell      - (313)555-4938
+
+------ PRACTICAL EXAMPLE ------
+
+$ cat scores.txt
+Rich Blum,team1,100,115,95
+Barbara Blum,team1,110,115,100
+Christine Bresnahan,team2,120,115,118
+Tim Bresnahan,team2,125,112,116
+
+--------------------- SENDING A MESSAGE -----------------------
+
+mesg
+        show if messaging for user is turned off (is n ou is y)
+    mesg y
+    mesg N
+who -T
+        check their message status
+write
+        send messages to users logged onto a virtual console terminal
+    write timothy tty3
+    Hello Tim! (Ctrl + D for sent message)
+logged_on=$(who | grep -i -m 1 $1 | gawk '{print $1}')
+    determine wheter that particular user is logged on the system

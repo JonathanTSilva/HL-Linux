@@ -63,7 +63,7 @@
 - [Primeiros passos][6]
 - **Básico**
   - [Comandos][9]
-  - [Atalhos][]
+  <!-- - [Atalhos][] -->
   - [Conceitos][7]
   - [Atividades gerais][13]
   - [Customização do terminal do Linux][5]

@@ -62,7 +62,7 @@
 
 - [Primeiros passos][6]
 - **Básico**
-  - [Cheatsheets][9]
+  - [Cheatsheet][9]
   <!-- - [Atalhos][] -->
   - [Conceitos][7]
   - [Atividades gerais][13]

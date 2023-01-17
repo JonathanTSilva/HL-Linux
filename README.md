@@ -76,6 +76,8 @@
   - [Shell Script][14]
   - [RSYNC][15]
   - [ProxyChains]
+  - [Interfaces gráficas]
+- **Desenvolvedor do Linux**
 
 ## 📚 Bibliografia
 

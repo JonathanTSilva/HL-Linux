@@ -78,6 +78,7 @@
   - [ProxyChains]
   - [Interfaces gráficas]
 - **Desenvolvedor do Linux**
+  - [Adicionando um pacote em APT]
 
 ## 📚 Bibliografia
 

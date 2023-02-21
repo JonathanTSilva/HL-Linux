@@ -79,6 +79,8 @@
   - [Interfaces gráficas]
 - **Desenvolvedor do Linux**
   - [Adicionando um pacote em APT]
+  - [Adicionando um pacote em FLATPAK]
+  - [Criar um aplicativo APPIMAGE]
 
 ## 📚 Bibliografia
 

@@ -78,6 +78,7 @@
   - [ProxyChains]
   - [Interfaces gráficas]
 - **Desenvolvedor do Linux**
+  - [Desenvolver softwares para ambiente Linux]
   - [Adicionando um pacote em APT]
   - [Adicionando um pacote em FLATPAK]
   - [Criar um aplicativo APPIMAGE]

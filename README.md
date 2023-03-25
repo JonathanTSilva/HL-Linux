@@ -75,6 +75,7 @@
   - [LAMP][11]
   - [Shell Script][14]
   - [RSYNC][15]
+  - [SysAdmin]
   - [ProxyChains]
   - [Interfaces gráficas]
 - **Desenvolvedor do Linux**

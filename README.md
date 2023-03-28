@@ -62,8 +62,8 @@
 
 - [Primeiros passos][6]
 - **Básico**
-  - [Comandos][9]
-  - [Atalhos][]
+  - [Cheatsheet][9]
+  <!-- - [Atalhos][] -->
   - [Conceitos][7]
   - [Atividades gerais][13]
   - [Customização do terminal do Linux][5]
@@ -75,6 +75,14 @@
   - [LAMP][11]
   - [Shell Script][14]
   - [RSYNC][15]
+  - [SysAdmin]
+  - [ProxyChains]
+  - [Interfaces gráficas]
+- **Desenvolvedor do Linux**
+  - [Desenvolver softwares para ambiente Linux]
+  - [Adicionando um pacote em APT]
+  - [Adicionando um pacote em FLATPAK]
+  - [Criar um aplicativo APPIMAGE]
 
 ## 📚 Bibliografia
 

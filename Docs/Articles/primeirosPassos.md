@@ -80,7 +80,7 @@ Esse comando vai atualizar a base de dados dos pacotes para que você tenha aces
 Instalar os compiladores e todas as dependências de desenvolvimento do sistema
 
 ```zsh
-sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurses-term ack-grep silversearcher-ag fontconfig imagemagick libmagickwand-dev software-properties-common git npm vim-gtk3 curl 
+sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurses-term ack-grep silversearcher-ag fontconfig imagemagick libmagickwand-dev software-properties-common git npm vim-gtk3 curl htop
 ```
 
 - **build-essential** → apresenta todo o essencial para fazer builds;
@@ -97,7 +97,8 @@ sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurs
 - **git** → sistema de controle de versão distribuído gratuito e de código aberto projetado para lidar com tudo, desde projetos pequenos a muito grandes com velocidade e eficiência;
 - **npm** → gerenciador de pacotes para o Node.JS;
 - **vim-gtk3** → editor `vi` melhorado - com interface gráfica GTK3;
-- **curl** → ferramenta em linha de comando para transferência de dados com sintaxe URL.
+- **curl** → ferramenta em linha de comando para transferência de dados com sintaxe URL;
+- **htop** → visualizador de processos e gerenciador de processos interativo.
 
 > **Nota:** Poderia ser instalado junto as linguagens de trabalho aqui, como python, perl, ruby. Entretanto, diferentemente das mais antigas, como C, C++ e Java, que são estáveis e alteradas com pouca frequência (sendo assim, boas para instalar via gerenciador de pacotes), essas linguagens novas se alteram com frequência (Go, JavaScript) e estes pacotes de distro Linux normalmente não acompanham de perto essas alterações, porque os objetivos são diferentes. Assim, para resolver este problema, surgiu o gerenciador de versões universal: `asdf`, que junta os gerenciadores desenvolvidos para cada versão (`gvm`, `nvm`, `rbenv`, `pyenv` e outros) em um só gerenciador.
 

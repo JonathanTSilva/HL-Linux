@@ -68,6 +68,7 @@
   - [Atividades gerais][13]
   - [Customização do terminal do Linux][5]
 - **Intermediário**
+  - [Apps Windows no Linux]
   - [DNS][12]
   - [Sistema de arquivos][8]
   - [SSH][10]

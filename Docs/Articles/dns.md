@@ -21,6 +21,12 @@
     - [2.1. No Ubuntu Server](#21-no-ubuntu-server)
       - [Instalações](#instalações)
       - [Configuração](#configuração)
+      - [Overview](#overview)
+      - [Caching nameserver](#caching-nameserver)
+      - [Primary server](#primary-server)
+        - [Forward Zone File](#forward-zone-file)
+        - [Reverse Zone File](#reverse-zone-file)
+      - [Secondary Server](#secondary-server)
     - [2.2. Em um container](#22-em-um-container)
 
 **Domain Name Service (DNS)** é um serviço de Internet que mapeia endereços IP e **fully qualified domain names (FQDN)** entre si. Desta forma, o DNS alivia a necessidade de lembrar endereços IP. Os computadores que executam o DNS são chamados de servidores de nomes.
@@ -116,17 +122,33 @@ Abaixo, está apresentado um resumo do seguinte artigo publicado pela Canonical,
 Todo o processo será feito com o pacote BIND (*Berkley Internet Naming Daemon*), pacote muito utilizado para manutenção de um *name server* no Linux.
 
 1. Instale os pacotes `bind9` e `dnsutils`: `sudo apt install bind9 && sudo apt install dnsutils`
+2. Verifique a instalação do BIND9 com: `named -v`
 
 O pacote `dnsutils` é utilizado para testar e resolver problemas relacionados ao DNS.
 
 #### Configuração
 
-Há diversas formas de configurar um servidor com **BIND9**, mas a configuração mais comum é por um **caching nameserver**, **primary server** 
+Há diversas formas de configurar um servidor com **BIND9**, mas a configuração mais comum é por um **caching nameserver**, **primary server** e um **secondary server**.
 
-2. Verifique a instalação: `named -v`
-3. Verifique as informações do host: `hostnamectl status` e copie o hostname
-4. Abra o arquivo `/etc/hosts` utilizando o editor de sua preferência
-5. Na segunda linha, acrescente uma nova entrada para o domínio e uma nova linha para o IP da rede. Exemplo:
+- Quando configurar o BIND9 como um **chaching nameserver**, as respostas para as consultas de nomes serão encontradas e guardará essa para futuras consultas.
+- Como **primary server**, o BIND9 lê os dados de uma zona de um arquivo em seu host e tem autoridade para essa zona.
+- Como **secondary server**, o BIND9 obtém os dados da zona de outro **nameserver** com autoridade para a zona.
+
+#### Overview
+
+Os arquivos de configuração do DNS são armazenados no diretório `/etc/bind`. O arquivo de configuração principal é `/etc/bind/named.conf`, que no layout fornecido pelo pacote inclui apenas esses arquivos:
+
+- `/etc/bind/named.conf.options`: opções globais de DNS
+- `/etc/bind/named.conf.local`: para suas zonas
+- `/etc/bind/named.conf.default-zones`: zonas padrão como localhost, seu reverso e as dicas de raiz
+
+Os servidores de nomes raiz costumavam ser descritos no arquivo `/etc/bind/db.root`. Isso agora é fornecido pelo arquivo `/usr/share/dns/root.hints` fornecido com o pacote dns-root-data e é referenciado no arquivo de configuração `named.conf.default-zones` acima.
+
+É possível configurar o mesmo servidor para ser um **chaching nameserver**, **primary** e **secondary server**: tudo depende das zonas que ele está servindo. Um servidor pode ser o **Start of Authority (SOA)** para uma zona, enquanto fornece serviço secundário para outra zona. Ao mesmo tempo, fornece serviços de cache para hosts na LAN local.
+
+1. Verifique as informações do host: `hostnamectl status` e copie o hostname
+2. Abra o arquivo `/etc/hosts` utilizando o editor de sua preferência
+3. Na segunda linha, acrescente uma nova entrada para o domínio e uma nova linha para o IP da rede. Exemplo:
 
 ```plaintext
 127.0.0.1 localhost
@@ -134,7 +156,7 @@ Há diversas formas de configurar um servidor com **BIND9**, mas a configuraçã
 192.168.70.31 srvtest.domain.local srvtest
 ```
 
-6. Verificar se as configurações foram salvas normalmente, com os seguintes comandos:
+4. Verificar se as configurações foram salvas normalmente, com os seguintes comandos:
 
 ```plaintext
 $ hostname
@@ -145,24 +167,158 @@ $ hostname --fqdn
 > srvtest.domain.local
 ```
 
-7. Antes de editar os próximos arquivos, fazer um backup de todos os arquivos da pasta `/etc/bind`
-8. Editar os seguintes arquivos dentro da pasta `/etc/bind`:
-   - **named.conf**: arquivo primário de configuração
-   - **named.conf.default-zones**: zonas padrão, como localhost, seu reverso e as dicas root
-   - **named.conf.local**: para as suas zonas
-   - **named.conf.options**: opções globais de DNS
+#### Caching nameserver
+
+1. Adicione as seguintes linhas no arquivo `/etc/bind/named.conf.options`. Substitua o `<hostIP>` com o IP da sua interface de rede e os `<forwardersIP>` pelos IPs de servidores DNS já existentes (e.g. `8.8.8.8` - Google)
 
 ```plaintext
 recursion yes;
 listen-on { <hostIP>; };
 allow-transfer { none; };
 forwarders {
-        <forwardersIP>; // Endereços de IP dos *nameservers* atuais
+    <forwardersIP>; // Endereços de IP dos nameservers atuais
 };
-
 ```
 
-   - db.local
+2. Para ativar a configuração, reinicialize o DNS server com: `sudo systemctl restart bind9.service` ou `sudo service bind9 restart`
+
+#### Primary server
+
+##### Forward Zone File
+
+1. Edite o arquivo `/etc/bind/named.conf.local` com o seu FQDN (*Fully Qualified Domain Name*)
+
+```plaintext
+zone "example.com" {
+    type master;
+    file "/etc/bind/db.example.com";
+};
+```
+
+> **Nota:** se o BIND estiver recebendo atualizações automáticas para o arquivo como com DDNS, utilize o arquivo `/var/lib/bind/db.example.com` ao invés de `/etc/bind/db.example.com`
+
+2. Utilize um arquivo existente de zona para criar um modelo: `sudo cp /etc/bind/db.local /etc/bind/db.example.com`
+3. Edite o novo arquivo de zona `/etc/bind/db.example.com` e mude `localhost.` para o FQDN do seu servidor (deixando o ponto no final)
+4. Altere `127.0.0.1` para o IP do servidor de nomes
+5. Altere `root.localhost` para um endereço de email válido, mas com um `.` em vez do `@` (novamente deixando o `.` no final)
+6. Crie um **registro A** para o domínio base, `exemplo.com`
+7. Crie um **registro A** para `ns.example.com`
+8. Para ativar a configuração, reinicie o DNS server com: `sudo systemctl restart bind9.service` ou `sudo service bind9 restart`
+
+> **Nota:** você deve incrementar o número de série sempre que fizer alterações no arquivo de zona. Muitos admins gostam de utilizar a última data editada como serial de uma zona, como `2023012100`, que é `aaaammddss` (onde `ss` é o número de série)
+
+```plaintext
+;
+; BIND data file for example.com
+;
+$TTL    604800
+@       IN      SOA     example.com. root.example.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+
+@       IN      NS      ns.example.com.
+@       IN      A       192.168.1.10
+@       IN      AAAA    ::1
+ns      IN      A       192.168.1.10
+```
+
+##### Reverse Zone File
+
+Agora que a zona está configurada e resolvendo nomes para endereços IP, uma zona reversa precisa ser adicionada para permitir que o DNS resolva um endereço para um nome.
+
+1. Edite `/etc/bind/named.conf.locale` adicione o seguinte:
+
+```plaintext
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.192";
+};
+```
+
+2. Substitua 1.168.192pelos três primeiros octetos de qualquer rede que você esteja usando.
+3. Crie um arquivo a partir do `/etc/bind/db.127`. Nomeie o arquivo de zona `/etc/bind/db.192` apropriadamente. Deve corresponder ao primeiro octeto da sua rede. `sudo cp /etc/bind/db.127 /etc/bind/db.192`
+4. Altere as mesmas opções do arquivo **forward**.
+5. Para ativar a configuração, reinicie o DNS server com: `sudo systemctl restart bind9.service` ou `sudo service bind9 restart`
+
+```plaintext
+;
+; BIND reverse data file for local 192.168.1.XXX net
+;
+$TTL    604800
+@       IN      SOA     ns.example.com. root.example.com. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns.
+10      IN      PTR     ns.example.com.
+```
+
+> **Nota:** o número de série na zona reversa também precisa ser incrementado a cada alteração. Para cada registro A que você configurar em `/etc/bind/db.example.com`, ou seja, para um endereço diferente, você precisa criar um registro PTR em `/etc/bind/db.192`.
+
+#### Secondary Server
+
+Uma vez que um Servidor Primário tenha sido configurado, um Servidor Secundário é altamente recomendado para manter a disponibilidade do domínio caso o primário fique indisponível.
+
+1. Adicione a opção `allow-transfer` ao exemplo de definições de zona direta e reversa em `/etc/bind/named.conf.local`, substituindo `192.168.1.11` pelo endereço do **nameserver** secundário.
+
+```plaintext
+zone "example.com" {
+    type master;
+    file "/etc/bind/db.example.com";
+    allow-transfer { 192.168.1.11; };
+};
+    
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.192";
+    allow-transfer { 192.168.1.11; };
+};
+```
+
+2. Reinicie o serviço BIND9 do servidor primário.
+3. No servidor secundário, instale o BIND9 da mesma forma como feito no primário.
+4. Edite o `/etc/bind/named.conf.local` e adicione as declarações para as zonas direta e reversa, substituindo `192.168.1.10` pelo endereço IP do seu servidor de nomes primário
+5. Reinicie o BIND9 no servidor secundário.
+
+```plaintext
+zone "example.com" {
+    type secondary;
+    file "db.example.com";
+    masters { 192.168.1.10; };
+};        
+          
+zone "1.168.192.in-addr.arpa" {
+    type secondary;
+    file "db.192";
+    masters { 192.168.1.10; };
+};
+```
+
+> **Nota:** uma zona só é transferida se o número de série no Primário for maior que o do Secundário. Se você deseja que seu DNS primário notifique outros servidores DNS secundários sobre alterações de zona, você pode adicionar `also-notify { ipaddress; };` como `/etc/bind/named.conf.local` mostrado no exemplo abaixo:
+
+```plaintext
+zone "example.com" {
+    type master;
+    file "/etc/bind/db.example.com";
+    allow-transfer { 192.168.1.11; };
+    also-notify { 192.168.1.11; }; 
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.192";
+    allow-transfer { 192.168.1.11; };
+    also-notify { 192.168.1.11; }; 
+};
+```
+
+> **Nota:** o diretório padrão para arquivos de zona não autoritativos é `/var/cache/bind/`. Esse diretório também é configurado no AppArmor para permitir que o daemon nomeado grave nele.
 
 ### 2.2. Em um container
 <!-- MARKDOWN LINKS -->

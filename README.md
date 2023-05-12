@@ -84,6 +84,7 @@
   - [Adicionando um pacote em APT]
   - [Adicionando um pacote em FLATPAK]
   - [Criar um aplicativo APPIMAGE]
+  - [Desenvolvimento de software cross-platform]
 
 ## 📚 Bibliografia
 

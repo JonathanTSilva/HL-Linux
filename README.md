@@ -86,6 +86,7 @@
   - [Criar um aplicativo APPIMAGE]
   - [Desenvolvimento de software cross-platform]
   - [Ethical Hacking]
+  - [Linux embarcado]
 
 ## 📚 Bibliografia
 

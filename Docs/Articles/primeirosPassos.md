@@ -80,11 +80,12 @@ Esse comando vai atualizar a base de dados dos pacotes para que você tenha aces
 Instalar os compiladores e todas as dependências de desenvolvimento do sistema
 
 ```zsh
-sudo apt -y install build-essential default-jdk libssl-dev exuberant-ctags ncurses-term ack-grep silversearcher-ag fontconfig imagemagick libmagickwand-dev software-properties-common git npm vim-gtk3 curl htop
+sudo apt -y install build-essential default-jdk libcurl4-openssl-dev libssl-dev exuberant-ctags ncurses-term ack-grep silversearcher-ag fontconfig imagemagick libmagickwand-dev software-properties-common git npm vim-gtk3 curl htop tldr mlocate libxml2 libxml2-dev libxslt1-dev libgmp-dev zlib1g-dev libffi-dev openssh-server libldns-dev
 ```
 
 - **build-essential** → apresenta todo o essencial para fazer builds;
 - **default-jdk** → para não ter somente a jvm como compilador do java mais novo;
+- **libcurl4-openssl-dev**
 - **libssl-dev** → OpenSSL dos protocolos criptográficos SSL e TLS para comunicação segura pela Internet;
 - **exuberant-ctags** → gera um arquivo de *tags* de objetos de linguagem encontrados em arquivos de origem que permite que esses itens sejam localizados de forma rápida e fácil por um editor de texto ou outro utilitário;
 - **ncurses-term** → definições de tipo de terminal adicionais;

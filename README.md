@@ -87,6 +87,8 @@
   - [Desenvolvimento de software cross-platform]
   - [Ethical Hacking]
   - [Linux embarcado]
+    - [Yocto Project]
+    - [Buildroot]
 
 ## 📚 Bibliografia
 
